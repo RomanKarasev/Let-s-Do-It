@@ -68,7 +68,7 @@ class NotesMainView: UIView {
         NSLayoutConstraint.activate([floatingButton.widthAnchor.constraint(equalToConstant: 60),
                                      floatingButton.heightAnchor.constraint(equalToConstant: 60),
                                      floatingButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25),
-                                     floatingButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -100)
+                                     floatingButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -110)
                                     ])
     }
 }

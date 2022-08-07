@@ -26,18 +26,7 @@ class TodayViewController: UIViewController {
         configureTableView()
         
         todayView.floatingButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-//        headerView.showHourlyWeatherVCButton.addTarget(self, action: #selector(showHourlyVC), for: .touchUpInside)
-        
-        let apiKey = "68a88095881b42c999a25fdbb5f756a4"
-        let baseURL = "https://api.weatherbit.io/v2.0/current"
-        let pozition = "?city="
-        let countOfDay = "&days=1"
-        let apiID = "&NC&key="
-        let city = "Saint-Petersburg"
-
-        let currentWeatherURL = baseURL + pozition + city + apiID + apiKey
-
-        print(currentWeatherURL)
+//
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,18 +35,7 @@ class TodayViewController: UIViewController {
             self.todayView.headerView.setWeatherData(from: currentWeatherData)
         }
     }
-   
-//    
-//case Section.TrendingMovies.rawValue:
-//            ApiCaller.shared.getTrendingMovies { result in
-//                switch result {
-//                case .success(let titles):
-//                    cell.configure(with: titles)
-//                case.failure(let error):
-//                    print(error)
-//                }
-//            }
-    
+ 
     override func loadView() {
         super.loadView()
         view = todayView
@@ -76,8 +54,6 @@ class TodayViewController: UIViewController {
         todayView.tableView.delegate = self
         todayView.tableView.dataSource = self
         todayView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-//        let headerView = TableHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 150))
-//        todayView.tableView.tableHeaderView = headerView
     }
     
     @objc func addButtonTapped() {

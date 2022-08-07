@@ -36,7 +36,7 @@ class MainTabBarController: UITabBarController {
                            notesViewController]
         tabBar.tintColor = .systemOrange
         tabBar.unselectedItemTintColor = .systemBlue
-        tabBar.backgroundColor = .systemGray5
+        tabBar.backgroundColor = .systemGray4
         
         setViewForTabBar()
     }

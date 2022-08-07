@@ -57,6 +57,12 @@
 		7443CACF289B067F0011D92F /* UIApplication+ManagedContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CACE289B067F0011D92F /* UIApplication+ManagedContext.swift */; };
 		7443CAD3289C46A80011D92F /* ApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAD2289C46A80011D92F /* ApiModel.swift */; };
 		7443CAD5289C546B0011D92F /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAD4289C546B0011D92F /* WeatherManager.swift */; };
+		7443CADE289F9D770011D92F /* PomodoroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CADD289F9D770011D92F /* PomodoroView.swift */; };
+		7443CAE0289F9ED90011D92F /* PomodoroViewController + Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CADF289F9ED90011D92F /* PomodoroViewController + Animation.swift */; };
+		7443CAE4289F9F030011D92F /* PomodoroViewController + DrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAE3289F9F030011D92F /* PomodoroViewController + DrawLayer.swift */; };
+		7443CAE6289F9F130011D92F /* PomodoroViewController + FocusTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAE5289F9F130011D92F /* PomodoroViewController + FocusTimer.swift */; };
+		7443CAE8289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAE7289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift */; };
+		7443CAEA289F9F310011D92F /* PomodoroViewController + RestTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAE9289F9F310011D92F /* PomodoroViewController + RestTimer.swift */; };
 		74A22F09289AE33A007B60AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22F08289AE33A007B60AE /* AppDelegate.swift */; };
 		74A22F0B289AE33A007B60AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22F0A289AE33A007B60AE /* SceneDelegate.swift */; };
 		74A22F13289AE33A007B60AE /* Let_s_Do_It.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74A22F11289AE33A007B60AE /* Let_s_Do_It.xcdatamodeld */; };
@@ -137,6 +143,12 @@
 		7443CACE289B067F0011D92F /* UIApplication+ManagedContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+ManagedContext.swift"; sourceTree = "<group>"; };
 		7443CAD2289C46A80011D92F /* ApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiModel.swift; sourceTree = "<group>"; };
 		7443CAD4289C546B0011D92F /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		7443CADD289F9D770011D92F /* PomodoroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroView.swift; sourceTree = "<group>"; };
+		7443CADF289F9ED90011D92F /* PomodoroViewController + Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroViewController + Animation.swift"; sourceTree = "<group>"; };
+		7443CAE3289F9F030011D92F /* PomodoroViewController + DrawLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroViewController + DrawLayer.swift"; sourceTree = "<group>"; };
+		7443CAE5289F9F130011D92F /* PomodoroViewController + FocusTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroViewController + FocusTimer.swift"; sourceTree = "<group>"; };
+		7443CAE7289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroViewController + LongRestTimer.swift"; sourceTree = "<group>"; };
+		7443CAE9289F9F310011D92F /* PomodoroViewController + RestTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroViewController + RestTimer.swift"; sourceTree = "<group>"; };
 		74A22F05289AE33A007B60AE /* Let's Do It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Let's Do It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A22F08289AE33A007B60AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74A22F0A289AE33A007B60AE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -248,7 +260,10 @@
 		7443CA59289AF1A60011D92F /* Pomodoro */ = {
 			isa = PBXGroup;
 			children = (
-				7443CA60289AF2180011D92F /* PomodoroViewController.swift */,
+				7443CAD9289F9D110011D92F /* Model */,
+				7443CAD8289F9D060011D92F /* View */,
+				7443CAD7289F9CFD0011D92F /* Controllers */,
+				7443CAD6289F9CE90011D92F /* Extention */,
 			);
 			path = Pomodoro;
 			sourceTree = "<group>";
@@ -519,6 +534,49 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7443CAD6289F9CE90011D92F /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				7443CADF289F9ED90011D92F /* PomodoroViewController + Animation.swift */,
+				7443CAE3289F9F030011D92F /* PomodoroViewController + DrawLayer.swift */,
+				7443CAE5289F9F130011D92F /* PomodoroViewController + FocusTimer.swift */,
+				7443CAE7289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift */,
+				7443CAE9289F9F310011D92F /* PomodoroViewController + RestTimer.swift */,
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
+		7443CAD7289F9CFD0011D92F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7443CA60289AF2180011D92F /* PomodoroViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7443CAD8289F9D060011D92F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7443CADA289F9D2E0011D92F /* Cell */,
+				7443CADD289F9D770011D92F /* PomodoroView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7443CAD9289F9D110011D92F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7443CADA289F9D2E0011D92F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		74A22EFC289AE33A007B60AE = {
 			isa = PBXGroup;
 			children = (
@@ -774,13 +832,16 @@
 				7443CA7D289AFA840011D92F /* HabitsMainView.swift in Sources */,
 				7443CA91289AFC3B0011D92F /* UiKIt + UiButtons.swift in Sources */,
 				7443CAC5289B00CE0011D92F /* CalendarView.swift in Sources */,
+				7443CAE8289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift in Sources */,
 				7443CA82289AFAF20011D92F /* HabitMainViewController + MainButtons.swift in Sources */,
 				7443CA6B289AF3380011D92F /* RemindersMainView.swift in Sources */,
 				7443CA8A289AFB8D0011D92F /* NotesMainViewController.swift in Sources */,
 				7443CAB0289AFEF80011D92F /* RemindersStore.swift in Sources */,
 				7443CA54289AF1220011D92F /* ContentViewController.swift in Sources */,
+				7443CAE0289F9ED90011D92F /* PomodoroViewController + Animation.swift in Sources */,
 				7443CACF289B067F0011D92F /* UIApplication+ManagedContext.swift in Sources */,
 				7443CAB9289AFFD90011D92F /* UiVC + AlertNewEvent.swift in Sources */,
+				7443CAEA289F9F310011D92F /* PomodoroViewController + RestTimer.swift in Sources */,
 				7443CAD5289C546B0011D92F /* WeatherManager.swift in Sources */,
 				7443CAB7289AFFBF0011D92F /* UiVC + AlertDate.swift in Sources */,
 				7443CA95289AFC6F0011D92F /* UiKit + UiStackView.swift in Sources */,
@@ -800,6 +861,7 @@
 				7443CA78289AF44E0011D92F /* TodayViewController.swift in Sources */,
 				7443CAB2289AFF050011D92F /* AlertFactory.swift in Sources */,
 				7443CA74289AF3FF0011D92F /* TableHeaderView.swift in Sources */,
+				7443CAE6289F9F130011D92F /* PomodoroViewController + FocusTimer.swift in Sources */,
 				7443CAC1289B00940011D92F /* FsCalendar + Settings.swift in Sources */,
 				7443CA5D289AF1EB0011D92F /* AuthViewController.swift in Sources */,
 				7443CAD3289C46A80011D92F /* ApiModel.swift in Sources */,
@@ -807,6 +869,7 @@
 				7443CAAC289AFED70011D92F /* NotesStore.swift in Sources */,
 				74A22F09289AE33A007B60AE /* AppDelegate.swift in Sources */,
 				7443CAC3289B00B20011D92F /* CalendarViewController.swift in Sources */,
+				7443CAE4289F9F030011D92F /* PomodoroViewController + DrawLayer.swift in Sources */,
 				7443CA9F289AFDEB0011D92F /* Habit + CoreDataClass.swift in Sources */,
 				7443CA50289AF0C90011D92F /* SideMenuItem.swift in Sources */,
 				7443CAA5289AFE470011D92F /* Reminder + CoreDataProperties.swift in Sources */,
@@ -817,6 +880,7 @@
 				7443CA7F289AFA970011D92F /* HabitsMainViewController.swift in Sources */,
 				7443CAA9289AFE940011D92F /* Note + CoreDataProperties.swift in Sources */,
 				7443CA63289AF2610011D92F /* ExtensionSideMenuViewController + show&hide.swift in Sources */,
+				7443CADE289F9D770011D92F /* PomodoroView.swift in Sources */,
 				74A22F0B289AE33A007B60AE /* SceneDelegate.swift in Sources */,
 				7443CA97289AFCAB0011D92F /* UiString + Capitalized.swift in Sources */,
 				7443CA76289AF40A0011D92F /* TodayView.swift in Sources */,
