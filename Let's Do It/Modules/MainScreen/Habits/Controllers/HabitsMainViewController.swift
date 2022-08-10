@@ -53,13 +53,13 @@ class HabitsMainViewController: UIViewController {
     }
     
     @objc func allHabitsFolderButtonTapped() {
-//        let vc = AllHabitsViewController(
-//            store: HabitsStore(
-//                coreDataService: CoreDataService()
-//            ),
-//            alertFactory: AlertFactory()
-//        )
-//        navigationController?.pushViewController(vc, animated: true)
+        let vc = AllHabitsViewController(
+            store: HabitsStore(
+                coreDataService: CoreDataService()
+            ),
+            alertFactory: AlertFactory()
+        )
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func tasksHabitsButtonTapped() {

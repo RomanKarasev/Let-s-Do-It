@@ -63,6 +63,24 @@
 		7443CAE6289F9F130011D92F /* PomodoroViewController + FocusTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAE5289F9F130011D92F /* PomodoroViewController + FocusTimer.swift */; };
 		7443CAE8289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAE7289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift */; };
 		7443CAEA289F9F310011D92F /* PomodoroViewController + RestTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAE9289F9F310011D92F /* PomodoroViewController + RestTimer.swift */; };
+		748382C628A3E0C00035CEF2 /* CollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382C528A3E0C00035CEF2 /* CollectionViewTableViewCell.swift */; };
+		748382C828A3E0D10035CEF2 /* HabitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382C728A3E0D10035CEF2 /* HabitCollectionViewCell.swift */; };
+		748382CA28A3E0DE0035CEF2 /* NewHabitViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382C928A3E0DE0035CEF2 /* NewHabitViewCell.swift */; };
+		748382CC28A3E1300035CEF2 /* NewHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382CB28A3E1300035CEF2 /* NewHabitView.swift */; };
+		748382CE28A3E15D0035CEF2 /* AllHabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382CD28A3E15D0035CEF2 /* AllHabitsViewController.swift */; };
+		748382D028A3E16B0035CEF2 /* NewHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382CF28A3E16B0035CEF2 /* NewHabitViewController.swift */; };
+		748382D228A3E3FD0035CEF2 /* AllNotesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382D128A3E3FD0035CEF2 /* AllNotesViewCell.swift */; };
+		748382D428A3E40F0035CEF2 /* NewNoteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382D328A3E40F0035CEF2 /* NewNoteViewCell.swift */; };
+		748382D628A3E44E0035CEF2 /* AllNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382D528A3E44E0035CEF2 /* AllNotesView.swift */; };
+		748382D828A3E4650035CEF2 /* NewNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382D728A3E4650035CEF2 /* NewNoteView.swift */; };
+		748382DA28A3E4AD0035CEF2 /* AllNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382D928A3E4AD0035CEF2 /* AllNotesViewController.swift */; };
+		748382DC28A3E4BE0035CEF2 /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382DB28A3E4BE0035CEF2 /* NewNoteViewController.swift */; };
+		748382DF28A3E51C0035CEF2 /* AllRemindersViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382DE28A3E51C0035CEF2 /* AllRemindersViewCell.swift */; };
+		748382E128A3E5330035CEF2 /* NewReminderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382E028A3E5330035CEF2 /* NewReminderViewCell.swift */; };
+		748382E328A3E5970035CEF2 /* AllRemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382E228A3E5970035CEF2 /* AllRemindersView.swift */; };
+		748382E528A3E5B80035CEF2 /* NewReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382E428A3E5B80035CEF2 /* NewReminderView.swift */; };
+		748382E728A3E5D80035CEF2 /* AllRemindersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382E628A3E5D80035CEF2 /* AllRemindersViewController.swift */; };
+		748382E928A3E6030035CEF2 /* NewReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382E828A3E6030035CEF2 /* NewReminderViewController.swift */; };
 		74A22F09289AE33A007B60AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22F08289AE33A007B60AE /* AppDelegate.swift */; };
 		74A22F0B289AE33A007B60AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22F0A289AE33A007B60AE /* SceneDelegate.swift */; };
 		74A22F13289AE33A007B60AE /* Let_s_Do_It.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74A22F11289AE33A007B60AE /* Let_s_Do_It.xcdatamodeld */; };
@@ -149,6 +167,24 @@
 		7443CAE5289F9F130011D92F /* PomodoroViewController + FocusTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroViewController + FocusTimer.swift"; sourceTree = "<group>"; };
 		7443CAE7289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroViewController + LongRestTimer.swift"; sourceTree = "<group>"; };
 		7443CAE9289F9F310011D92F /* PomodoroViewController + RestTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroViewController + RestTimer.swift"; sourceTree = "<group>"; };
+		748382C528A3E0C00035CEF2 /* CollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTableViewCell.swift; sourceTree = "<group>"; };
+		748382C728A3E0D10035CEF2 /* HabitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCollectionViewCell.swift; sourceTree = "<group>"; };
+		748382C928A3E0DE0035CEF2 /* NewHabitViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHabitViewCell.swift; sourceTree = "<group>"; };
+		748382CB28A3E1300035CEF2 /* NewHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHabitView.swift; sourceTree = "<group>"; };
+		748382CD28A3E15D0035CEF2 /* AllHabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AllHabitsViewController.swift; path = "Let's Do It/Modules/MainScreen/Habits/Views/AllHabitsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		748382CF28A3E16B0035CEF2 /* NewHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHabitViewController.swift; sourceTree = "<group>"; };
+		748382D128A3E3FD0035CEF2 /* AllNotesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNotesViewCell.swift; sourceTree = "<group>"; };
+		748382D328A3E40F0035CEF2 /* NewNoteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewCell.swift; sourceTree = "<group>"; };
+		748382D528A3E44E0035CEF2 /* AllNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNotesView.swift; sourceTree = "<group>"; };
+		748382D728A3E4650035CEF2 /* NewNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteView.swift; sourceTree = "<group>"; };
+		748382D928A3E4AD0035CEF2 /* AllNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNotesViewController.swift; sourceTree = "<group>"; };
+		748382DB28A3E4BE0035CEF2 /* NewNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewController.swift; sourceTree = "<group>"; };
+		748382DE28A3E51C0035CEF2 /* AllRemindersViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRemindersViewCell.swift; sourceTree = "<group>"; };
+		748382E028A3E5330035CEF2 /* NewReminderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderViewCell.swift; sourceTree = "<group>"; };
+		748382E228A3E5970035CEF2 /* AllRemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRemindersView.swift; sourceTree = "<group>"; };
+		748382E428A3E5B80035CEF2 /* NewReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderView.swift; sourceTree = "<group>"; };
+		748382E628A3E5D80035CEF2 /* AllRemindersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRemindersViewController.swift; sourceTree = "<group>"; };
+		748382E828A3E6030035CEF2 /* NewReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderViewController.swift; sourceTree = "<group>"; };
 		74A22F05289AE33A007B60AE /* Let's Do It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Let's Do It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A22F08289AE33A007B60AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74A22F0A289AE33A007B60AE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -297,7 +333,10 @@
 		7443CA67289AF2EB0011D92F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				748382DD28A3E5050035CEF2 /* Cells */,
 				7443CA6A289AF3380011D92F /* RemindersMainView.swift */,
+				748382E228A3E5970035CEF2 /* AllRemindersView.swift */,
+				748382E428A3E5B80035CEF2 /* NewReminderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -306,6 +345,8 @@
 			isa = PBXGroup;
 			children = (
 				7443CA6C289AF3680011D92F /* RemindersMainViewController.swift */,
+				748382E628A3E5D80035CEF2 /* AllRemindersViewController.swift */,
+				748382E828A3E6030035CEF2 /* NewReminderViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -357,7 +398,9 @@
 		7443CA7A289AFA680011D92F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				748382C428A3E0540035CEF2 /* Cells */,
 				7443CA7C289AFA840011D92F /* HabitsMainView.swift */,
+				748382CB28A3E1300035CEF2 /* NewHabitView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -366,6 +409,8 @@
 			isa = PBXGroup;
 			children = (
 				7443CA7E289AFA970011D92F /* HabitsMainViewController.swift */,
+				748382CD28A3E15D0035CEF2 /* AllHabitsViewController.swift */,
+				748382CF28A3E16B0035CEF2 /* NewHabitViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -400,6 +445,8 @@
 			isa = PBXGroup;
 			children = (
 				7443CA89289AFB8D0011D92F /* NotesMainViewController.swift */,
+				748382D928A3E4AD0035CEF2 /* AllNotesViewController.swift */,
+				748382DB28A3E4BE0035CEF2 /* NewNoteViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -407,7 +454,10 @@
 		7443CA86289AFB590011D92F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				748382C328A3E0230035CEF2 /* Cells */,
+				748382D528A3E44E0035CEF2 /* AllNotesView.swift */,
 				7443CA87289AFB7D0011D92F /* NotesMainView.swift */,
+				748382D728A3E4650035CEF2 /* NewNoteView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -575,6 +625,34 @@
 			children = (
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		748382C328A3E0230035CEF2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				748382D128A3E3FD0035CEF2 /* AllNotesViewCell.swift */,
+				748382D328A3E40F0035CEF2 /* NewNoteViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		748382C428A3E0540035CEF2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				748382C528A3E0C00035CEF2 /* CollectionViewTableViewCell.swift */,
+				748382C728A3E0D10035CEF2 /* HabitCollectionViewCell.swift */,
+				748382C928A3E0DE0035CEF2 /* NewHabitViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		748382DD28A3E5050035CEF2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				748382DE28A3E51C0035CEF2 /* AllRemindersViewCell.swift */,
+				748382E028A3E5330035CEF2 /* NewReminderViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		74A22EFC289AE33A007B60AE = {
@@ -827,33 +905,48 @@
 			files = (
 				7443CA8F289AFC270011D92F /* UiKIt +UIFont.swift in Sources */,
 				7443CA6D289AF3680011D92F /* RemindersMainViewController.swift in Sources */,
+				748382CE28A3E15D0035CEF2 /* AllHabitsViewController.swift in Sources */,
+				748382DA28A3E4AD0035CEF2 /* AllNotesViewController.swift in Sources */,
+				748382D828A3E4650035CEF2 /* NewNoteView.swift in Sources */,
 				7443CA9D289AFDC10011D92F /* HiArrayPhrase.swift in Sources */,
+				748382E728A3E5D80035CEF2 /* AllRemindersViewController.swift in Sources */,
 				7443CA56289AF13B0011D92F /* ContentViewControllerPresentation.swift in Sources */,
+				748382E328A3E5970035CEF2 /* AllRemindersView.swift in Sources */,
 				7443CA7D289AFA840011D92F /* HabitsMainView.swift in Sources */,
+				748382D628A3E44E0035CEF2 /* AllNotesView.swift in Sources */,
 				7443CA91289AFC3B0011D92F /* UiKIt + UiButtons.swift in Sources */,
 				7443CAC5289B00CE0011D92F /* CalendarView.swift in Sources */,
+				748382E928A3E6030035CEF2 /* NewReminderViewController.swift in Sources */,
 				7443CAE8289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift in Sources */,
+				748382CA28A3E0DE0035CEF2 /* NewHabitViewCell.swift in Sources */,
 				7443CA82289AFAF20011D92F /* HabitMainViewController + MainButtons.swift in Sources */,
 				7443CA6B289AF3380011D92F /* RemindersMainView.swift in Sources */,
+				748382E128A3E5330035CEF2 /* NewReminderViewCell.swift in Sources */,
 				7443CA8A289AFB8D0011D92F /* NotesMainViewController.swift in Sources */,
 				7443CAB0289AFEF80011D92F /* RemindersStore.swift in Sources */,
 				7443CA54289AF1220011D92F /* ContentViewController.swift in Sources */,
+				748382D228A3E3FD0035CEF2 /* AllNotesViewCell.swift in Sources */,
 				7443CAE0289F9ED90011D92F /* PomodoroViewController + Animation.swift in Sources */,
 				7443CACF289B067F0011D92F /* UIApplication+ManagedContext.swift in Sources */,
 				7443CAB9289AFFD90011D92F /* UiVC + AlertNewEvent.swift in Sources */,
 				7443CAEA289F9F310011D92F /* PomodoroViewController + RestTimer.swift in Sources */,
 				7443CAD5289C546B0011D92F /* WeatherManager.swift in Sources */,
+				748382C628A3E0C00035CEF2 /* CollectionViewTableViewCell.swift in Sources */,
 				7443CAB7289AFFBF0011D92F /* UiVC + AlertDate.swift in Sources */,
 				7443CA95289AFC6F0011D92F /* UiKit + UiStackView.swift in Sources */,
 				7443CA4C289AF0370011D92F /* SideMenuItemCell.swift in Sources */,
 				7443CA4E289AF04B0011D92F /* SideMenuView.swift in Sources */,
 				7443CA6F289AF39B0011D92F /* RemindersMainViewController + MainButtons.swift in Sources */,
 				7443CA65289AF27F0011D92F /* ContainerViewComposer.swift in Sources */,
+				748382CC28A3E1300035CEF2 /* NewHabitView.swift in Sources */,
+				748382C828A3E0D10035CEF2 /* HabitCollectionViewCell.swift in Sources */,
+				748382DF28A3E51C0035CEF2 /* AllRemindersViewCell.swift in Sources */,
 				7443CAA7289AFE790011D92F /* Note + CoreDataClass.swift in Sources */,
 				7443CA58289AF14C0011D92F /* SideMenuViewController.swift in Sources */,
 				7443CA8C289AFBA20011D92F /* NotesMainViewController + MainButtons.swift in Sources */,
 				7443CAAE289AFEE50011D92F /* HabitsStore.swift in Sources */,
 				7443CABB289AFFEB0011D92F /* UiVC + AlertTime.swift in Sources */,
+				748382D428A3E40F0035CEF2 /* NewNoteViewCell.swift in Sources */,
 				7443CAA1289AFE000011D92F /* Habit + CoreDataProperties.swift in Sources */,
 				7443CA88289AFB7D0011D92F /* NotesMainView.swift in Sources */,
 				74A22F13289AE33A007B60AE /* Let_s_Do_It.xcdatamodeld in Sources */,
@@ -868,14 +961,17 @@
 				7443CA5F289AF2050011D92F /* SettingsViewController.swift in Sources */,
 				7443CAAC289AFED70011D92F /* NotesStore.swift in Sources */,
 				74A22F09289AE33A007B60AE /* AppDelegate.swift in Sources */,
+				748382DC28A3E4BE0035CEF2 /* NewNoteViewController.swift in Sources */,
 				7443CAC3289B00B20011D92F /* CalendarViewController.swift in Sources */,
 				7443CAE4289F9F030011D92F /* PomodoroViewController + DrawLayer.swift in Sources */,
+				748382E528A3E5B80035CEF2 /* NewReminderView.swift in Sources */,
 				7443CA9F289AFDEB0011D92F /* Habit + CoreDataClass.swift in Sources */,
 				7443CA50289AF0C90011D92F /* SideMenuItem.swift in Sources */,
 				7443CAA5289AFE470011D92F /* Reminder + CoreDataProperties.swift in Sources */,
 				7443CAB4289AFF1D0011D92F /* CoreDataSevices.swift in Sources */,
 				7443CAA3289AFE340011D92F /* Reminder + CoreDataClass.swift in Sources */,
 				7443CA61289AF2180011D92F /* PomodoroViewController.swift in Sources */,
+				748382D028A3E16B0035CEF2 /* NewHabitViewController.swift in Sources */,
 				7443CA52289AF10D0011D92F /* ContainerViewController.swift in Sources */,
 				7443CA7F289AFA970011D92F /* HabitsMainViewController.swift in Sources */,
 				7443CAA9289AFE940011D92F /* Note + CoreDataProperties.swift in Sources */,

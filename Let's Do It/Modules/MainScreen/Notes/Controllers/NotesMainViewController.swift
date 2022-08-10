@@ -50,13 +50,13 @@ class NotesMainViewController: UIViewController {
     }
     
     @objc func allNotesButtonTapped() {
-//        let vc = AllNotesViewController(
-//            store: NotesStore(
-//                coreDataService: CoreDataService()
-//            ),
-//            alertFactory: AlertFactory()
-//        )
-//        navigationController?.pushViewController(vc, animated: true)
+        let vc = AllNotesViewController(
+            store: NotesStore(
+                coreDataService: CoreDataService()
+            ),
+            alertFactory: AlertFactory()
+        )
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func repeatedNotesButtonTapped() {

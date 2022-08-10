@@ -54,13 +54,13 @@ class RemindersMainViewController: UIViewController {
     }
     
     @objc func allRemindersFolderButtonTapped() {
-//        let vc = AllRemindersViewController(
-//            store: RemindersStore(
-//                coreDataService: CoreDataService()
-//            ),
-//            alertFactory: AlertFactory()
-//        )
-//        navigationController?.pushViewController(vc, animated: true)
+        let vc = AllRemindersViewController(
+            store: RemindersStore(
+                coreDataService: CoreDataService()
+            ),
+            alertFactory: AlertFactory()
+        )
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func missedRemindersFolderButtonTapped() {
