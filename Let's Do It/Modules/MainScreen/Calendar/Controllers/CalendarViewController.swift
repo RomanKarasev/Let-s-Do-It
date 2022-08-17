@@ -22,20 +22,26 @@ class CalendarViewController: ContentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         title = "Calendar"
+        
+        configureView()
+    }
+    
+    override func loadView() {
+        super.loadView()
         view = calendarView
+    }
+    
+    func configureView() {
         configureTableView()
         configureCalendar()
-        
-        // MARK: ViewMethods
-        
-        calendarView.setConstraints()
         swipeAction()
+        setActionForButton()
+    }
+    
+    func setActionForButton() {
         calendarView.floatingButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         calendarView.hideShowButton.addTarget(self, action: #selector(hideShowButtonTapped), for: .touchUpInside)
-        
-//       
     }
     
     // MARK: Methods

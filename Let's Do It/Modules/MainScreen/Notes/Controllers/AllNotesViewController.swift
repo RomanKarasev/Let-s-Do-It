@@ -54,7 +54,7 @@ class AllNotesViewController: UIViewController {
     override func loadView() {
         super.loadView()
         view = allNotesView
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .systemBackground
     }
     
     // MARK: Methods

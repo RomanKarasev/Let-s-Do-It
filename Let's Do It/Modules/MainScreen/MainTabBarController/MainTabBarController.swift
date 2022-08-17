@@ -36,36 +36,8 @@ class MainTabBarController: UITabBarController {
                            notesViewController]
         tabBar.tintColor = .systemOrange
         tabBar.unselectedItemTintColor = .systemBlue
-        tabBar.backgroundColor = .systemGray4
-        
-        setViewForTabBar()
-    }
-    
-    func setViewForTabBar() {
-        let positionOnX: CGFloat = 0
-        let pozitionOnY: CGFloat = -15
-        let width = tabBar.bounds.width - positionOnX * 2
-        let height = tabBar.bounds.height + 70
-        let roundLayer = CAShapeLayer()
-        let bazierPath = UIBezierPath(roundedRect: CGRect(x: positionOnX,
-                                                          y: pozitionOnY,
-                                                          width: width,
-                                                          height: height),
-                                      cornerRadius: 35)
-        
-        roundLayer.path = bazierPath.cgPath
-        tabBar.layer.insertSublayer(roundLayer, at: 0)
-
-        tabBar.itemWidth = width / 3
-        tabBar.itemPositioning = .centered
-        
-        roundLayer.fillColor = UIColor.systemGray4.cgColor
-        
-        roundLayer.shadowColor = UIColor.black.cgColor
-        roundLayer.shadowOpacity = 0.4
-        roundLayer.shadowRadius = 2
-        roundLayer.borderWidth = 5
-        roundLayer.shadowOffset = CGSize(width: 0, height: -5)
+        tabBar.backgroundColor = .systemBackground
+        tabBar.layer.opacity = 0.97
     }
     
     // MARK: createNavController
@@ -103,7 +75,10 @@ class MainTabBarController: UITabBarController {
     
     // MARK: createHabitVC
     func createHabitVC() -> UINavigationController {
-        let habitViewController = createNavController(vc: HabitsMainViewController(), itemName: "Habit")
+        let vc = AllHabitsViewController(store: HabitsStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
+//        let vc = NewReminderViewController(with: RemindersStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
+        let habitViewController = createNavController(vc: vc,
+                                                      itemName: "Habit")
         habitViewController.tabBarItem.image = UIImage(systemName: "note.text.badge.plus")
         return habitViewController
     }

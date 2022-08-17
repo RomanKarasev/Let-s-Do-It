@@ -14,16 +14,22 @@ class AllHabitsViewController: UIViewController {
     
     private var habitsStore: HabitsStoreInput
     private var alertFactory: AlertFactory
-    
+//
     
     let sectionTitles: [String] = ["All Habits"]
     
+    let nameOfImage = ["cross.case", "lungs", "pills", "cross", "eyes.inverse", "text.append", "face.smiling", "waveform.path.ecg", "bolt.heart", "eye.trianglebadge.exclamationmark", "brain.head.profile", "figure.walk", "hand.thumbsup", "bandage.fill"]
+    
+    let habitCollectionViewCell = HabitCollectionViewCell()
     var habits = [Habit]()
-    private lazy var mainTable: UITableView = {
-        let table = UITableView(frame: .zero, style: .grouped )
-        table.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
-        table.translatesAutoresizingMaskIntoConstraints = false
-        return table
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 2
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(HabitCollectionViewCell.self, forCellWithReuseIdentifier: HabitCollectionViewCell.identifier)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
     }()
     
     init(
@@ -53,82 +59,81 @@ class AllHabitsViewController: UIViewController {
     }
     
     func configureView() {
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .systemBackground
         setConstraints()
         configureTableView()
+        
     }
     
     func configureTableView() {
-        mainTable.delegate = self
-        mainTable.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
-//        fetchHabits { habits in
-//            if let habits = habits {
-//                self.habits = habits
-//            }
-//
-//            self.mainTable.reloadData()
-//        }
+        fetchHabits { habits in
+            if let habits = habits {
+                self.habits = habits
+            }
+
+            self.collectionView.reloadData()
+        }
     }
     
-//    private func fetchHabits(_ completion: @escaping ([Habit]?) -> Void) {
-//        habitsStore.getHabits { habits, error in
-//            if let habits = habits {
-//                completion(habits)
-//            }
-//        }
-//    }
+    private func fetchHabits(_ completion: @escaping ([Habit]?) -> Void) {
+        habitsStore.getHabits { habits, error in
+            if let habits = habits {
+                completion(habits)
+            }
+        }
+    }
     
     func setConstraints() {
-        view.addSubview(mainTable)
-        NSLayoutConstraint.activate([mainTable.topAnchor.constraint(equalTo: view.topAnchor),
-                                     mainTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                                     mainTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                                     mainTable.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+                                     collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                                     collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                                     collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
                                     ])
     }
-    
-//    func configureCell(cell: CollectionViewTableViewCell, indexPath: IndexPath) {
-//
-////        cell.index = indexPath
-////        let indexOfArray = notes[indexPath.row]
-////        cell.noteTitle.text = indexOfArray.title
-////        cell.noteBody.text = indexOfArray.body
-////        cell.noteDate.text = indexOfArray.date
-////        cell.noteTime.text = indexOfArray.time
-//    }
 }
 
-extension AllHabitsViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionTitles.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension AllHabitsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell() }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return habits.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HabitCollectionViewCell.identifier, for: indexPath) as? HabitCollectionViewCell else { return UICollectionViewCell() }
+        let indexOfArray = habits[indexPath.row]
+        cell.habitTitle.text = indexOfArray.title
+        cell.habitBody.text = indexOfArray.body
+        cell.habitImageView.image = UIImage(systemName: nameOfImage[indexPath.row])
+        cell.backgroundColor = .yellow
+//        cell.layer.borderWidth = 0.5
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowOpacity = 0.5
+        cell.layer.shadowRadius = 1
+        cell.layer.shadowOffset = .init(width: 2, height: 2)
+        cell.layer.cornerRadius = 2
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        let margin: CGFloat = 20
+        let size: CGFloat = (collectionView.frame.size.width-margin) / 3
+
+        return CGSize(width: size, height: size*1.5)
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionTitles[section]
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+            
+        return UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0)
     }
     
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
-        header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
-        header.textLabel?.textColor = .label
-        header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
-    }
 }
+

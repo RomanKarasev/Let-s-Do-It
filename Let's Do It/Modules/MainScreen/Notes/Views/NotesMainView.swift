@@ -40,6 +40,14 @@ class NotesMainView: UIView {
     
     lazy var floatingButton = UIButton.setupFloatingButton()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func setConstraints() {
         

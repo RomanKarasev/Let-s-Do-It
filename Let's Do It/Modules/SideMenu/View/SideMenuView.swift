@@ -28,7 +28,7 @@ class SideMenuView: UIView {
     
     var sideMenuView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .systemBackground
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

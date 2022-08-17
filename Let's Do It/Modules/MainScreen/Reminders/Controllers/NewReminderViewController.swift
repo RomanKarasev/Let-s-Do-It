@@ -48,7 +48,7 @@ class NewReminderViewController: UIViewController {
         title = "New Reminder"
         
         view = newReminderView
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .systemBackground
         newReminderView.delegate = self
         configureTableView()
         navigationController?.navigationBar.backgroundColor = .systemGray4

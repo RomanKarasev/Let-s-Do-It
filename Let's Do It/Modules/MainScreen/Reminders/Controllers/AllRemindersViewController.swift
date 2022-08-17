@@ -54,7 +54,7 @@ class AllRemindersViewController: UIViewController {
     override func loadView() {
         super.loadView()
         view = allRemindersView
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .systemBackground
     }
     
     // MARK: Methods

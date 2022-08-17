@@ -47,10 +47,9 @@ class NewHabitViewController: UIViewController {
         title = "New Habit"
         
         view = newHabitView
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .systemBackground
         newHabitView.delegate = self
         configureTableView()
-        navigationController?.navigationBar.backgroundColor = .systemGray4
     }
     
     override func viewDidAppear(_ animated: Bool) {

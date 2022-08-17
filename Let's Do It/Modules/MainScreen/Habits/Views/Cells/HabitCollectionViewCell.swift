@@ -8,25 +8,28 @@
 
 import UIKit
 
+
 class HabitCollectionViewCell: UICollectionViewCell {
     
     
     static let identifier = "HabitCollectionViewCell"
+    
+    
+    
     var index: IndexPath?
-    let habitTitle = UILabel(text: "Food", font: .appleSDGothicNeo14(), alignment: .left)
+    var habitTitle = UILabel(text: "Food", font: .appleSDGothicNeo14(), alignment: .left)
     let habitBody = UILabel(text: "Healthy food", font: .appleSDGothicNeo10(), alignment: .left)
     let habitDayCountLabel = UILabel(text: "Count", font: .appleSDGothicNeo14(), alignment: .left)
     let habitDayCount = UILabel(text: "1", font: .appleSDGothicNeo14(), alignment: .right)
     let habitImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Food")
+        var imageView = UIImageView()
+        imageView.image = UIImage(systemName: "bed.double")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemGray4
         setConstraints()
     }
     
@@ -34,12 +37,16 @@ class HabitCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
+   
+    
     func setConstraints() {
         self.addSubview(habitImageView)
         NSLayoutConstraint.activate([habitImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                                      habitImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                                     habitImageView.heightAnchor.constraint(equalToConstant: 100),
-                                     habitImageView.widthAnchor.constraint(equalToConstant: 100)
+                                     habitImageView.heightAnchor.constraint(equalToConstant: 70),
+                                     habitImageView.widthAnchor.constraint(equalToConstant: 70)
                                     ])
         self.addSubview(habitTitle)
         NSLayoutConstraint.activate([habitTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 2),

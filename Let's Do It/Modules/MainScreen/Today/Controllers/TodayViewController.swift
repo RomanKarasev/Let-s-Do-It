@@ -39,7 +39,7 @@ class TodayViewController: UIViewController {
     override func loadView() {
         super.loadView()
         view = todayView
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .systemBackground
     }
 
     

@@ -47,10 +47,10 @@ class NewNoteViewController: UIViewController {
         title = "New Note"
         
         view = newNoteView
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .systemBackground
         newNoteView.delegate = self
         configureTableView()
-        navigationController?.navigationBar.backgroundColor = .systemGray4
+        navigationController?.navigationBar.backgroundColor = .systemBackground
     }
     
     override func viewDidAppear(_ animated: Bool) {

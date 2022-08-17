@@ -24,13 +24,12 @@ class RemindersMainViewController: UIViewController {
         title = "Reminders"
         
         configureTableView()
-        reminderView.setConstraints()
         addTargetToButtons()
     }
     override func loadView() {
         super.loadView()
         view = reminderView
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .systemBackground
     }
     
     // MARK: Methods

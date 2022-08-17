@@ -20,13 +20,12 @@ class NotesMainViewController: UIViewController {
         title = "Notes"
         
         configureTableView()
-        notesView.setConstraints()
         addTargetToButtons()
     }
     override func loadView() {
         super.loadView()
         view = notesView
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .systemBackground
     }
     
     // MARK: Methods
