@@ -237,7 +237,7 @@ extension NewReminderViewController: NewReminderViewDelegate {
         reminder.time = reminderTime
         
         remindersStore.create(reminder: reminder) { reminder, error in
-            if let reminder = reminder {
+            if reminder != nil {
                 self.dismiss(animated: true)
             }
         }

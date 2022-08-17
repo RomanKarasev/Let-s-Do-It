@@ -237,7 +237,7 @@ extension NewNoteViewController: NewNoteViewDelegate {
         note.time = noteTime
         
         notesStore.create(note: note) { note, error in
-            if let note = note {
+            if note != nil {
                 self.dismiss(animated: true)
             }
         }

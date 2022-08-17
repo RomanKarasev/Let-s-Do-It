@@ -239,13 +239,11 @@ extension NewHabitViewController: NewHabitViewDelegate {
         habit.dayCount = habitTime
         
         habitsStore.create(habit: habit) { habit, error in
-            if let habit = habit {
-                self.dismiss(animated: true)
+            if habit != nil {
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }
 }
 
-extension NewHabitViewController: UITextFieldDelegate {
-    
-}
+extension NewHabitViewController: UITextFieldDelegate { }

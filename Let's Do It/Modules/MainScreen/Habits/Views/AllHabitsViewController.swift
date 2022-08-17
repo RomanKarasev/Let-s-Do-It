@@ -14,6 +14,7 @@ class AllHabitsViewController: UIViewController {
     
     private var habitsStore: HabitsStoreInput
     private var alertFactory: AlertFactory
+    private var selectionToggled: Bool = false
 //
     
     let sectionTitles: [String] = ["All Habits"]
@@ -50,12 +51,30 @@ class AllHabitsViewController: UIViewController {
         super.viewDidLoad()
         title = "All Habits"
         configureView()
+        navigationController?.delegate = self
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(openNewHabit))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: Constants.selectTitle,
+            style: .plain,
+            target: self,
+            action: #selector(toggleSelectionMode)
+        )
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
     }
    
     @objc func openNewHabit() {
         let vc = NewHabitViewController(with: HabitsStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    @objc func toggleSelectionMode() {
+        selectionToggled.toggle()
+        print(selectionToggled)
     }
     
     func configureView() {
@@ -85,6 +104,16 @@ class AllHabitsViewController: UIViewController {
             }
         }
     }
+
+    private func reloadData(from habits: [Habit]?) {
+        guard let habits = habits
+        else {
+            return
+        }
+
+        self.habits = habits
+        collectionView.reloadData()
+    }
     
     func setConstraints() {
         view.addSubview(collectionView)
@@ -93,6 +122,16 @@ class AllHabitsViewController: UIViewController {
                                      collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                                      collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
                                     ])
+    }
+
+    private func openHabitDetails(with habit: Habit) {
+        let vc = NewHabitViewController(
+            with: HabitsStore(coreDataService: CoreDataService()),
+            alertFactory: AlertFactory()
+        )
+
+        vc.currentHabit = habit
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -106,18 +145,20 @@ extension AllHabitsViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HabitCollectionViewCell.identifier, for: indexPath) as? HabitCollectionViewCell else { return UICollectionViewCell() }
-        let indexOfArray = habits[indexPath.row]
-        cell.habitTitle.text = indexOfArray.title
-        cell.habitBody.text = indexOfArray.body
-        cell.habitImageView.image = UIImage(systemName: nameOfImage[indexPath.row])
-        cell.backgroundColor = #colorLiteral(red: 1, green: 0.9575918005, blue: 0.01449212246, alpha: 0.5212755268)
-        cell.layer.shadowColor = UIColor.black.cgColor
-        cell.layer.shadowOpacity = 0.5
-        cell.layer.shadowRadius = 1
-        cell.layer.shadowOffset = .init(width: 2, height: 2)
-        cell.layer.cornerRadius = 2
-        
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: HabitCollectionViewCell.identifier,
+            for: indexPath
+        ) as? HabitCollectionViewCell
+        else {
+            return UICollectionViewCell()
+        }
+
+        cell.render(
+            from: HabitCollectionViewCell.ViewModel(
+                from: habits[indexPath.row]
+            )
+        )
+
         return cell
     }
     
@@ -135,13 +176,46 @@ extension AllHabitsViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HabitCollectionViewCell.identifier, for: indexPath) as? HabitCollectionViewCell else { return }
-        let vc = NewHabitViewController(with: HabitsStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
-        
-        vc.currentHabit = habits[indexPath.row]
-        navigationController?.pushViewController(vc, animated: true)
-        
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: HabitCollectionViewCell.identifier, for: indexPath
+        ) as? HabitCollectionViewCell
+        else {
+            return
+        }
+
+        let currentHabit = habits[indexPath.row]
+
+        if selectionToggled {
+            
+        } else {
+            openHabitDetails(with: currentHabit)
+        }
     }
-    
 }
 
+// MARK: - <UINavigationDelegate> Comformance
+
+extension AllHabitsViewController: UINavigationControllerDelegate {
+
+    func navigationController(
+        _ navigationController: UINavigationController,
+        didShow viewController: UIViewController,
+        animated: Bool
+    ) {
+        guard let viewController = viewController as? AllHabitsViewController
+        else {
+            return
+        }
+
+        viewController.fetchHabits { habits in
+            self.reloadData(from: habits)
+        }
+    }
+}
+
+// MARK: - Constants
+
+private struct Constants {
+
+    static let selectTitle = "Select"
+}
