@@ -23,7 +23,7 @@ class NewHabitViewCell: UITableViewCell, UITextFieldDelegate {
     
     let tf: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "???"
+        tf.placeholder = "Enter"
         tf.textColor = .label
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
@@ -56,46 +56,46 @@ class NewHabitViewCell: UITableViewCell, UITextFieldDelegate {
     
     // MARK: Methods
     
-    func configureCell(cell: UITableViewCell, indexPath: IndexPath) {
-        cell.textLabel?.text = cellNameArray[indexPath.section][indexPath.row]
-        cell.textLabel?.textColor = .label
-        switch indexPath {
-        case [0,0]:
-            tf.isHidden = false
-            tf.placeholder = "Title"
-            
-        case [0,1]:
-            tf.isHidden = false
-            tf.placeholder = "Body"
-        default:
-            break
-        }
-        
-        tf.delegate = self
-        
-        if indexPath == [2,0] {
-            backgroundViewCell.backgroundColor = .secondarySystemFill
-        }
-
-        guard let habit = habit
-        else { return }
-
-        switch indexPath {
-        case [0,0]:
-            tf.text = habit.title
-        case [0,1]:
-            tf.text = habit.body
-        case [1,0]:
-            textLabel?.text = habit.date
-        case [1,1]:
-            textLabel?.text = habit.dayCount
-        case [2,0]:
-            break
-//            backgroundViewCell.backgroundColor = UIColor(named: reminder.color ?? "")
-        default:
-            break
-        }
-    }
+//    func configureCell(cell: UITableViewCell, indexPath: IndexPath) {
+//        cell.textLabel?.text = cellNameArray[indexPath.section][indexPath.row]
+//        cell.textLabel?.textColor = .label
+//        switch indexPath {
+//        case [0,0]:
+//            tf.isHidden = false
+//            tf.text = "Title"
+//            
+//        case [0,1]:
+//            tf.isHidden = false
+//            tf.text = "Body"
+//        default:
+//            break
+//        }
+//        
+//        tf.delegate = self
+//        
+//        if indexPath == [2,0] {
+//            backgroundViewCell.backgroundColor = .secondarySystemFill
+//        }
+//
+//        guard let habit = habit
+//        else { return }
+//
+//        switch indexPath {
+//        case [0,0]:
+//            tf.text = habit.title
+//        case [0,1]:
+//            tf.text = habit.body
+//        case [1,0]:
+//            textLabel?.text = habit.date
+//        case [1,1]:
+//            textLabel?.text = habit.dayCount
+//        case [2,0]:
+//            break
+////            backgroundViewCell.backgroundColor = UIColor(named: reminder.color ?? "")
+//        default:
+//            break
+//        }
+//    }
     
     // MARK: setConstraints
     

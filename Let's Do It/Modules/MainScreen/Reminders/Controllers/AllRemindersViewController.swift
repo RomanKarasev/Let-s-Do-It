@@ -44,7 +44,7 @@ class AllRemindersViewController: UIViewController {
         super.viewDidLoad()
         
         title = "All Reminders"
-        
+        navigationController?.navigationBar.prefersLargeTitles = false
         
         configureTableView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(openNewReminder))
@@ -156,5 +156,16 @@ extension AllRemindersViewController: UITableViewDelegate, UITableViewDataSource
             }
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
+    
+//    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        let doneAction = UIContextualAction(
+//            style: .normal,
+//            title: "Done") { (action, view, completionHandler) in
+//                self.reminders[indexPath.row].status = "True"
+//                print(self.reminders[indexPath.row])
+//        }
+//        return UISwipeActionsConfiguration(actions: [doneAction])
+//    }
+    
 }
 

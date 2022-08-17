@@ -18,7 +18,7 @@ class NewHabitViewController: UIViewController {
     private var alertFactory: AlertFactory
     
     var habit: Habit?
-
+    var currentHabit: Habit?
     
     var newHabitCell = NewHabitViewCell()
     let newHabitView = NewHabitView()
@@ -44,12 +44,12 @@ class NewHabitViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "New Habit"
-        
+        navigationController?.navigationBar.prefersLargeTitles = true
         view = newHabitView
         view.backgroundColor = .systemBackground
         newHabitView.delegate = self
         configureTableView()
+        setTitle()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,6 +57,14 @@ class NewHabitViewController: UIViewController {
         setColorTagCellReference()
     }
     
+    func setTitle() {
+        if currentHabit?.title == nil {
+            title = "New Habit"
+        } else {
+            title = currentHabit?.title
+            
+        }
+    }
     // MARK: Methods
     
     func setColorTagCellReference() {
@@ -75,6 +83,8 @@ class NewHabitViewController: UIViewController {
     func configureSelectRow(cell: UITableViewCell, indexPath: IndexPath) {
         guard let label: UILabel = cell.textLabel else { return }
         switch indexPath {
+            
+        
             
         case [1,0]: alertDate(label: label) { (numberWeekday, date) in
             print(numberWeekday, date)
@@ -98,6 +108,48 @@ class NewHabitViewController: UIViewController {
         //        modalViewController.modalPresentationStyle = .formSheet
         //        present(modalViewController, animated: true, completion: nil)
     }
+    
+    
+    func configureCell(cell: NewHabitViewCell, indexPath: IndexPath) {
+        cell.textLabel?.text = cell.cellNameArray[indexPath.section][indexPath.row]
+        cell.textLabel?.textColor = .label
+        switch indexPath {
+        case [0,0]:
+            cell.tf.isHidden = false
+            cell.tf.text = "Title"
+            
+        case [0,1]:
+            cell.tf.isHidden = false
+            cell.tf.text = "Body"
+        default:
+            break
+        }
+        
+        cell.tf.delegate = self
+        
+        if indexPath == [2,0] {
+            cell.backgroundViewCell.backgroundColor = .secondarySystemFill
+        }
+
+        guard let habit = currentHabit
+        else { return }
+
+        switch indexPath {
+        case [0,0]:
+            cell.tf.text = habit.title
+        case [0,1]:
+            cell.tf.text = habit.body
+        case [1,0]:
+            cell.textLabel?.text = habit.date
+        case [1,1]:
+            cell.textLabel?.text = habit.dayCount
+        case [2,0]:
+            break
+//            backgroundViewCell.backgroundColor = UIColor(named: reminder.color ?? "")
+        default:
+            break
+        }
+    }
 }
 
 // MARK: Table View DataSource
@@ -118,7 +170,8 @@ extension NewHabitViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewHabitViewCell.identifier, for: indexPath) as! NewHabitViewCell
-        cell.configureCell(cell: cell, indexPath: indexPath)
+    configureCell(cell: cell, indexPath: indexPath)
+        
         return cell
     }
     
@@ -169,8 +222,8 @@ extension NewHabitViewController: NewHabitViewDelegate {
         guard let cells = newHabitView.tableView.visibleCells as? [NewHabitViewCell],
               let habitTitle = cells.first?.tf.text,
               let habitBody = cells[1].tf.text,
-//              let habitDate = cells[2].textLabel?.text,
-//              let habitTime = cells[3].textLabel?.text,
+              let habitDate = cells[2].textLabel?.text,
+              let habitTime = cells[3].textLabel?.text,
 //              let reminderColor = cells[4].backgroundViewCell.backgroundColor,
               let context = UIApplication.shared.managedContext
         else {
@@ -182,8 +235,8 @@ extension NewHabitViewController: NewHabitViewDelegate {
         let habit = Habit(context: context)
         habit.title = habitTitle
         habit.body = habitBody
-//        habit.date = habitDate
-//        habit.dayCount = habitTime
+        habit.date = habitDate
+        habit.dayCount = habitTime
         
         habitsStore.create(habit: habit) { habit, error in
             if let habit = habit {

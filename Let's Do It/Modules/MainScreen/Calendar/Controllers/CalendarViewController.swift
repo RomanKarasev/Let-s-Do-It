@@ -64,7 +64,7 @@ class CalendarViewController: ContentViewController {
     func configureTableView() {
         calendarView.tableView.delegate = self
         calendarView.tableView.dataSource = self
-        calendarView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: idCalendarCell)
+        calendarView.tableView.register(CalendarTableViewCell.self, forCellReuseIdentifier: CalendarTableViewCell.identifier)
         calendarView.tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: idCalendarHeaderCell)
         calendarView.tableView.backgroundColor = .clear
     }
@@ -104,23 +104,23 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idCalendarCell, for: indexPath)
-//        cell.index = indexPath
-        cell.backgroundColor = .clear
-        cell.textLabel?.text = "fff"
+        let cell = tableView.dequeueReusableCell(withIdentifier: CalendarTableViewCell.identifier, for: indexPath) as! CalendarTableViewCell
+//
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 25
-    }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idCalendarHeaderCell)
-//        header.headerConfigure(section: section)
-        header?.textLabel?.text = "Header"
-        return header
-    }
+    
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 25
+//    }
+//
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idCalendarHeaderCell)
+////        header.headerConfigure(section: section)
+////        header?.textLabel?.text = "Header"
+//        return header
+//    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 115

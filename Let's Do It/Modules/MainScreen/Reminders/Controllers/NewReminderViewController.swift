@@ -45,13 +45,12 @@ class NewReminderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "New Reminder"
-        
+        navigationController?.navigationBar.prefersLargeTitles = true
         view = newReminderView
         view.backgroundColor = .systemBackground
         newReminderView.delegate = self
         configureTableView()
-        navigationController?.navigationBar.backgroundColor = .systemGray4
+        setTitle()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,6 +63,15 @@ class NewReminderViewController: UIViewController {
     func setColorTagCellReference() {
         let colorTagCellIndexPath = IndexPath(row: 0, section: 2)
         colorTagCell = newReminderView.tableView.cellForRow(at: colorTagCellIndexPath) as? NewReminderTableViewCell
+    }
+    
+    func setTitle() {
+        if reminder?.title == nil {
+            title = "New Reminder"
+        } else {
+            title = reminder?.title
+            
+        }
     }
     
     func configureTableView() {
@@ -100,6 +108,47 @@ class NewReminderViewController: UIViewController {
         //        modalViewController.modalPresentationStyle = .formSheet
         //        present(modalViewController, animated: true, completion: nil)
     }
+    
+    func configureCell(cell: NewReminderTableViewCell, indexPath: IndexPath) {
+        cell.textLabel?.text = cell.cellNameArray[indexPath.section][indexPath.row]
+        cell.textLabel?.textColor = .label
+        switch indexPath {
+        case [0,0]:
+            cell.tf.isHidden = false
+            cell.tf.text = "Title"
+            
+        case [0,1]:
+            cell.tf.isHidden = false
+            cell.tf.text = "Body"
+        default:
+            break
+        }
+        
+        cell.tf.delegate = self
+        
+        if indexPath == [2,0] {
+            cell.backgroundViewCell.backgroundColor = .secondarySystemFill
+        }
+
+        guard let reminder = reminder
+        else { return }
+
+        switch indexPath {
+        case [0,0]:
+            cell.tf.text = reminder.title
+        case [0,1]:
+            cell.tf.text = reminder.body
+        case [1,0]:
+            cell.textLabel?.text = reminder.date
+        case [1,1]:
+            cell.textLabel?.text = reminder.time
+        case [2,0]:
+            break
+//            backgroundViewCell.backgroundColor = UIColor(named: reminder.color ?? "")
+        default:
+            break
+        }
+    }
 }
 
 // MARK: Table View DataSource
@@ -120,7 +169,7 @@ extension NewReminderViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewReminderTableViewCell.identifier, for: indexPath) as! NewReminderTableViewCell
-        cell.configureCell(cell: cell, indexPath: indexPath)
+        configureCell(cell: cell, indexPath: indexPath)
         return cell
     }
     

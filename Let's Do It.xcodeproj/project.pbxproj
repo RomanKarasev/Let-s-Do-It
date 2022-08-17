@@ -87,6 +87,7 @@
 		74A22F2F289AE33D007B60AE /* Let_s_Do_ItUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22F2E289AE33D007B60AE /* Let_s_Do_ItUITestsLaunchTests.swift */; };
 		74A22F3E289AE7BB007B60AE /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 74A22F3D289AE7BB007B60AE /* FSCalendar */; };
 		74A22F45289AED8D007B60AE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22F44289AED8D007B60AE /* MainTabBarController.swift */; };
+		74FA1DD428AD608D00E074F5 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FA1DD328AD608D00E074F5 /* CalendarTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +191,7 @@
 		74A22F2C289AE33D007B60AE /* Let_s_Do_ItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Let_s_Do_ItUITests.swift; sourceTree = "<group>"; };
 		74A22F2E289AE33D007B60AE /* Let_s_Do_ItUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Let_s_Do_ItUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		74A22F44289AED8D007B60AE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		74FA1DD328AD608D00E074F5 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -543,6 +545,7 @@
 		7443CABE289B006E0011D92F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				74FA1DD228AD606900E074F5 /* Cell */,
 				7443CAC4289B00CE0011D92F /* CalendarView.swift */,
 			);
 			path = View;
@@ -755,6 +758,14 @@
 			path = MainTabBarController;
 			sourceTree = "<group>";
 		};
+		74FA1DD228AD606900E074F5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				74FA1DD328AD608D00E074F5 /* CalendarTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -944,6 +955,7 @@
 				7443CA5D289AF1EB0011D92F /* AuthViewController.swift in Sources */,
 				7443CAD3289C46A80011D92F /* ApiModel.swift in Sources */,
 				7443CA5F289AF2050011D92F /* SettingsViewController.swift in Sources */,
+				74FA1DD428AD608D00E074F5 /* CalendarTableViewCell.swift in Sources */,
 				7443CAAC289AFED70011D92F /* NotesStore.swift in Sources */,
 				74A22F09289AE33A007B60AE /* AppDelegate.swift in Sources */,
 				748382DC28A3E4BE0035CEF2 /* NewNoteViewController.swift in Sources */,

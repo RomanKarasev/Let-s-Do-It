@@ -18,7 +18,7 @@ class AllHabitsViewController: UIViewController {
     
     let sectionTitles: [String] = ["All Habits"]
     
-    let nameOfImage = ["cross.case", "lungs", "pills", "cross", "eyes.inverse", "text.append", "face.smiling", "waveform.path.ecg", "bolt.heart", "eye.trianglebadge.exclamationmark", "brain.head.profile", "figure.walk", "hand.thumbsup", "bandage.fill"]
+    let nameOfImage = ["cross.case", "lungs", "pills", "cross", "eyes.inverse", "text.append", "face.smiling", "waveform.path.ecg", "bolt.heart", "eye.trianglebadge.exclamationmark", "brain.head.profile", "figure.walk", "hand.thumbsup", "bandage.fill", ""]
     
     let habitCollectionViewCell = HabitCollectionViewCell()
     var habits = [Habit]()
@@ -111,8 +111,7 @@ extension AllHabitsViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.habitTitle.text = indexOfArray.title
         cell.habitBody.text = indexOfArray.body
         cell.habitImageView.image = UIImage(systemName: nameOfImage[indexPath.row])
-        cell.backgroundColor = .yellow
-//        cell.layer.borderWidth = 0.5
+        cell.backgroundColor = #colorLiteral(red: 1, green: 0.9575918005, blue: 0.01449212246, alpha: 0.5212755268)
         cell.layer.shadowColor = UIColor.black.cgColor
         cell.layer.shadowOpacity = 0.5
         cell.layer.shadowRadius = 1
@@ -133,6 +132,15 @@ extension AllHabitsViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             
         return UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HabitCollectionViewCell.identifier, for: indexPath) as? HabitCollectionViewCell else { return }
+        let vc = NewHabitViewController(with: HabitsStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
+        
+        vc.currentHabit = habits[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
     
 }

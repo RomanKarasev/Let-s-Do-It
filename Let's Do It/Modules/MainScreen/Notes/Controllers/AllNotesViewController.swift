@@ -128,7 +128,7 @@ extension AllNotesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentNote = notes[indexPath.row]
         let viewController = NewNoteViewController(with: notesStore, alertFactory: alertFactory)
-        viewController.note = currentNote
+        viewController.currentNote = currentNote
         navigationController?.pushViewController(viewController, animated: true)
     }
 

@@ -54,48 +54,6 @@ class NewReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
         fatalError("init(coder: ) has not been implemented")
     }
     
-    // MARK: Methods
-    
-    func configureCell(cell: UITableViewCell, indexPath: IndexPath) {
-        cell.textLabel?.text = cellNameArray[indexPath.section][indexPath.row]
-        cell.textLabel?.textColor = .label
-        switch indexPath {
-        case [0,0]:
-            tf.isHidden = false
-            tf.placeholder = "Title"
-            
-        case [0,1]:
-            tf.isHidden = false
-            tf.placeholder = "Body"
-        default:
-            break
-        }
-        
-        tf.delegate = self
-        
-        if indexPath == [2,0] {
-            backgroundViewCell.backgroundColor = .secondarySystemFill
-        }
-
-        guard let reminder = reminder
-        else { return }
-
-        switch indexPath {
-        case [0,0]:
-            tf.text = reminder.title
-        case [0,1]:
-            tf.text = reminder.body
-        case [1,0]:
-            textLabel?.text = reminder.date
-        case [1,1]:
-            textLabel?.text = reminder.time
-        case [2,0]:
-            break
-//            backgroundViewCell.backgroundColor = UIColor(named: reminder.color ?? "")
-        default:
-            break
-        }
-    }
     
     // MARK: setConstraints
     

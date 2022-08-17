@@ -17,10 +17,10 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     
     var index: IndexPath?
-    var habitTitle = UILabel(text: "Food", font: .appleSDGothicNeo14(), alignment: .left)
-    let habitBody = UILabel(text: "Healthy food", font: .appleSDGothicNeo10(), alignment: .left)
-    let habitDayCountLabel = UILabel(text: "Count", font: .appleSDGothicNeo14(), alignment: .left)
-    let habitDayCount = UILabel(text: "1", font: .appleSDGothicNeo14(), alignment: .right)
+    var habitTitle = UILabel(text: "Food", font: .appleSDGothicNeo20(), alignment: .left)
+    let habitBody = UILabel(text: "Healthy food", font: .appleSDGothicNeoDemiBold20(), alignment: .left)
+    let habitDayCountLabel = UILabel(text: "Count", font: .appleSDGothicNeo20(), alignment: .left)
+    let habitDayCount = UILabel(text: "1", font: .appleSDGothicNeo20(), alignment: .right)
     let habitImageView: UIImageView = {
         var imageView = UIImageView()
         imageView.image = UIImage(systemName: "bed.double")

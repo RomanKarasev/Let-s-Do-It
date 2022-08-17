@@ -34,6 +34,9 @@ class NewHabitView: UIView {
         return tableView
     }()
     
+    
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(tableView)
@@ -58,7 +61,7 @@ class NewHabitView: UIView {
     func setConstraints() {
         
         self.addSubview(tableView)
-        NSLayoutConstraint.activate([tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+        NSLayoutConstraint.activate([tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 150),
                                      tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
                                      tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
                                      tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -200)

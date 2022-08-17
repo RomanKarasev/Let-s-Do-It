@@ -18,7 +18,7 @@ class NewNoteViewController: UIViewController {
     private var notesStore: NotesStoreInput
     private var alertFactory: AlertFactory
     
-    var note: Note?
+    var currentNote: Note?
     
     var newNoteCell = NewNoteViewCell()
     let newNoteView = NewNoteView()
@@ -44,13 +44,14 @@ class NewNoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "New Note"
         
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
         view = newNoteView
         view.backgroundColor = .systemBackground
         newNoteView.delegate = self
         configureTableView()
-        navigationController?.navigationBar.backgroundColor = .systemBackground
+        setTitle()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,6 +64,15 @@ class NewNoteViewController: UIViewController {
     func setColorTagCellReference() {
         let colorTagCellIndexPath = IndexPath(row: 0, section: 2)
         newNoteCell = newNoteView.tableView.cellForRow(at: colorTagCellIndexPath) as! NewNoteViewCell
+    }
+    
+    func setTitle() {
+        if currentNote?.title == nil {
+            title = "New Habit"
+        } else {
+            title = currentNote?.title
+            
+        }
     }
     
     func configureTableView() {
@@ -99,6 +109,47 @@ class NewNoteViewController: UIViewController {
         //        modalViewController.modalPresentationStyle = .formSheet
         //        present(modalViewController, animated: true, completion: nil)
     }
+    
+    func configureCell(cell: NewNoteViewCell, indexPath: IndexPath) {
+        cell.textLabel?.text = cell.cellNameArray[indexPath.section][indexPath.row]
+        cell.textLabel?.textColor = .label
+        switch indexPath {
+        case [0,0]:
+            cell.tf.isHidden = false
+            cell.tf.text = "Title"
+            
+        case [0,1]:
+            cell.tf.isHidden = false
+            cell.tf.text = "Body"
+        default:
+            break
+        }
+        
+        cell.tf.delegate = self
+        
+        if indexPath == [2,0] {
+            cell.backgroundViewCell.backgroundColor = .secondarySystemFill
+        }
+
+        guard let note = currentNote
+        else { return }
+
+        switch indexPath {
+        case [0,0]:
+            cell.tf.text = note.title
+        case [0,1]:
+            cell.tf.text = note.body
+        case [1,0]:
+            cell.textLabel?.text = note.date
+        case [1,1]:
+            cell.textLabel?.text = note.time
+        case [2,0]:
+            break
+//            backgroundViewCell.backgroundColor = UIColor(named: reminder.color ?? "")
+        default:
+            break
+        }
+    }
 }
 
 // MARK: Table View DataSource
@@ -119,7 +170,7 @@ extension NewNoteViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewNoteViewCell.identifier, for: indexPath) as! NewNoteViewCell
-        cell.configureCell(cell: cell, indexPath: indexPath)
+        configureCell(cell: cell, indexPath: indexPath)
         return cell
     }
     
@@ -168,8 +219,8 @@ extension NewNoteViewController: NewNoteViewDelegate {
     
     func saveButtonTapped() {
         guard let cells = newNoteView.tableView.visibleCells as? [NewNoteViewCell],
-              let noteTitle = cells.first?.cellTextField.text,
-              let noteBody = cells[1].cellTextField.text,
+              let noteTitle = cells.first?.tf.text,
+              let noteBody = cells[1].tf.text,
               let noteDate = cells[2].textLabel?.text,
               let noteTime = cells[3].textLabel?.text,
               let context = UIApplication.shared.managedContext

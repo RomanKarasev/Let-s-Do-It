@@ -19,4 +19,5 @@ extension Reminder {
     @NSManaged public var body: String?
     @NSManaged public var date: String?
     @NSManaged public var time: String?
+//    @NSManaged public var status: String?
 }
