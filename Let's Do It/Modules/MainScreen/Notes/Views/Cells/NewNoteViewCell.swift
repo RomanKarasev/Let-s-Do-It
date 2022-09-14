@@ -13,6 +13,7 @@ import UIKit
 class NewNoteViewCell: UITableViewCell, UITextFieldDelegate {
     
     // MARK: Properties
+    
     static let identifier = "NewNoteViewCell"
     
     var note: Note?
@@ -32,7 +33,7 @@ class NewNoteViewCell: UITableViewCell, UITextFieldDelegate {
     // Views
     
     let backgroundViewCell: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .secondarySystemBackground
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +41,7 @@ class NewNoteViewCell: UITableViewCell, UITextFieldDelegate {
     }()
     
     
-   // MARK: Init
+    // MARK: Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -48,7 +49,7 @@ class NewNoteViewCell: UITableViewCell, UITextFieldDelegate {
         self.selectionStyle = .none
         setConstraints()
         tf.isHidden = true
-   }
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder: ) has not been implemented")
@@ -76,10 +77,10 @@ class NewNoteViewCell: UITableViewCell, UITextFieldDelegate {
         if indexPath == [2,0] {
             backgroundViewCell.backgroundColor = .secondarySystemFill
         }
-
+        
         guard let note = note
         else { return }
-
+        
         switch indexPath {
         case [0,0]:
             tf.text = note.title
@@ -91,7 +92,7 @@ class NewNoteViewCell: UITableViewCell, UITextFieldDelegate {
             textLabel?.text = note.time
         case [2,0]:
             break
-//            backgroundViewCell.backgroundColor = UIColor(named: note.color ?? "")
+            //            backgroundViewCell.backgroundColor = UIColor(named: note.color ?? "")
         default:
             break
         }
@@ -99,21 +100,25 @@ class NewNoteViewCell: UITableViewCell, UITextFieldDelegate {
     
     // MARK: setConstraints
     
-    func setConstraints() {
-
+    private func setConstraints() {
+        
         contentView.addSubview(backgroundViewCell)
-        NSLayoutConstraint.activate([backgroundViewCell.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-                                     backgroundViewCell.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-                                     backgroundViewCell.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-                                     backgroundViewCell.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -1)
-                                    ])
+        NSLayoutConstraint.activate(
+            [backgroundViewCell.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+             backgroundViewCell.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+             backgroundViewCell.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+             backgroundViewCell.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -1)
+            ]
+        )
         
         backgroundViewCell.addSubview(tf)
-        NSLayoutConstraint.activate([tf.topAnchor.constraint(equalTo: backgroundViewCell.topAnchor),
-                                     tf.leadingAnchor.constraint(equalTo: backgroundViewCell.leadingAnchor, constant: 10),
-                                     tf.trailingAnchor.constraint(equalTo: backgroundViewCell.trailingAnchor),
-                                     tf.bottomAnchor.constraint(equalTo: backgroundViewCell.bottomAnchor)
-                                    ])
+        NSLayoutConstraint.activate(
+            [tf.topAnchor.constraint(equalTo: backgroundViewCell.topAnchor),
+             tf.leadingAnchor.constraint(equalTo: backgroundViewCell.leadingAnchor, constant: 10),
+             tf.trailingAnchor.constraint(equalTo: backgroundViewCell.trailingAnchor),
+             tf.bottomAnchor.constraint(equalTo: backgroundViewCell.bottomAnchor)
+            ]
+        )
     }
 }
 

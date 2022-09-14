@@ -46,11 +46,11 @@ class NewReminderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        view = newReminderView
-        view.backgroundColor = .systemBackground
+        
         newReminderView.delegate = self
         configureTableView()
         setTitle()
+        swipeForKeyboard()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,23 +58,39 @@ class NewReminderViewController: UIViewController {
         setColorTagCellReference()
     }
     
+    override func loadView() {
+        super.loadView()
+        view = newReminderView
+        view.backgroundColor = .systemBackground
+    }
+    
     // MARK: Methods
     
-    func setColorTagCellReference() {
+    @objc private func hideKeyboardOnSwipeDown() {
+        view.endEditing(true)
+    }
+    
+    private func swipeForKeyboard() {
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(hideKeyboardOnSwipeDown))
+        swipeDown.delegate = self
+        swipeDown.direction =  UISwipeGestureRecognizer.Direction.down
+        self.view.addGestureRecognizer(swipeDown)
+    }
+    
+    private func setColorTagCellReference() {
         let colorTagCellIndexPath = IndexPath(row: 0, section: 2)
         colorTagCell = newReminderView.tableView.cellForRow(at: colorTagCellIndexPath) as? NewReminderTableViewCell
     }
     
-    func setTitle() {
+    private func setTitle() {
         if reminder?.title == nil {
             title = "New Reminder"
         } else {
             title = reminder?.title
-            
         }
     }
     
-    func configureTableView() {
+    private func configureTableView() {
         newReminderView.tableView.delegate = self
         newReminderView.tableView.dataSource = self
         newReminderView.tableView.backgroundColor = .clear
@@ -151,7 +167,8 @@ class NewReminderViewController: UIViewController {
     }
 }
 
-// MARK: Table View DataSource
+// MARK: - Table View DataSource
+
 extension NewReminderViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -187,13 +204,14 @@ extension NewReminderViewController: UITableViewDataSource, UITableViewDelegate 
         return 30
     }
     
-    // MARK: Table View Delegate
+// MARK: - Table View Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! NewReminderTableViewCell
         configureSelectRow(cell: cell, indexPath: indexPath)
     }
 }
+
 // MARK: - Color Picker
 
 extension NewReminderViewController: UIColorPickerViewControllerDelegate {
@@ -213,6 +231,9 @@ extension NewReminderViewController: UIColorPickerViewControllerDelegate {
         return colorPickerVC
     }
 }
+
+
+//MARK: - saveButtonTapped
 
 extension NewReminderViewController: NewReminderViewDelegate {
     
@@ -244,6 +265,14 @@ extension NewReminderViewController: NewReminderViewDelegate {
     }
 }
 
+
 extension NewReminderViewController: UITextFieldDelegate {
     
+}
+
+extension NewReminderViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+            return true
+        }
 }

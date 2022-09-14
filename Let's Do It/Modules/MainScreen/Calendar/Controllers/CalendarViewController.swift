@@ -8,8 +8,9 @@
 import UIKit
 import FSCalendar
 
+//MARK: - CalendarViewController
+
 class CalendarViewController: ContentViewController {
-    
     
     // MARK: Properties
     
@@ -31,26 +32,15 @@ class CalendarViewController: ContentViewController {
         super.loadView()
         view = calendarView
     }
-    
-    func configureView() {
-        configureTableView()
-        configureCalendar()
-        swipeAction()
-        setActionForButton()
-    }
-    
-    func setActionForButton() {
-        calendarView.floatingButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-        calendarView.hideShowButton.addTarget(self, action: #selector(hideShowButtonTapped), for: .touchUpInside)
-    }
+ 
     
     // MARK: Methods
     
-    @objc func addButtonTapped() {
+    @objc private func addButtonTapped() {
 //        alertNewEvent()
     }
     
-    @objc func hideShowButtonTapped() {
+    @objc private func hideShowButtonTapped() {
         if calendarView.calendar.scope == .week {
             calendarView.calendar.setScope(.month, animated: true )
             calendarView.hideShowButton.setTitle("Month View", for: .normal)
@@ -60,27 +50,7 @@ class CalendarViewController: ContentViewController {
         }
     }
     
-    
-    func configureTableView() {
-        calendarView.tableView.delegate = self
-        calendarView.tableView.dataSource = self
-        calendarView.tableView.register(CalendarTableViewCell.self, forCellReuseIdentifier: CalendarTableViewCell.identifier)
-        calendarView.tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: idCalendarHeaderCell)
-        calendarView.tableView.backgroundColor = .clear
-    }
-    
-    func swipeAction() {
-        
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-        swipeUp.direction = .up
-        calendarView.calendar.addGestureRecognizer(swipeUp)
-        
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-        swipeDown.direction = .down
-        calendarView.calendar.addGestureRecognizer(swipeDown)
-    }
-    
-    @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
+    @objc private func handleSwipe(gesture: UISwipeGestureRecognizer) {
         switch gesture.direction {
         case .up:
             hideShowButtonTapped()
@@ -89,6 +59,37 @@ class CalendarViewController: ContentViewController {
         default:
             break
         }
+    }
+    
+    private func configureView() {
+        configureTableView()
+        configureCalendar()
+        swipeAction()
+        setActionForButton()
+    }
+    
+    private func setActionForButton() {
+        calendarView.floatingButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        calendarView.hideShowButton.addTarget(self, action: #selector(hideShowButtonTapped), for: .touchUpInside)
+    }
+    
+    private func configureTableView() {
+        calendarView.tableView.delegate = self
+        calendarView.tableView.dataSource = self
+        calendarView.tableView.register(CalendarTableViewCell.self, forCellReuseIdentifier: CalendarTableViewCell.identifier)
+        calendarView.tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: idCalendarHeaderCell)
+        calendarView.tableView.backgroundColor = .clear
+    }
+    
+    private func swipeAction() {
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeUp.direction = .up
+        calendarView.calendar.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeDown.direction = .down
+        calendarView.calendar.addGestureRecognizer(swipeDown)
     }
 }
 

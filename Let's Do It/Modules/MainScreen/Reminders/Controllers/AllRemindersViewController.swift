@@ -22,8 +22,8 @@ class AllRemindersViewController: UIViewController {
     let idRemindersCell = "idRemindersCell"
     var reminders = [Reminder]()
 
-    // MARK: - Initialization
-
+    // MARK: Initialization
+    
     init(
         store: RemindersStoreInput,
         alertFactory: AlertFactory
@@ -47,7 +47,12 @@ class AllRemindersViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         
         configureTableView()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(openNewReminder))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: .add,
+            style: .plain,
+            target: self,
+            action: #selector(openNewReminder)
+        )
 
     }
     
@@ -59,12 +64,12 @@ class AllRemindersViewController: UIViewController {
     
     // MARK: Methods
     
-    @objc func openNewReminder() {
+    @objc private func openNewReminder() {
         let vc = NewReminderViewController(with: RemindersStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func configureTableView() {
+    private func configureTableView() {
         allRemindersView.tableView.delegate = self
         allRemindersView.tableView.dataSource = self
         allRemindersView.tableView.register(AllRemindersTableViewCell.self, forCellReuseIdentifier: idRemindersCell)
@@ -87,7 +92,7 @@ class AllRemindersViewController: UIViewController {
         }
     }
     
-    @objc func addButtonTapped() {
+    @objc private func addButtonTapped() {
         let newReminder = NewReminderViewController(
             with: RemindersStore(
                 coreDataService: CoreDataService()

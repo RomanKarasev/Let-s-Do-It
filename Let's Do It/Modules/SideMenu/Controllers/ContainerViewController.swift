@@ -16,7 +16,8 @@ class ContainerViewController: UIViewController {
     private var nav: UINavigationController!
     private var rootViewController: ContentViewController! {
         didSet { rootViewController.delegate = self
-            nav.setViewControllers([rootViewController], animated: false) }
+            nav.setViewControllers([rootViewController], animated: false)
+        }
     }
     
     // MARK: Init

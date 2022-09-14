@@ -5,6 +5,9 @@
 //  Created by Роман Карасёв on 03.08.2022.
 //
 
+
+// MARK: - SideMenuDelegate
+
 protocol SideMenuDelegate: AnyObject {
     func menuButtonTapped()
     func itemSelected(item: ContentViewControllerPresentation)

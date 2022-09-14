@@ -45,11 +45,11 @@ class NewHabitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        view = newHabitView
-        view.backgroundColor = .systemBackground
+        
         newHabitView.delegate = self
         configureTableView()
         setTitle()
+        swipeForKeyboard()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,34 +57,17 @@ class NewHabitViewController: UIViewController {
         setColorTagCellReference()
     }
     
-    func setTitle() {
-        if currentHabit?.title == nil {
-            title = "New Habit"
-        } else {
-            title = currentHabit?.title
-            
-        }
+    override func loadView() {
+        super.loadView()
+        view = newHabitView
+        view.backgroundColor = .systemBackground
     }
+    
     // MARK: Methods
-    
-    func setColorTagCellReference() {
-        let colorTagCellIndexPath = IndexPath(row: 0, section: 2)
-        newHabitCell = newHabitView.tableView.cellForRow(at: colorTagCellIndexPath) as! NewHabitViewCell
-    }
-    
-    func configureTableView() {
-        newHabitView.tableView.delegate = self
-        newHabitView.tableView.dataSource = self
-        newHabitView.tableView.backgroundColor = .clear
-        newHabitView.tableView.separatorStyle = .none
-        newHabitView.tableView.bounces = false
-    }
     
     func configureSelectRow(cell: UITableViewCell, indexPath: IndexPath) {
         guard let label: UILabel = cell.textLabel else { return }
         switch indexPath {
-            
-        
             
         case [1,0]: alertDate(label: label) { (numberWeekday, date) in
             print(numberWeekday, date)
@@ -130,10 +113,10 @@ class NewHabitViewController: UIViewController {
         if indexPath == [2,0] {
             cell.backgroundViewCell.backgroundColor = .secondarySystemFill
         }
-
+        
         guard let habit = currentHabit
         else { return }
-
+        
         switch indexPath {
         case [0,0]:
             cell.tf.text = habit.title
@@ -145,14 +128,53 @@ class NewHabitViewController: UIViewController {
             cell.textLabel?.text = habit.dayCount
         case [2,0]:
             break
-//            backgroundViewCell.backgroundColor = UIColor(named: reminder.color ?? "")
+            //            backgroundViewCell.backgroundColor = UIColor(named: reminder.color ?? "")
         default:
             break
         }
     }
 }
 
-// MARK: Table View DataSource
+
+// MARK: - Private Methods
+extension NewHabitViewController {
+    
+    @objc private func hideKeyboardOnSwipeDown() {
+        view.endEditing(true)
+    }
+    
+    private func swipeForKeyboard() {
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(hideKeyboardOnSwipeDown))
+        swipeDown.delegate = self
+        swipeDown.direction =  UISwipeGestureRecognizer.Direction.down
+        self.view.addGestureRecognizer(swipeDown)
+    }
+    
+    private func setColorTagCellReference() {
+        let colorTagCellIndexPath = IndexPath(row: 0, section: 2)
+        newHabitCell = newHabitView.tableView.cellForRow(at: colorTagCellIndexPath) as! NewHabitViewCell
+    }
+    
+    private func setTitle() {
+        if currentHabit?.title == nil {
+            title = "New Habit"
+        } else {
+            title = currentHabit?.title
+            
+        }
+    }
+    
+    private func configureTableView() {
+        newHabitView.tableView.delegate = self
+        newHabitView.tableView.dataSource = self
+        newHabitView.tableView.backgroundColor = .clear
+        newHabitView.tableView.separatorStyle = .none
+        newHabitView.tableView.bounces = false
+    }
+}
+
+// MARK: - Table View DataSource
+
 extension NewHabitViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -170,7 +192,7 @@ extension NewHabitViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewHabitViewCell.identifier, for: indexPath) as! NewHabitViewCell
-    configureCell(cell: cell, indexPath: indexPath)
+        configureCell(cell: cell, indexPath: indexPath)
         
         return cell
     }
@@ -181,13 +203,14 @@ extension NewHabitViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return headerArray[section]
+    }
     
-            return headerArray[section]
-        }
-
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
+    
     
     // MARK: Table View Delegate
     
@@ -196,6 +219,7 @@ extension NewHabitViewController: UITableViewDataSource, UITableViewDelegate {
         configureSelectRow(cell: cell, indexPath: indexPath)
     }
 }
+
 // MARK: - Color Picker
 
 extension NewHabitViewController: UIColorPickerViewControllerDelegate {
@@ -216,6 +240,9 @@ extension NewHabitViewController: UIColorPickerViewControllerDelegate {
     }
 }
 
+
+//MARK: - saveButtonTapped
+
 extension NewHabitViewController: NewHabitViewDelegate {
     
     func saveButtonTapped() {
@@ -224,7 +251,7 @@ extension NewHabitViewController: NewHabitViewDelegate {
               let habitBody = cells[1].tf.text,
               let habitDate = cells[2].textLabel?.text,
               let habitTime = cells[3].textLabel?.text,
-//              let reminderColor = cells[4].backgroundViewCell.backgroundColor,
+              //              let reminderColor = cells[4].backgroundViewCell.backgroundColor,
               let context = UIApplication.shared.managedContext
         else {
             
@@ -246,4 +273,14 @@ extension NewHabitViewController: NewHabitViewDelegate {
     }
 }
 
+
+
 extension NewHabitViewController: UITextFieldDelegate { }
+
+extension NewHabitViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}
+

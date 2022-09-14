@@ -37,14 +37,19 @@ class MainTabBarController: UITabBarController {
         tabBar.tintColor = .systemOrange
         tabBar.unselectedItemTintColor = .systemBlue
         tabBar.backgroundColor = .systemBackground
-        tabBar.layer.opacity = 0.97
+        tabBar.layer.opacity = 0.98
     }
     
     // MARK: createNavController
     
     func createNavController(vc: UIViewController, itemName: String) -> UINavigationController {
-        let item = UITabBarItem(title: itemName, image: UIImage(), tag: 0)
-        item.titlePositionAdjustment = .init(horizontal: 0, vertical: 5)
+        let item = UITabBarItem(title: itemName,
+                                image: UIImage(),
+                                tag: 0
+        )
+        item.titlePositionAdjustment = .init(horizontal: 0,
+                                             vertical: 5
+        )
         let navController = UINavigationController(rootViewController: vc)
         navController.tabBarItem = item
         return navController
@@ -54,7 +59,8 @@ class MainTabBarController: UITabBarController {
     func createCalendarVC() -> ContainerViewController {
         let calendarViewController =  ContainerViewComposer.makeContainer()
         calendarViewController.tabBarItem.title = "Calendar"
-        calendarViewController.tabBarItem.titlePositionAdjustment = .init(horizontal: 0, vertical: 5)
+        calendarViewController.tabBarItem.titlePositionAdjustment = .init(horizontal: 0,
+                                                                          vertical: 5)
         calendarViewController.tabBarItem.image = UIImage(systemName: "calendar")
         return calendarViewController
     }
@@ -76,7 +82,6 @@ class MainTabBarController: UITabBarController {
     // MARK: createHabitVC
     func createHabitVC() -> UINavigationController {
         let vc = AllHabitsViewController(store: HabitsStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
-//        let vc = NewReminderViewController(with: RemindersStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
         let habitViewController = createNavController(vc: vc,
                                                       itemName: "Habit")
         habitViewController.tabBarItem.image = UIImage(systemName: "note.text.badge.plus")

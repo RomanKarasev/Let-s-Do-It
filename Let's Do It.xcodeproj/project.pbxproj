@@ -33,7 +33,7 @@
 		7443CA93289AFC510011D92F /* UiKit + UiLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA92289AFC510011D92F /* UiKit + UiLabel.swift */; };
 		7443CA95289AFC6F0011D92F /* UiKit + UiStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA94289AFC6F0011D92F /* UiKit + UiStackView.swift */; };
 		7443CA97289AFCAB0011D92F /* UiString + Capitalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA96289AFCAB0011D92F /* UiString + Capitalized.swift */; };
-		7443CA9D289AFDC10011D92F /* HiArrayPhrase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA9C289AFDC10011D92F /* HiArrayPhrase.swift */; };
+		7443CA9D289AFDC10011D92F /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA9C289AFDC10011D92F /* Arrays.swift */; };
 		7443CA9F289AFDEB0011D92F /* Habit + CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA9E289AFDEB0011D92F /* Habit + CoreDataClass.swift */; };
 		7443CAA1289AFE000011D92F /* Habit + CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAA0289AFE000011D92F /* Habit + CoreDataProperties.swift */; };
 		7443CAA3289AFE340011D92F /* Reminder + CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAA2289AFE340011D92F /* Reminder + CoreDataClass.swift */; };
@@ -134,7 +134,7 @@
 		7443CA92289AFC510011D92F /* UiKit + UiLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiKit + UiLabel.swift"; sourceTree = "<group>"; };
 		7443CA94289AFC6F0011D92F /* UiKit + UiStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiKit + UiStackView.swift"; sourceTree = "<group>"; };
 		7443CA96289AFCAB0011D92F /* UiString + Capitalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiString + Capitalized.swift"; sourceTree = "<group>"; };
-		7443CA9C289AFDC10011D92F /* HiArrayPhrase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiArrayPhrase.swift; sourceTree = "<group>"; };
+		7443CA9C289AFDC10011D92F /* Arrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrays.swift; sourceTree = "<group>"; };
 		7443CA9E289AFDEB0011D92F /* Habit + CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Habit + CoreDataClass.swift"; sourceTree = "<group>"; };
 		7443CAA0289AFE000011D92F /* Habit + CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Habit + CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7443CAA2289AFE340011D92F /* Reminder + CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder + CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -470,7 +470,7 @@
 		7443CA98289AFD600011D92F /* Arrays */ = {
 			isa = PBXGroup;
 			children = (
-				7443CA9C289AFDC10011D92F /* HiArrayPhrase.swift */,
+				7443CA9C289AFDC10011D92F /* Arrays.swift */,
 			);
 			path = Arrays;
 			sourceTree = "<group>";
@@ -907,7 +907,7 @@
 				748382CE28A3E15D0035CEF2 /* AllHabitsViewController.swift in Sources */,
 				748382DA28A3E4AD0035CEF2 /* AllNotesViewController.swift in Sources */,
 				748382D828A3E4650035CEF2 /* NewNoteView.swift in Sources */,
-				7443CA9D289AFDC10011D92F /* HiArrayPhrase.swift in Sources */,
+				7443CA9D289AFDC10011D92F /* Arrays.swift in Sources */,
 				748382E728A3E5D80035CEF2 /* AllRemindersViewController.swift in Sources */,
 				7443CA56289AF13B0011D92F /* ContentViewControllerPresentation.swift in Sources */,
 				748382E328A3E5970035CEF2 /* AllRemindersView.swift in Sources */,

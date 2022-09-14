@@ -9,10 +9,11 @@
 import UIKit
 
 // MARK: - CalendarTableViewCell
+
 class CalendarTableViewCell: UITableViewCell {
-
+    
     // MARK: Subtypes
-
+    
     private enum DividerType: String {
         case HabitVerticalDivider
         case NotesVerticalDivider
@@ -20,7 +21,7 @@ class CalendarTableViewCell: UITableViewCell {
     }
     
     //MARK: Properties
-
+    
     static var identifier = "CalendarTableViewCell"
     
     let title = UILabel(text: "Event", font: .appleSDGothicNeoDemiBold14(), alignment: .left)
@@ -31,7 +32,7 @@ class CalendarTableViewCell: UITableViewCell {
     
     
     // Views
-   
+    
     var verticalDividerImage: UIImageView = {
         let verticalDividerImage = UIImageView()
         verticalDividerImage.image = UIImage(named: DividerType.HabitVerticalDivider.rawValue)
@@ -58,30 +59,39 @@ class CalendarTableViewCell: UITableViewCell {
     
     // MARK: Metods
     
-    //MARK: setConstraints
-    
-    func setConstraints() {
-        let timeStackView = UIStackView(arrangedSubviews: [body, date, time], axis: .vertical, spacing: 2, distribution: .fillProportionally)
+    private func setConstraints() {
+        let timeStackView = UIStackView(
+            arrangedSubviews: [body, date, time],
+            axis: .vertical,
+            spacing: 2,
+            distribution: .fillProportionally
+        )
         
         self.addSubview(verticalDividerImage)
-        NSLayoutConstraint.activate([verticalDividerImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
-                                     verticalDividerImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-                                     verticalDividerImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
-                                     verticalDividerImage.widthAnchor.constraint(equalToConstant: 3.5)
-                                    ])
+        NSLayoutConstraint.activate(
+            [verticalDividerImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+             verticalDividerImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+             verticalDividerImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
+             verticalDividerImage.widthAnchor.constraint(equalToConstant: 3.5)
+            ]
+        )
         
         self.addSubview(title)
-        NSLayoutConstraint.activate([title.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-                                     title.leadingAnchor.constraint(equalTo: verticalDividerImage.trailingAnchor, constant: 5),
-                                     title.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-                                     title.heightAnchor.constraint(equalToConstant: 20)
-                                    ])
+        NSLayoutConstraint.activate(
+            [title.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+             title.leadingAnchor.constraint(equalTo: verticalDividerImage.trailingAnchor, constant: 5),
+             title.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+             title.heightAnchor.constraint(equalToConstant: 20)
+            ]
+        )
         
         self.addSubview(timeStackView)
-        NSLayoutConstraint.activate([timeStackView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 2),
-                                     timeStackView.leadingAnchor.constraint(equalTo: verticalDividerImage.trailingAnchor, constant: 5),
-                                     timeStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -2),
-                                     timeStackView.widthAnchor.constraint(equalToConstant: self.frame.size.width)
-                                    ])
+        NSLayoutConstraint.activate(
+            [timeStackView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 2),
+             timeStackView.leadingAnchor.constraint(equalTo: verticalDividerImage.trailingAnchor, constant: 5),
+             timeStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -2),
+             timeStackView.widthAnchor.constraint(equalToConstant: self.frame.size.width)
+            ]
+        )
     }
 }

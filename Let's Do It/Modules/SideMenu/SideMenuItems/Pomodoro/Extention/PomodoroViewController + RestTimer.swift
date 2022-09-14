@@ -7,6 +7,8 @@
 
 import UIKit
 
+//MARK: - Rest
+
 extension PomodoroViewController {
     
     func startRestButtonTapped() {
@@ -39,7 +41,13 @@ extension PomodoroViewController {
     }
     
     func startRestTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateRestTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(updateRestTimer),
+            userInfo: nil,
+            repeats: true
+        )
     }
     
     @objc func updateRestTimer() {

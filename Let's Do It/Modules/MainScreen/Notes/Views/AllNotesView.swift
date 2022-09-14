@@ -14,14 +14,15 @@ class AllNotesView: UIView {
     
     // MARK: Properties
     
-   
     let tableView: UITableView = {
-       let tableView = UITableView()
+        let tableView = UITableView()
         tableView.bounces = false
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    // MARK: Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,14 +33,19 @@ class AllNotesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConstraints() {
+    
+    // MARK: Methods
+    
+    private func setConstraints() {
         
         self.addSubview(tableView)
-        NSLayoutConstraint.activate([tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 90),
-                                     tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-                                     tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-                                     tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
-                                    ])
+        NSLayoutConstraint.activate(
+            [tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 90),
+             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+            ]
+        )
     }
 }
 

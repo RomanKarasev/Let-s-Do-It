@@ -14,18 +14,18 @@ class CalendarView: UIView {
     
     // MARK: Properties
     
-
+    
     var calendarHeightConstraint: NSLayoutConstraint!
     var topBackgroundHeightConstraint: NSLayoutConstraint!
-
+    
     // Views
-
+    
     var calendar: FSCalendar = {
         let calendar = FSCalendar()
         calendar.translatesAutoresizingMaskIntoConstraints = false
         return calendar
     }()
-
+    
     
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -34,11 +34,11 @@ class CalendarView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-
+    
     // Buttons
-
+    
     lazy var floatingButton = UIButton.setupFloatingButton()
-
+    
     let hideShowButton : UIButton = {
         let button = UIButton()
         button.setTitle("Month View", for: .normal)
@@ -47,6 +47,8 @@ class CalendarView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    // MARK: Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,39 +61,56 @@ class CalendarView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConstraints() {
-
-       
+    // MARK: Methods
+    
+    private func setConstraints() {
+        
         self.addSubview(calendar)
-        calendarHeightConstraint = NSLayoutConstraint(item: calendar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 300)
+        calendarHeightConstraint = NSLayoutConstraint(
+            item: calendar,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 300
+        )
         calendar.addConstraint(calendarHeightConstraint)
-
-
-        NSLayoutConstraint.activate([calendar.topAnchor.constraint(equalTo: self.topAnchor, constant: 90),
-                                     calendar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-                                     calendar.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0)
-                                    ])
-
+        
+        
+        NSLayoutConstraint.activate(
+            [calendar.topAnchor.constraint(equalTo: self.topAnchor, constant: 90),
+             calendar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+             calendar.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0)
+            ]
+        )
+        
         self.addSubview(hideShowButton)
-        NSLayoutConstraint.activate([hideShowButton.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 0),
-                                     hideShowButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-                                     hideShowButton.heightAnchor.constraint(equalToConstant: 20),
-                                     hideShowButton.widthAnchor.constraint(equalToConstant: 100)
-                                    ])
-
+        NSLayoutConstraint.activate(
+            [hideShowButton.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 0),
+             hideShowButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+             hideShowButton.heightAnchor.constraint(equalToConstant: 20),
+             hideShowButton.widthAnchor.constraint(equalToConstant: 100)
+            ]
+        )
+        
         self.addSubview(tableView)
-        NSLayoutConstraint.activate([tableView.topAnchor.constraint(equalTo: hideShowButton.bottomAnchor, constant: 10),
-                                     tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-                                     tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-                                     tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -50)
-                                    ])
-
-
+        NSLayoutConstraint.activate(
+            [tableView.topAnchor.constraint(equalTo: hideShowButton.bottomAnchor, constant: 10),
+             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -50)
+            ]
+        )
+        
+        
         self.addSubview(floatingButton)
-        NSLayoutConstraint.activate([floatingButton.widthAnchor.constraint(equalToConstant: 60),
-                                     floatingButton.heightAnchor.constraint(equalToConstant: 60),
-                                     floatingButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25),
-                                     floatingButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -110)
-                                    ])
+        NSLayoutConstraint.activate(
+            [floatingButton.widthAnchor.constraint(equalToConstant: 60),
+             floatingButton.heightAnchor.constraint(equalToConstant: 60),
+             floatingButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25),
+             floatingButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -110)
+            ]
+        )
     }
 }

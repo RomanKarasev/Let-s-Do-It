@@ -11,11 +11,8 @@ import UIKit
 class TodayViewController: UIViewController {
     
     // MARK: Properties
-    
-    // UiViews
-    
+   
     let todayView = TodayView()
-    
     
     // MARK: Vie Life Cycle
     
@@ -42,7 +39,6 @@ class TodayViewController: UIViewController {
         view.backgroundColor = .systemBackground
     }
 
-    
     // MARK: Methods
     
     @objc func showHourlyVC() {
@@ -50,7 +46,7 @@ class TodayViewController: UIViewController {
 ////        present(vc, animated: true)
     }
     
-    func configureTableView() {
+    private func configureTableView() {
         todayView.tableView.delegate = self
         todayView.tableView.dataSource = self
         todayView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")

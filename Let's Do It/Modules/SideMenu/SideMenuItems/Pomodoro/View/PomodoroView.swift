@@ -14,7 +14,6 @@ class PomodoroView: UIView {
     
     // MARK: Properties
     
-    // Views
     
     let downBackground: UIImageView = {
         let imageView = UIImageView()
@@ -22,16 +21,15 @@ class PomodoroView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
-    // Labels
-    
+   
     let timerLabel: UILabel = {
-        let label = UILabel(text: "25:00", font: .appleSDGothicNeoDemiBold50(), alignment: .center)
+        let label = UILabel(text: "25:00",
+                            font: .appleSDGothicNeoDemiBold50(),
+                            alignment: .center
+        )
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    // Buttons
     
     lazy var cancelButton: UIButton = {
         let button = UIButton()
@@ -42,7 +40,6 @@ class PomodoroView: UIView {
         button.backgroundColor = .red
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
-        //        button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -54,13 +51,10 @@ class PomodoroView: UIView {
         button.backgroundColor = .systemGreen
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
-        //        button.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
         return button
     }()
     
 //    lazy var floatingButton = UIButton.setupFloatingButton()
-    
-    // Controls
     
     lazy var focusRestSegmented: UISegmentedControl = {
         let segment = UISegmentedControl()
@@ -70,10 +64,11 @@ class PomodoroView: UIView {
         segment.backgroundColor = UIColor(named: "TapBarColor")
         segment.selectedSegmentTintColor = UIColor(named: "SelectedItem")
         segment.selectedSegmentIndex = 0
-        //        segment.addTarget(self, action: #selector(segmentedValueChanged), for: .valueChanged)
         segment.translatesAutoresizingMaskIntoConstraints = false
         return segment
     }()
+    
+    // MARK: Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -85,40 +80,53 @@ class PomodoroView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConstraints() {
+    // MARK: Methods
+    
+    private func setConstraints() {
         
         self.addSubview(downBackground)
-        NSLayoutConstraint.activate([downBackground.topAnchor.constraint(equalTo: self.topAnchor),
-                                     downBackground.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                                     downBackground.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-                                     downBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-                                    ])
+        NSLayoutConstraint.activate(
+            [downBackground.topAnchor.constraint(equalTo: self.topAnchor),
+             downBackground.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+             downBackground.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+             downBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            ]
+        )
         
         self.addSubview(focusRestSegmented)
-        NSLayoutConstraint.activate([focusRestSegmented.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                                     focusRestSegmented.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                                     focusRestSegmented.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-                                     focusRestSegmented.heightAnchor.constraint(equalToConstant: 25),
-                                     focusRestSegmented.topAnchor.constraint(equalTo: self.topAnchor, constant: 90)
-                                    ])
+        NSLayoutConstraint.activate(
+            [focusRestSegmented.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+             focusRestSegmented.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+             focusRestSegmented.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+             focusRestSegmented.heightAnchor.constraint(equalToConstant: 25),
+             focusRestSegmented.topAnchor.constraint(equalTo: self.topAnchor, constant: 90)
+            ]
+        )
         
         self.addSubview(timerLabel)
-        NSLayoutConstraint.activate([timerLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                                     timerLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-                                    ])
+        NSLayoutConstraint.activate(
+            [timerLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+             timerLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            ]
+        )
         
         self.addSubview(cancelButton)
-        NSLayoutConstraint.activate([cancelButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -150),
-                                     cancelButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                                     cancelButton.widthAnchor.constraint(equalToConstant: 200),
-                                     cancelButton.heightAnchor.constraint(equalToConstant: 50)
-                                    ])
+        NSLayoutConstraint.activate(
+            [cancelButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -150),
+             cancelButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+             cancelButton.widthAnchor.constraint(equalToConstant: 200),
+             cancelButton.heightAnchor.constraint(equalToConstant: 50)
+            ]
+        )
+        
         self.addSubview(startButton)
-        NSLayoutConstraint.activate([startButton.bottomAnchor.constraint(equalTo: cancelButton.topAnchor, constant: -10),
-                                     startButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                                     startButton.widthAnchor.constraint(equalToConstant: 200),
-                                     startButton.heightAnchor.constraint(equalToConstant: 50)
-                                    ])
+        NSLayoutConstraint.activate(
+            [startButton.bottomAnchor.constraint(equalTo: cancelButton.topAnchor, constant: -10),
+             startButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+             startButton.widthAnchor.constraint(equalToConstant: 200),
+             startButton.heightAnchor.constraint(equalToConstant: 50)
+            ]
+        )
         
 //        self.addSubview(floatingButton)
 //        NSLayoutConstraint.activate([floatingButton.widthAnchor.constraint(equalToConstant: 60),

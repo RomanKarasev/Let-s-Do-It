@@ -45,13 +45,12 @@ class NewNoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         navigationController?.navigationBar.prefersLargeTitles = true
-        view = newNoteView
-        view.backgroundColor = .systemBackground
         newNoteView.delegate = self
         configureTableView()
         setTitle()
+        swipeForKeyboard()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,7 +58,24 @@ class NewNoteViewController: UIViewController {
         setColorTagCellReference()
     }
     
+    override func loadView() {
+        super.loadView()
+        view = newNoteView
+        view.backgroundColor = .systemBackground
+    }
+    
     // MARK: Methods
+    
+    @objc func hideKeyboardOnSwipeDown() {
+        view.endEditing(true)
+    }
+    
+    private func swipeForKeyboard() {
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(hideKeyboardOnSwipeDown))
+        swipeDown.delegate = self
+        swipeDown.direction =  UISwipeGestureRecognizer.Direction.down
+        self.view.addGestureRecognizer(swipeDown)
+    }
     
     func setColorTagCellReference() {
         let colorTagCellIndexPath = IndexPath(row: 0, section: 2)
@@ -71,7 +87,6 @@ class NewNoteViewController: UIViewController {
             title = "New Habit"
         } else {
             title = currentNote?.title
-            
         }
     }
     
@@ -152,7 +167,8 @@ class NewNoteViewController: UIViewController {
     }
 }
 
-// MARK: Table View DataSource
+// MARK: - Table View DataSource
+
 extension NewNoteViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -188,7 +204,7 @@ extension NewNoteViewController: UITableViewDataSource, UITableViewDelegate {
         return 30
     }
     
-    // MARK: Table View Delegate
+// MARK: - Table View Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! NewNoteViewCell
@@ -215,6 +231,7 @@ extension NewNoteViewController: UIColorPickerViewControllerDelegate {
     }
 }
 
+// MARK: - saveButtonTapped
 extension NewNoteViewController: NewNoteViewDelegate {
     
     func saveButtonTapped() {
@@ -244,6 +261,16 @@ extension NewNoteViewController: NewNoteViewDelegate {
     }
 }
 
+
+
 extension NewNoteViewController: UITextFieldDelegate {
     
+}
+
+
+extension NewNoteViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+            return true
+        }
 }

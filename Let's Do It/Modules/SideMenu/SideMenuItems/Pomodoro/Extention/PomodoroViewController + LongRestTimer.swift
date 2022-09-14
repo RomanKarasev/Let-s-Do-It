@@ -7,6 +7,8 @@
 
 import UIKit
 
+//MARK: - LongRest
+
 extension PomodoroViewController {
     
     func startLongRestButtonTapped() {
@@ -39,7 +41,13 @@ extension PomodoroViewController {
     }
     
     func startLongRestTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateLongRestTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(updateLongRestTimer),
+            userInfo: nil,
+            repeats: true
+        )
     }
     
     @objc func updateLongRestTimer() {

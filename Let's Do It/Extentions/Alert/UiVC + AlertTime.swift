@@ -33,13 +33,13 @@ extension UIViewController {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm"
             let timeString = dateFormatter.string(from: timePicker.date)
-
+            
             let time = timePicker.date as NSDate
             completionHandler(time)
             
             label.text = timeString
         }
-
+        
         // MARK: Cancel
         
         let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)

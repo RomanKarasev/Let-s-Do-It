@@ -30,25 +30,25 @@ class NotesMainViewController: UIViewController {
     
     // MARK: Methods
     
-    func configureTableView() {
+    private func configureTableView() {
         notesView.tableView.delegate = self
         notesView.tableView.dataSource = self
         notesView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         notesView.tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "Header")
     }
     
-    func addTargetToButtons() {
+    private func addTargetToButtons() {
         notesView.floatingButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         notesView.allNotesButton.addTarget(self, action: #selector(allNotesButtonTapped), for: .touchUpInside)
         notesView.repeatedNotesButton.addTarget(self, action: #selector(repeatedNotesButtonTapped), for: .touchUpInside)
     }
     
     
-    @objc func addButtonTapped() {
+    @objc private func addButtonTapped() {
         remindersAlert()
     }
     
-    @objc func allNotesButtonTapped() {
+    @objc private func allNotesButtonTapped() {
         let vc = AllNotesViewController(
             store: NotesStore(
                 coreDataService: CoreDataService()
@@ -58,12 +58,13 @@ class NotesMainViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc func repeatedNotesButtonTapped() {
+    @objc private func repeatedNotesButtonTapped() {
 //        let vc = MissingRemindersViewController()
 //        navigationController?.pushViewController(vc, animated: true)
     }
     
-    func configureCell(cell: UITableViewCell, indexPath: IndexPath) {cell.accessoryType = .disclosureIndicator
+    func configureCell(cell: UITableViewCell, indexPath: IndexPath) {
+        cell.accessoryType = .disclosureIndicator
         cell.textLabel?.text = notesView.notesListsArray[indexPath.row]
         cell.backgroundColor = .clear
         cell.textLabel?.font = .appleSDGothicNeo20()

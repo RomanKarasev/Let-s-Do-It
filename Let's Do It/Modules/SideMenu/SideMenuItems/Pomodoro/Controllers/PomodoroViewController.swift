@@ -26,33 +26,38 @@ class PomodoroViewController: ContentViewController, CAAnimationDelegate {
     var longRestTime = 900
     var isSetOfPomodoroOn = false
     
-    // Views
+    
     let pomodoroView = PomodoroView()
 
     // MARK: View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = pomodoroView
         title = "Pomodoro"
         
         configureView()
         setActionsForButtons()
     }
     
+    override func loadView() {
+        super.loadView()
+        view = pomodoroView
+    }
+    
+    
     // MARK: Methods
-    func configureView() {
+    private func configureView() {
         drawBackLayer()
     }
     
-    func setActionsForButtons() {
+    private func setActionsForButtons() {
         pomodoroView.focusRestSegmented.addTarget(self, action: #selector(segmentedValueChanged), for: .valueChanged)
         pomodoroView.startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
         pomodoroView.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
 //        pomodoroView.floatingButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
     
-    @objc func segmentedValueChanged() {
+    @objc private func segmentedValueChanged() {
         switch pomodoroView.focusRestSegmented.selectedSegmentIndex {
         case 0 : pomodoroView.timerLabel.text = "25:00"
         case 1 : pomodoroView.timerLabel.text = "05:00"
@@ -61,7 +66,7 @@ class PomodoroViewController: ContentViewController, CAAnimationDelegate {
         }
     }
     
-    @objc func startButtonTapped() {
+    @objc private func startButtonTapped() {
         switch pomodoroView.focusRestSegmented.selectedSegmentIndex {
         case 0 : startFocusButtonTapped()
         case 1 : startRestButtonTapped()
@@ -70,7 +75,7 @@ class PomodoroViewController: ContentViewController, CAAnimationDelegate {
         }
     }
     
-    @objc func cancelButtonTapped() {
+    @objc private func cancelButtonTapped() {
         switch pomodoroView.focusRestSegmented.selectedSegmentIndex {
         case 0 : cancelFocusButtonTapped()
         case 1 : cancelRestButtonTapped()

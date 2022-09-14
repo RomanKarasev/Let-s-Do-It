@@ -8,10 +8,13 @@
 
 import UIKit
 
+//MARK: - RemindersMainViewController
+
 class RemindersMainViewController: UIViewController {
     
     
     // MARK: Properties
+    
     let reminderView = RemindersMainView()
     
 //    private var dataManager: RemindersListDataManager?
@@ -34,25 +37,25 @@ class RemindersMainViewController: UIViewController {
     
     // MARK: Methods
     
-    func configureTableView() {
+    private func configureTableView() {
         reminderView.tableView.delegate = self
         reminderView.tableView.dataSource = self
         reminderView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         reminderView.tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "Header")
     }
     
-    func addTargetToButtons() {
+    private func addTargetToButtons() {
         reminderView.floatingButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         reminderView.allRemindersButton.addTarget(self, action: #selector(allRemindersFolderButtonTapped), for: .touchUpInside)
         reminderView.missedRemindersButton.addTarget(self, action: #selector(missedRemindersFolderButtonTapped), for: .touchUpInside)
     }
     
-    
-    @objc func addButtonTapped() {
+
+    @objc private func addButtonTapped() {
         remindersAlert()
     }
     
-    @objc func allRemindersFolderButtonTapped() {
+    @objc private func allRemindersFolderButtonTapped() {
         let vc = AllRemindersViewController(
             store: RemindersStore(
                 coreDataService: CoreDataService()
@@ -62,7 +65,7 @@ class RemindersMainViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc func missedRemindersFolderButtonTapped() {
+    @objc private func missedRemindersFolderButtonTapped() {
 //        let vc = MissingRemindersViewController()
 //        navigationController?.pushViewController(vc, animated: true)
     }

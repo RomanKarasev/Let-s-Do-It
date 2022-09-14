@@ -7,18 +7,19 @@
 
 import UIKit
 
-// MARK: - NewNoteView
+//MARK: - NewNoteViewDelegate
 
 protocol NewNoteViewDelegate: AnyObject {
 
     func saveButtonTapped()
 }
 
+// MARK: - NewNoteView
+
 class NewNoteView: UIView {
     
     // MARK: Properties
     
-
     weak var delegate: NewNoteViewDelegate?
     
     lazy var createButton = UIButton.doCreateButton()
@@ -29,9 +30,10 @@ class NewNoteView: UIView {
         tableView.backgroundColor = .clear
         tableView.register(NewNoteViewCell.self, forCellReuseIdentifier: NewNoteViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-
         return tableView
     }()
+    
+    // MARK: Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,20 +56,24 @@ class NewNoteView: UIView {
         delegate?.saveButtonTapped()
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         
         self.addSubview(tableView)
-        NSLayoutConstraint.activate([tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+        NSLayoutConstraint.activate(
+            [tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
                                      tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
                                      tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
                                      tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -200)
-                                    ])
+                                    ]
+        )
         
         self.addSubview(createButton)
-        NSLayoutConstraint.activate([createButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+        NSLayoutConstraint.activate(
+            [createButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                                      createButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10),
                                      createButton.widthAnchor.constraint(equalToConstant: 327),
                                      createButton.heightAnchor.constraint(equalToConstant: 56)
-                                    ])
+                                    ]
+        )
     }
 }

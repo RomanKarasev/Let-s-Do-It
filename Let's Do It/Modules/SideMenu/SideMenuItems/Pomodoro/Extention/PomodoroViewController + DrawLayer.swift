@@ -13,7 +13,17 @@ extension PomodoroViewController {
     
     func drawBackLayer() {
         
-        backProgressLayer.path = UIBezierPath(arcCenter: CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY), radius: 150, startAngle: -90.degreesToRadians, endAngle: 270.degreesToRadians, clockwise: true).cgPath
+        backProgressLayer.path = UIBezierPath(
+            arcCenter: CGPoint(
+                x: UIScreen.main.bounds.midX,
+                y: UIScreen.main.bounds.midY
+            ),
+            radius: 150,
+            startAngle: -90.degreesToRadians,
+            endAngle: 270.degreesToRadians,
+            clockwise: true
+        ).cgPath
+        
         backProgressLayer.strokeColor = UIColor.systemBlue.cgColor
         backProgressLayer.fillColor = UIColor.clear.cgColor
         backProgressLayer.lineWidth = 15
@@ -21,7 +31,17 @@ extension PomodoroViewController {
     }
     
     func drawForeLayer() {
-        foreProgressLayer.path = UIBezierPath(arcCenter: CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY), radius: 150, startAngle: -90.degreesToRadians, endAngle: 270.degreesToRadians, clockwise: true).cgPath
+        foreProgressLayer.path = UIBezierPath(
+            arcCenter: CGPoint(
+                x: UIScreen.main.bounds.midX,
+                y: UIScreen.main.bounds.midY
+            ),
+            radius: 150,
+            startAngle: -90.degreesToRadians,
+            endAngle: 270.degreesToRadians,
+            clockwise: true
+        ).cgPath
+        
         foreProgressLayer.strokeColor = UIColor.systemOrange.cgColor
         foreProgressLayer.fillColor = UIColor.clear.cgColor
         foreProgressLayer.lineWidth = 13

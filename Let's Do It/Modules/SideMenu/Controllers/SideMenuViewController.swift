@@ -13,6 +13,7 @@ import UIKit
 class SideMenuViewController: UIViewController {
     
     // MARK: Properties
+    
     let sideMenuView = SideMenuView()
     var screenWidth: CGFloat { view.frame.size.width }
     var leadingConstraint: NSLayoutConstraint!
@@ -45,7 +46,7 @@ class SideMenuViewController: UIViewController {
     
     // MARK: Methods
     
-    @objc func authButtonTapped() {
+    @objc private func authButtonTapped() {
         present(AuthViewController(), animated: true)
     }
     
@@ -116,11 +117,13 @@ extension SideMenuViewController {
         view.addSubview(sideMenuView)
         leadingConstraint = sideMenuView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -view.frame.size.width)
 
-        NSLayoutConstraint.activate([sideMenuView.topAnchor.constraint(equalTo: view.topAnchor),
-                                     leadingConstraint,
-                                     sideMenuView.widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.8),
-                                     sideMenuView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-                                    ])
+        NSLayoutConstraint.activate(
+            [sideMenuView.topAnchor.constraint(equalTo: view.topAnchor),
+             leadingConstraint,
+             sideMenuView.widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.8),
+             sideMenuView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ]
+        )
     }
 }
 

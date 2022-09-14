@@ -7,6 +7,8 @@
 
 import UIKit
 
+//MARK: - Focus
+
 extension PomodoroViewController {
     
     func startFocusButtonTapped() {
@@ -39,7 +41,13 @@ extension PomodoroViewController {
     }
     
     func startFocusTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateFocusTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(updateFocusTimer),
+            userInfo: nil,
+            repeats: true
+        )
     }
     
     @objc func updateFocusTimer() {

@@ -47,8 +47,12 @@ class AllNotesViewController: UIViewController {
         
         
         configureTableView()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(openNewNote))
-
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: .add,
+            style: .plain,
+            target: self,
+            action: #selector(openNewNote)
+        )
     }
     
     override func loadView() {
@@ -64,7 +68,7 @@ class AllNotesViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func configureTableView() {
+    private func configureTableView() {
         allNotesView.tableView.delegate = self
         allNotesView.tableView.dataSource = self
         allNotesView.tableView.register(AllNotesViewCell.self, forCellReuseIdentifier: idNotesCell)
@@ -73,10 +77,8 @@ class AllNotesViewController: UIViewController {
             if let notes = notes {
                 self.notes = notes
             }
-
             self.allNotesView.tableView.reloadData()
         }
-
     }
 
     private func fetchNotes(_ completion: @escaping ([Note]?) -> Void) {
@@ -91,7 +93,8 @@ class AllNotesViewController: UIViewController {
         let newNote = NewNoteViewController(
             with: NotesStore(
                 coreDataService: CoreDataService()
-            ), alertFactory: alertFactory
+            ),
+            alertFactory: alertFactory
         )
         
         navigationController?.pushViewController(newNote, animated: true)

@@ -8,21 +8,23 @@
 
 import UIKit
 
+//MARK: - AllHabitsViewController
 
 class AllHabitsViewController: UIViewController {
     
+    // MARK: Properties
     
     private var habitsStore: HabitsStoreInput
     private var alertFactory: AlertFactory
     private var selectionToggled: Bool = false
-//
     
     let sectionTitles: [String] = ["All Habits"]
     
-    let nameOfImage = ["cross.case", "lungs", "pills", "cross", "eyes.inverse", "text.append", "face.smiling", "waveform.path.ecg", "bolt.heart", "eye.trianglebadge.exclamationmark", "brain.head.profile", "figure.walk", "hand.thumbsup", "bandage.fill", ""]
+    let nameOfImage = Arrays().nameOfImage
     
     let habitCollectionViewCell = HabitCollectionViewCell()
     var habits = [Habit]()
+    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 2
@@ -32,6 +34,8 @@ class AllHabitsViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
+    
+    // MARK: Initialization
     
     init(
         store: HabitsStoreInput,
@@ -47,19 +51,13 @@ class AllHabitsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "All Habits"
         configureView()
-        navigationController?.delegate = self
-        navigationController?.navigationBar.prefersLargeTitles = false
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(openNewHabit))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(
-            title: Constants.selectTitle,
-            style: .plain,
-            target: self,
-            action: #selector(toggleSelectionMode)
-        )
+        setNavigationController()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +65,8 @@ class AllHabitsViewController: UIViewController {
         collectionView.reloadData()
     }
    
+    // MARK: Methods
+    
     @objc func openNewHabit() {
         let vc = NewHabitViewController(with: HabitsStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
         navigationController?.pushViewController(vc, animated: true)
@@ -76,15 +76,33 @@ class AllHabitsViewController: UIViewController {
         selectionToggled.toggle()
         print(selectionToggled)
     }
+}
+
+
+// MARK: - Private Methods
+
+extension AllHabitsViewController {
     
-    func configureView() {
+    private func setNavigationController() {
+        navigationController?.delegate = self
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(openNewHabit))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: Constants.selectTitle,
+            style: .plain,
+            target: self,
+            action: #selector(toggleSelectionMode)
+        )
+    }
+    
+    private func configureView() {
         view.backgroundColor = .systemBackground
         setConstraints()
         configureTableView()
-        
     }
     
-    func configureTableView() {
+    private func configureTableView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -92,7 +110,6 @@ class AllHabitsViewController: UIViewController {
             if let habits = habits {
                 self.habits = habits
             }
-
             self.collectionView.reloadData()
         }
     }
@@ -115,25 +132,28 @@ class AllHabitsViewController: UIViewController {
         collectionView.reloadData()
     }
     
-    func setConstraints() {
-        view.addSubview(collectionView)
-        NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-                                     collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                                     collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                                     collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-                                    ])
-    }
-
     private func openHabitDetails(with habit: Habit) {
         let vc = NewHabitViewController(
             with: HabitsStore(coreDataService: CoreDataService()),
             alertFactory: AlertFactory()
         )
-
         vc.currentHabit = habit
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    private func setConstraints() {
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate(
+            [collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+                                     collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                                     collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                                     collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                                    ]
+        )
+    }
 }
+
+//MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 
 extension AllHabitsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {

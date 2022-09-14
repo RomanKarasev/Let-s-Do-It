@@ -21,9 +21,9 @@ extension UIViewController {
         
         if #available(iOS 14.0, *) {
             datePicker.preferredDatePickerStyle = .inline
-            } else {
-                // Fallback on earlier versions
-            }
+        } else {
+            // Fallback on earlier versions
+        }
         alert.view.addSubview(datePicker)
         
         // MARK: Ok
