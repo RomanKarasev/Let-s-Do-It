@@ -15,11 +15,11 @@ extension CalendarViewController: FSCalendarDataSource, FSCalendarDelegate  {
         calendarView.calendar.dataSource = self
         calendarView.calendar.scope = .week
         calendarView.calendar.firstWeekday = 2
-        calendarView.calendar.appearance.headerTitleColor = .systemOrange
+        calendarView.calendar.appearance.headerTitleColor = .accentColor
         calendarView.calendar.appearance.weekdayTextColor = .blue
         calendarView.calendar.appearance.titleWeekendColor = .red
-        calendarView.calendar.appearance.todayColor = .blue
-        calendarView.calendar.appearance.selectionColor =  .green
+        calendarView.calendar.appearance.todayColor = .accentColor
+        calendarView.calendar.appearance.selectionColor =  .mainColor
         calendarView.calendar.appearance.titleDefaultColor = .label
     }
     

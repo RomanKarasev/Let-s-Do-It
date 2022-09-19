@@ -18,7 +18,7 @@ class SideMenuViewController: UIViewController {
     var screenWidth: CGFloat { view.frame.size.width }
     var leadingConstraint: NSLayoutConstraint!
     var leadingViewConstraint: NSLayoutConstraint!
-    var shadowColor: UIColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 0.5)
+    var shadowColor = UIColor.shadowColor
     private var sideMenuItems: [SideMenuItem] = []
     weak var delegate: SideMenuDelegate?
     
@@ -36,19 +36,32 @@ class SideMenuViewController: UIViewController {
         super.viewDidLoad()
         view.frame.origin.x = -screenWidth
         
+        addView()
         configureConstraints()
         configureTableView()
         configureTapGesture()
         sideMenuView.authButton.addTarget(self, action: #selector(authButtonTapped), for: .touchUpInside)
         
     }
+}
+
+// MARK: - @objs extentions
+
+@objc extension SideMenuViewController {
     
-    
-    // MARK: Methods
-    
-    @objc private func authButtonTapped() {
+    private func authButtonTapped() {
         present(AuthViewController(), animated: true)
     }
+    
+    private func tapped() {
+        hide()
+    }
+}
+
+// MARK: - Private Methods
+
+extension SideMenuViewController {
+    
     
     private func configureTableView() {
         sideMenuView.tableView.register(SideMenuItemCell.self, forCellReuseIdentifier: SideMenuItemCell.identifier)
@@ -61,10 +74,6 @@ class SideMenuViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
         tapGesture.delegate = self
         view.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc private func tapped() {
-        hide()
     }
 }
 
@@ -93,11 +102,11 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuItemCell.identifier, for: indexPath) as? SideMenuItemCell else {
-            fatalError("Could not dequeue cell")
+            fatalError(Constants.error)
         }
         let item = sideMenuItems[indexPath.row]
         cell.configureCell(icon: item.icon, text: item.name)
-        cell.backgroundColor = .clear
+        cell.backgroundColor = UIColor.clearColor
         return cell
     }
     
@@ -112,19 +121,33 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension SideMenuViewController {
     
+    private func addView() {
+        view.addSubview(sideMenuView)
+    }
+    
     private func configureConstraints() {
 
-        view.addSubview(sideMenuView)
-        leadingConstraint = sideMenuView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -view.frame.size.width)
+        
+        leadingConstraint = sideMenuView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                                  constant: -view.frame.size.width)
 
         NSLayoutConstraint.activate(
             [sideMenuView.topAnchor.constraint(equalTo: view.topAnchor),
              leadingConstraint,
-             sideMenuView.widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.8),
+             sideMenuView.widthAnchor.constraint(equalToConstant: view.frame.size.width * Constants.sideMenuViewWidthAncorMultiplay),
              sideMenuView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ]
         )
     }
+}
+
+// MARK: - Constants
+
+private struct Constants {
+    
+    static let sideMenuViewWidthAncorMultiplay: CGFloat = 0.8
+    
+    static let error = "Could not dequeue cell"
 }
 
 

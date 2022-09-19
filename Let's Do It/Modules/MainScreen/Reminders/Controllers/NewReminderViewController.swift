@@ -102,6 +102,7 @@ class NewReminderViewController: UIViewController {
         guard let label: UILabel = cell.textLabel else { return }
         switch indexPath {
             
+            
         case [1,0]: alertDate(label: label) { (numberWeekday, date) in
             print(numberWeekday, date)
         }
@@ -130,17 +131,20 @@ class NewReminderViewController: UIViewController {
         cell.textLabel?.textColor = .label
         switch indexPath {
         case [0,0]:
-            cell.tf.isHidden = false
-            cell.tf.text = "Title"
+            cell.textField.isHidden = false
+            cell.textField.text = "Title"
+            cell.textView.sizeToFit()
             
         case [0,1]:
-            cell.tf.isHidden = false
-            cell.tf.text = "Body"
+            cell.textView.isHidden = false
+            cell.textView.text = "Body"
+            cell.textView.font = .systemFont(ofSize: 18)
+            cell.textView.sizeToFit()
         default:
             break
         }
         
-        cell.tf.delegate = self
+        cell.textView.delegate = self
         
         if indexPath == [2,0] {
             cell.backgroundViewCell.backgroundColor = .secondarySystemFill
@@ -151,9 +155,9 @@ class NewReminderViewController: UIViewController {
 
         switch indexPath {
         case [0,0]:
-            cell.tf.text = reminder.title
+            cell.textField.text = reminder.title
         case [0,1]:
-            cell.tf.text = reminder.body
+            cell.textView.text = reminder.body
         case [1,0]:
             cell.textLabel?.text = reminder.date
         case [1,1]:
@@ -192,7 +196,12 @@ extension NewReminderViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 44
+        if indexPath.section == 0,
+           indexPath.row == 1 {
+            return 88
+        } else {
+            return 44
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -235,12 +244,12 @@ extension NewReminderViewController: UIColorPickerViewControllerDelegate {
 
 //MARK: - saveButtonTapped
 
-extension NewReminderViewController: NewReminderViewDelegate {
+extension NewReminderViewController: NewViewDelegate {
     
     func saveButtonTapped() {
         guard let cells = newReminderView.tableView.visibleCells as? [NewReminderTableViewCell],
-              let reminderTitle = cells.first?.tf.text,
-              let reminderBody = cells[1].tf.text,
+              let reminderTitle = cells.first?.textField.text,
+              let reminderBody = cells[1].textView.text,
               let reminderDate = cells[2].textLabel?.text,
               let reminderTime = cells[3].textLabel?.text,
 //              let reminderColor = cells[4].backgroundViewCell.backgroundColor,
@@ -259,14 +268,15 @@ extension NewReminderViewController: NewReminderViewDelegate {
         
         remindersStore.create(reminder: reminder) { reminder, error in
             if reminder != nil {
-                self.dismiss(animated: true)
+                self.navigationController?.popViewController(animated: true)
+                
             }
         }
     }
 }
 
 
-extension NewReminderViewController: UITextFieldDelegate {
+extension NewReminderViewController: UITextViewDelegate {
     
 }
 

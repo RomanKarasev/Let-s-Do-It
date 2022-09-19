@@ -11,6 +11,34 @@ import UIKit
 
 extension PomodoroViewController {
     
+    @objc
+    func cancelFocusButtonTapped() {
+        stopAnimation()
+        timer.invalidate()
+        focusTime = Constants.focusTime
+        pomodoroView.timerLabel.text = Constants.focusTimeText
+        isTimerStart = false
+        pomodoroView.cancelButton.isHidden = true
+        pomodoroView.startButton.setTitle(.start, for: .normal)
+        pomodoroView.startButton.backgroundColor = .systemGreen
+    }
+    
+    @objc
+    func updateFocusTimer() {
+        if focusTime < 1 {
+            pomodoroView.cancelButton.isHidden = true
+            pomodoroView.startButton.setTitle(.start, for: .normal)
+            pomodoroView.startButton.backgroundColor = .systemGreen
+            timer.invalidate()
+            focusTime = Constants.focusTime
+            pomodoroView.timerLabel.text = Constants.focusTimeText
+            isTimerStart = false
+        } else {
+            focusTime -= 1
+            pomodoroView.timerLabel.text = stringFocusTime()
+        }
+    }
+    
     func startFocusButtonTapped() {
         pomodoroView.cancelButton.isHidden = false
         if !isTimerStart {
@@ -18,27 +46,17 @@ extension PomodoroViewController {
             startResumeAnimation()
             startFocusTimer()
             isTimerStart = true
-            pomodoroView.startButton.setTitle("Pause", for: .normal)
+            pomodoroView.startButton.setTitle(.pause, for: .normal)
             pomodoroView.startButton.backgroundColor = .systemGreen
         } else {
             pauseAnimation()
             timer.invalidate()
             isTimerStart = false
-            pomodoroView.startButton.setTitle("Resume", for: .normal)
+            pomodoroView.startButton.setTitle(.resume, for: .normal)
             pomodoroView.startButton.backgroundColor = .systemGreen
         }
     }
     
-    @objc func cancelFocusButtonTapped() {
-        stopAnimation()
-        timer.invalidate()
-        focusTime = 1500
-        pomodoroView.timerLabel.text = "25:00"
-        isTimerStart = false
-        pomodoroView.cancelButton.isHidden = true
-        pomodoroView.startButton.setTitle("Start", for: .normal)
-        pomodoroView.startButton.backgroundColor = .systemGreen
-    }
     
     func startFocusTimer() {
         timer = Timer.scheduledTimer(
@@ -50,20 +68,6 @@ extension PomodoroViewController {
         )
     }
     
-    @objc func updateFocusTimer() {
-        if focusTime < 1 {
-            pomodoroView.cancelButton.isHidden = true
-            pomodoroView.startButton.setTitle("Start", for: .normal)
-            pomodoroView.startButton.backgroundColor = .systemGreen
-            timer.invalidate()
-            focusTime = 1500
-            pomodoroView.timerLabel.text = "25:00"
-            isTimerStart = false
-        } else {
-            focusTime -= 1
-            pomodoroView.timerLabel.text = stringFocusTime()
-        }
-    }
     
     func stringFocusTime() -> String {
         let minutes = Int(focusTime) / 60 % 60
@@ -74,15 +78,32 @@ extension PomodoroViewController {
     func startFocusAnimation() {
         resetAnimation()
         foreProgressLayer.strokeEnd = 0.0
-        animation.keyPath = "strokeEnd"
+        animation.keyPath = Constants.keyPath
         animation.fromValue = 0
         animation.toValue = 1
-        animation.duration = 1500
+        animation.duration = CFTimeInterval(Constants.focusTime)
         animation.delegate = self
         animation.isRemovedOnCompletion = false
         animation.isAdditive = true
         animation.fillMode = CAMediaTimingFillMode.forwards
-        foreProgressLayer.add(animation, forKey: "strokeEnd")
+        foreProgressLayer.add(animation, forKey: Constants.keyPath)
         isAnimationStarted = true
     }
+}
+
+
+// MARK: - Constants
+
+private struct Constants {
+    
+    static let focusTime: Int = 1500
+    static let restTime: Int = 300
+    static let longRestTime: Int = 900
+    
+   
+    static let focusTimeText = "25:00"
+    static let restTimeText = "05:00"
+    static let longRestTimeText = "15:00"
+    static let defaultTimeText = "00:00"
+    static let keyPath = "strokeEnd"
 }

@@ -5,31 +5,26 @@
 //  Created by Роман Карасёв on 10.08.2022.
 //
 
+
+
 import UIKit
 
 // MARK: - AllRemindersTableViewCell
-class AllRemindersTableViewCell: UITableViewCell {
+class AllRemindersTableViewCell: BaseAllViewCell {
     
-    // MARK: Subtypes
-    
-    private enum DividerType: String {
-        case HabitVerticalDivider
-        case NotesVerticalDivider
-        case RemindersVerticalDivider
-    }
+    static let identifier = "AllRemindersTableViewCell"
     
     //MARK: Properties
     
-    let reminderTitle = UILabel(text: "Reminder", font: .appleSDGothicNeoDemiBold14(), alignment: .left)
-    let reminderBody = UILabel(text: "Notes will be here", font: .appleSDGothicNeo14(), alignment: .left)
-    let reminderTime = UILabel(text: "00:00 - 00:00", font: .appleSDGothicNeo20(), alignment: .left)
-    let reminderDate = UILabel(text: "7.01.1991", font: .appleSDGothicNeoDemiBold20(), alignment: .left)
-    var index: IndexPath?
+    let reminderTitle = UILabel(text: "", font: .appleSDGothicNeoDemiBold14(), alignment: .left)
+    let reminderBody = UILabel(text: "", font: .appleSDGothicNeo14(), alignment: .left)
+    let reminderTime = UILabel(text: "", font: .appleSDGothicNeo20(), alignment: .left)
+    let reminderDate = UILabel(text: "", font: .appleSDGothicNeoDemiBold20(), alignment: .left)
+    var reminderIndex: IndexPath?
     
     var verticalDividerRemindersImage: UIImageView = {
         let verticalDividerRemindersImage = UIImageView()
-        verticalDividerRemindersImage.image = UIImage(named: "RemindersVerticalDivider")
-        verticalDividerRemindersImage.tintColor = .white
+        verticalDividerRemindersImage.image = DividerImage.remindersVerticalDivider
         verticalDividerRemindersImage.translatesAutoresizingMaskIntoConstraints = false
         return verticalDividerRemindersImage
     }()
@@ -39,52 +34,40 @@ class AllRemindersTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.selectionStyle = .none
-        backgroundColor = .clear
-        reminderBody.numberOfLines = 2
-        
         setConstraints()
+        reminderBody.lineBreakMode = .byWordWrapping
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder: ) has not been implemented")
     }
     
+    
     // MARK: Metods
     
-    private func setConstraints() {
-        let timeStackView = UIStackView(
-            arrangedSubviews: [reminderBody, reminderDate, reminderTime],
-            axis: .vertical,
-            spacing: 2,
-            distribution: .fillProportionally
-        )
+    func setConstraints() {
+        let timeStackView = setTimeStackViewConstraints(dateLabel: reminderDate, timeLabel: reminderTime)
+        
+        let verticalDividerImageConstraintsArray = setVerticalDividerImageConstraintsArray(dividerView: verticalDividerRemindersImage)
+        let titleConstraintsArray = setTitleConstraintsArray(dividerView: verticalDividerRemindersImage,
+                                                             titleLabel: reminderTitle)
+        let bodyConstraintsArray = setBodyConstraintsArray(dividerView: verticalDividerRemindersImage,
+                                                           bodyLabel: reminderBody,
+                                                           titleLabel: reminderTitle)
+        let timeStackViewConstraintsArray = setTimeStackViewConstraintsArray(timeStackView: timeStackView,
+                                                                             dividerView: verticalDividerRemindersImage,
+                                                                             bodyLabel: reminderBody, mainView: self)
         
         self.addSubview(verticalDividerRemindersImage)
-        NSLayoutConstraint.activate(
-            [verticalDividerRemindersImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
-             verticalDividerRemindersImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-             verticalDividerRemindersImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
-             verticalDividerRemindersImage.widthAnchor.constraint(equalToConstant: 3.5)
-            ]
-        )
+        NSLayoutConstraint.activate(verticalDividerImageConstraintsArray)
         
         self.addSubview(reminderTitle)
-        NSLayoutConstraint.activate(
-            [reminderTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-             reminderTitle.leadingAnchor.constraint(equalTo: verticalDividerRemindersImage.trailingAnchor, constant: 5),
-             reminderTitle.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-             reminderTitle.heightAnchor.constraint(equalToConstant: 20)
-            ]
-        )
+        NSLayoutConstraint.activate(titleConstraintsArray)
+        
+        self.addSubview(reminderBody)
+        NSLayoutConstraint.activate(bodyConstraintsArray)
         
         self.addSubview(timeStackView)
-        NSLayoutConstraint.activate(
-            [timeStackView.topAnchor.constraint(equalTo: reminderTitle.bottomAnchor, constant: 2),
-             timeStackView.leadingAnchor.constraint(equalTo: verticalDividerRemindersImage.trailingAnchor, constant: 5),
-             timeStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -2),
-             timeStackView.widthAnchor.constraint(equalToConstant: self.frame.size.width)
-            ]
-        )
+        NSLayoutConstraint.activate(timeStackViewConstraintsArray)
     }
 }

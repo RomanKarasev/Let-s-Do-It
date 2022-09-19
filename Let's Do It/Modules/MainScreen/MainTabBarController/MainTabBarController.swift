@@ -22,7 +22,7 @@ class MainTabBarController: UITabBarController {
     
     // MARK: Methods
     
-    func setupTabBar() {
+    private func setupTabBar() {
         let notesViewController = createNoteVC()
         let remindersViewController = createReminderVC()
         let calendarViewController =  createCalendarVC()
@@ -33,22 +33,24 @@ class MainTabBarController: UITabBarController {
                            remindersViewController,
                            todayViewController,
                            habitViewController,
-                           notesViewController]
-        tabBar.tintColor = .systemOrange
-        tabBar.unselectedItemTintColor = .systemBlue
-        tabBar.backgroundColor = .systemBackground
-        tabBar.layer.opacity = 0.98
+                           notesViewController
+        ]
+        
+        tabBar.tintColor = UIColor.accentColor
+        tabBar.unselectedItemTintColor = UIColor.mainColor
+        tabBar.backgroundColor = UIColor.tabBarBackgroundColor
     }
+}
+// MARK: - Private Methods
+
+extension MainTabBarController {
     
     // MARK: createNavController
     
-    func createNavController(vc: UIViewController, itemName: String) -> UINavigationController {
+    private func createNavController(vc: UIViewController, itemName: String) -> UINavigationController {
         let item = UITabBarItem(title: itemName,
                                 image: UIImage(),
                                 tag: 0
-        )
-        item.titlePositionAdjustment = .init(horizontal: 0,
-                                             vertical: 5
         )
         let navController = UINavigationController(rootViewController: vc)
         navController.tabBarItem = item
@@ -56,45 +58,60 @@ class MainTabBarController: UITabBarController {
     }
     
     // MARK: createCalendarVC
-    func createCalendarVC() -> ContainerViewController {
+    private func createCalendarVC() -> ContainerViewController {
         let calendarViewController =  ContainerViewComposer.makeContainer()
-        calendarViewController.tabBarItem.title = "Calendar"
-        calendarViewController.tabBarItem.titlePositionAdjustment = .init(horizontal: 0,
-                                                                          vertical: 5)
-        calendarViewController.tabBarItem.image = UIImage(systemName: "calendar")
+        calendarViewController.tabBarItem.title = Constants.calendar
+        calendarViewController.tabBarItem.image = UIImage(systemName: Constants.calendarImage)
         return calendarViewController
     }
     
     // MARK: createReminderVC
-    func createReminderVC() -> UINavigationController {
-        let remindersViewController = createNavController(vc: RemindersMainViewController(), itemName: "Reminders")
-        remindersViewController.tabBarItem.image = UIImage(systemName: "calendar.badge.exclamationmark")
+    private func createReminderVC() -> UINavigationController {
+        let remindersViewController = createNavController(vc: RemindersMainViewController(), itemName: Constants.reminders)
+        remindersViewController.tabBarItem.image = UIImage(systemName: Constants.remindersImage)
         return remindersViewController
     }
     
     // MARK: createTodayVC
-    func createTodayVC() -> UINavigationController {
-        let todayViewController = createNavController(vc: TodayViewController(), itemName: "Today")
-        todayViewController.tabBarItem.image = UIImage(systemName: "calendar.badge.clock")
+    private func createTodayVC() -> UINavigationController {
+        let todayViewController = createNavController(vc: TodayViewController(), itemName: Constants.today)
+        todayViewController.tabBarItem.image = UIImage(systemName: Constants.todayImage)
         return todayViewController
     }
     
     // MARK: createHabitVC
-    func createHabitVC() -> UINavigationController {
+    private func createHabitVC() -> UINavigationController {
         let vc = AllHabitsViewController(store: HabitsStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
         let habitViewController = createNavController(vc: vc,
-                                                      itemName: "Habit")
-        habitViewController.tabBarItem.image = UIImage(systemName: "note.text.badge.plus")
+                                                      itemName: Constants.habits)
+        habitViewController.tabBarItem.image = UIImage(systemName: Constants.habitsImage)
         return habitViewController
     }
     
     // MARK: createNoteVC
-    func createNoteVC() -> UINavigationController {
-        let notesViewController = createNavController(vc: NotesMainViewController(), itemName: "Notes")
-        notesViewController.tabBarItem.image = UIImage(systemName: "note.text")
+    private func createNoteVC() -> UINavigationController {
+        let notesViewController = createNavController(vc: NotesMainViewController(), itemName: Constants.notes)
+        notesViewController.tabBarItem.image = UIImage(systemName: Constants.notesImage)
         return notesViewController
     }
 }
 
 
+// MARK: - Constants
 
+private struct Constants {
+    
+    static let calendar = "Calendar"
+    static let reminders = "Reminders"
+    static let habits = "Habits"
+    static let today = "Today"
+    static let notes = "Notes"
+    
+    
+    static let calendarImage = "calendar"
+    static let remindersImage = "calendar.badge.exclamationmark"
+    static let habitsImage = "note.text.badge.plus"
+    static let todayImage = "calendar.badge.clock"
+    static let notesImage = "note.text"
+    
+}

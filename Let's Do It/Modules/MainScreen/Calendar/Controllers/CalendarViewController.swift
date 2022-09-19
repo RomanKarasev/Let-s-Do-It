@@ -14,10 +14,9 @@ class CalendarViewController: ContentViewController {
     
     // MARK: Properties
     
-    let idCalendarCell = "idCalendarCell"
-    let idCalendarHeaderCell = "idCalendarHeaderCell"
+    let idCalendarCell = Constants.idCalendarCell
+    let idCalendarHeaderCell = Constants.idCalendarHeaderCell
     let calendarView = CalendarView()
-//    let header = CalendarHeaderTableViewCell()
     
     // MARK: View Life Cycle
     
@@ -32,25 +31,27 @@ class CalendarViewController: ContentViewController {
         super.loadView()
         view = calendarView
     }
- 
+}
+
+// MARK: - @objc extentions
+
+@objc extension CalendarViewController {
     
-    // MARK: Methods
-    
-    @objc private func addButtonTapped() {
+    private func addButtonTapped() {
 //        alertNewEvent()
     }
     
-    @objc private func hideShowButtonTapped() {
+    private func hideShowButtonTapped() {
         if calendarView.calendar.scope == .week {
             calendarView.calendar.setScope(.month, animated: true )
-            calendarView.hideShowButton.setTitle("Month View", for: .normal)
+            calendarView.hideShowButton.setTitle(Constants.monthView, for: .normal)
         } else {
             calendarView.calendar.setScope(.week, animated: true )
-            calendarView.hideShowButton.setTitle("Week View", for: .normal)
+            calendarView.hideShowButton.setTitle(Constants.weekView, for: .normal)
         }
     }
     
-    @objc private func handleSwipe(gesture: UISwipeGestureRecognizer) {
+    private func handleSwipe(gesture: UISwipeGestureRecognizer) {
         switch gesture.direction {
         case .up:
             hideShowButtonTapped()
@@ -60,6 +61,12 @@ class CalendarViewController: ContentViewController {
             break
         }
     }
+}
+   
+    
+// MARK: - Private Methods
+
+extension CalendarViewController {
     
     private func configureView() {
         configureTableView()
@@ -78,7 +85,7 @@ class CalendarViewController: ContentViewController {
         calendarView.tableView.dataSource = self
         calendarView.tableView.register(CalendarTableViewCell.self, forCellReuseIdentifier: CalendarTableViewCell.identifier)
         calendarView.tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: idCalendarHeaderCell)
-        calendarView.tableView.backgroundColor = .clear
+        calendarView.tableView.backgroundColor = .clearColor
     }
     
     private func swipeAction() {
@@ -96,36 +103,29 @@ class CalendarViewController: ContentViewController {
 // MARK:  - UITableViewDelegate, UITableViewDataSource
 
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
-    
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return header.headerArray.count
-//    }
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CalendarTableViewCell.identifier, for: indexPath) as! CalendarTableViewCell
-//
         return cell
     }
     
-    
-    
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 25
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idCalendarHeaderCell)
-////        header.headerConfigure(section: section)
-////        header?.textLabel?.text = "Header"
-//        return header
-//    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 115
+        return .heightForRowAtMainTableViews
     }
 }
 
+
+// MARK: - Constants
+
+private struct Constants {
+    
+    static let idCalendarCell = "idCalendarCell"
+    static let idCalendarHeaderCell = "idCalendarHeaderCell"
+    static let monthView = "Month View"
+    static let weekView = "Week View"
+}
 

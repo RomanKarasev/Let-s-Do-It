@@ -24,7 +24,7 @@ extension SideMenuViewController {
         self.view.backgroundColor = .clear
         UIView.animate(withDuration: 0.2) {
             self.tabBarController?.tabBar.frame.origin.x = 0
-            self.tabBarController?.tabBar.backgroundColor = UIColor(named: "TapBarColor")
+            self.tabBarController?.tabBar.backgroundColor = .tabBarBackgroundColor
             self.leadingConstraint.constant = -self.screenWidth
             self.view.layoutIfNeeded()
         } completion: { _ in
@@ -32,3 +32,10 @@ extension SideMenuViewController {
         }
     }
 }
+
+// MARK: - Constants
+
+private struct Constants {
+   
+}
+

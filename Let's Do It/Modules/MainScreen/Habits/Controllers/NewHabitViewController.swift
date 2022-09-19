@@ -98,17 +98,17 @@ class NewHabitViewController: UIViewController {
         cell.textLabel?.textColor = .label
         switch indexPath {
         case [0,0]:
-            cell.tf.isHidden = false
-            cell.tf.text = "Title"
+            cell.textField.isHidden = false
+            cell.textField.text = "Title"
             
         case [0,1]:
-            cell.tf.isHidden = false
-            cell.tf.text = "Body"
+            cell.textField.isHidden = false
+            cell.textField.text = "Body"
         default:
             break
         }
         
-        cell.tf.delegate = self
+        cell.textField.delegate = self
         
         if indexPath == [2,0] {
             cell.backgroundViewCell.backgroundColor = .secondarySystemFill
@@ -119,9 +119,9 @@ class NewHabitViewController: UIViewController {
         
         switch indexPath {
         case [0,0]:
-            cell.tf.text = habit.title
+            cell.textField.text = habit.title
         case [0,1]:
-            cell.tf.text = habit.body
+            cell.textField.text = habit.body
         case [1,0]:
             cell.textLabel?.text = habit.date
         case [1,1]:
@@ -243,12 +243,12 @@ extension NewHabitViewController: UIColorPickerViewControllerDelegate {
 
 //MARK: - saveButtonTapped
 
-extension NewHabitViewController: NewHabitViewDelegate {
+extension NewHabitViewController: NewViewDelegate {
     
     func saveButtonTapped() {
         guard let cells = newHabitView.tableView.visibleCells as? [NewHabitViewCell],
-              let habitTitle = cells.first?.tf.text,
-              let habitBody = cells[1].tf.text,
+              let habitTitle = cells.first?.textField.text,
+              let habitBody = cells[1].textField.text,
               let habitDate = cells[2].textLabel?.text,
               let habitTime = cells[3].textLabel?.text,
               //              let reminderColor = cells[4].backgroundViewCell.backgroundColor,

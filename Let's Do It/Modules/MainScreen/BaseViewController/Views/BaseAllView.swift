@@ -1,23 +1,22 @@
 //
-//  AllNotesView.swift
+//  BaseAllView.swift
 //  Let's Do It
 //
-//  Created by Роман Карасёв on 10.08.2022.
+//  Created by Роман Карасёв on 16.09.2022.
 //
-
 
 import UIKit
 
-// MARK: - AllNotesView
+// MARK: - BaseAllView
 
-class AllNotesView: UIView {
+class BaseAllView: UIView {
     
     // MARK: Properties
     
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.bounces = false
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = .clearColor
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -33,7 +32,6 @@ class AllNotesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     // MARK: Methods
     
     private func setConstraints() {
@@ -41,9 +39,9 @@ class AllNotesView: UIView {
         self.addSubview(tableView)
         NSLayoutConstraint.activate(
             [tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 90),
-             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
             ]
         )
     }

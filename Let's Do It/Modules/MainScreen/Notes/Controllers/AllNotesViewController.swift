@@ -14,7 +14,7 @@ class AllNotesViewController: UIViewController {
     
     // MARK: Properties
 
-    let allNotesView = AllNotesView()
+    let allNotesView = BaseAllView()
 
     private var notesStore: NotesStoreInput
     private var alertFactory: AlertFactory
@@ -102,7 +102,7 @@ class AllNotesViewController: UIViewController {
     
     func configureCell(cell: AllNotesViewCell, indexPath: IndexPath) {
         
-        cell.index = indexPath
+        cell.notesIndex = indexPath
         let indexOfArray = notes[indexPath.row]
         cell.noteTitle.text = indexOfArray.title
         cell.noteBody.text = indexOfArray.body

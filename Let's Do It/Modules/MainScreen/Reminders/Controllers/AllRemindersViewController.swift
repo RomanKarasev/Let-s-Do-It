@@ -11,19 +11,19 @@ import UIKit
 
 
 class AllRemindersViewController: UIViewController {
-    
+
     // MARK: Properties
 
-    let allRemindersView = AllRemindersView()
+    let allRemindersView = BaseAllView()
 
     private var remindersStore: RemindersStoreInput
     private var alertFactory: AlertFactory
-    
-    let idRemindersCell = "idRemindersCell"
+
+//    let idRemindersCell = "idRemindersCell"
     var reminders = [Reminder]()
 
     // MARK: Initialization
-    
+
     init(
         store: RemindersStoreInput,
         alertFactory: AlertFactory
@@ -32,20 +32,20 @@ class AllRemindersViewController: UIViewController {
         self.alertFactory = alertFactory
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: View Life Cycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         title = "All Reminders"
         navigationController?.navigationBar.prefersLargeTitles = false
-        
+
         configureTableView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: .add,
@@ -55,24 +55,35 @@ class AllRemindersViewController: UIViewController {
         )
 
     }
-    
+
     override func loadView() {
         super.loadView()
         view = allRemindersView
         view.backgroundColor = .systemBackground
     }
-    
+
+
     // MARK: Methods
-    
+
     @objc private func openNewReminder() {
         let vc = NewReminderViewController(with: RemindersStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+
+    private func reloadData(from reminders: [Reminder]?) {
+        guard let reminders = reminders
+        else {
+            return
+        }
+
+        self.reminders = reminders
+        allRemindersView.tableView.reloadData()
+    }
+
     private func configureTableView() {
         allRemindersView.tableView.delegate = self
         allRemindersView.tableView.dataSource = self
-        allRemindersView.tableView.register(AllRemindersTableViewCell.self, forCellReuseIdentifier: idRemindersCell)
+        allRemindersView.tableView.register(AllRemindersTableViewCell.self, forCellReuseIdentifier: AllRemindersTableViewCell.identifier)
 
         fetchReminders { reminders in
             if let reminders = reminders {
@@ -91,20 +102,20 @@ class AllRemindersViewController: UIViewController {
             }
         }
     }
-    
+
     @objc private func addButtonTapped() {
         let newReminder = NewReminderViewController(
             with: RemindersStore(
                 coreDataService: CoreDataService()
             ), alertFactory: alertFactory
         )
-        
+
         navigationController?.pushViewController(newReminder, animated: true)
     }
-    
+
     func configureCell(cell: AllRemindersTableViewCell, indexPath: IndexPath) {
-        
-        cell.index = indexPath
+
+        cell.reminderIndex = indexPath
         let indexOfArray = reminders[indexPath.row]
         cell.reminderTitle.text = indexOfArray.title
         cell.reminderBody.text = indexOfArray.body
@@ -119,15 +130,16 @@ extension AllRemindersViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reminders.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idRemindersCell, for: indexPath) as! AllRemindersTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: AllRemindersTableViewCell.identifier,
+                                                 for: indexPath) as! AllRemindersTableViewCell
         configureCell(cell: cell, indexPath: indexPath)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return .heightForRowAtMainTableViews
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -161,7 +173,7 @@ extension AllRemindersViewController: UITableViewDelegate, UITableViewDataSource
             }
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
-    
+
 //    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 //        let doneAction = UIContextualAction(
 //            style: .normal,
@@ -171,6 +183,30 @@ extension AllRemindersViewController: UITableViewDelegate, UITableViewDataSource
 //        }
 //        return UISwipeActionsConfiguration(actions: [doneAction])
 //    }
-    
+
 }
+
+// MARK: - <UINavigationDelegate> Comformance
+
+extension AllRemindersViewController: UINavigationControllerDelegate {
+
+    func navigationController(
+        _ navigationController: UINavigationController,
+        didShow viewController: UIViewController,
+        animated: Bool
+    ) {
+        guard let viewController = viewController as? AllRemindersViewController
+        else {
+            return
+        }
+
+        viewController.fetchReminders { reminders in
+            self.reloadData(from: reminders)
+        }
+    }
+}
+
+
+
+
 

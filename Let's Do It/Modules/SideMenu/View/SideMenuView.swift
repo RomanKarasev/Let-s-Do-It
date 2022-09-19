@@ -16,13 +16,13 @@ class SideMenuView: UIView {
     var headerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .clear
+        view.backgroundColor = UIColor.clearColor
         return view
     }()
     
     var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = UIColor.clearColor
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView()
         return tableView
@@ -30,7 +30,7 @@ class SideMenuView: UIView {
     
     var sideMenuView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor.appBackgroundColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -38,13 +38,13 @@ class SideMenuView: UIView {
     var footerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .clear
+        view.backgroundColor = UIColor.clearColor
         return view
     }()
     
     var hiLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hi, User"
+        label.text = Constants.textForHiLabel
         label.font = .appleSDGothicNeoDemiBold20()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -62,7 +62,7 @@ class SideMenuView: UIView {
     
     lazy var authButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "person"), for: .normal)
+        button.setImage(Constants.imageForAuthButton, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -73,16 +73,22 @@ class SideMenuView: UIView {
         super.init(frame: .zero)
         
         configureConstraints()
-        backgroundColor = .clear
+        
+        backgroundColor = UIColor.clearColor
         translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+}
+
+// MARK: - Private Methods
+
+extension SideMenuView {
     
     
-    // MARK: Methods
     
     private func configureConstraints() {
         
@@ -101,16 +107,18 @@ class SideMenuView: UIView {
             headerView.topAnchor.constraint(equalTo: sideMenuView.topAnchor),
             headerView.leadingAnchor.constraint(equalTo: sideMenuView.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: sideMenuView.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 150)
+            headerView.heightAnchor.constraint(equalToConstant: Constants.headerViewHeight)
         ]
         )
         
         sideMenuView.addSubview(footerView)
         NSLayoutConstraint.activate(
-            [footerView.bottomAnchor.constraint(equalTo: sideMenuView.bottomAnchor, constant: -10),
+            [footerView.bottomAnchor.constraint(equalTo: sideMenuView.bottomAnchor,
+                                                constant: Constants.footerViewBottom
+                                               ),
              footerView.leadingAnchor.constraint(equalTo: sideMenuView.leadingAnchor),
              footerView.trailingAnchor.constraint(equalTo: sideMenuView.trailingAnchor),
-             footerView.heightAnchor.constraint(equalToConstant: 100)
+             footerView.heightAnchor.constraint(equalToConstant: Constants.footerViewHeight)
             ]
         )
         
@@ -126,29 +134,77 @@ class SideMenuView: UIView {
         
         headerView.addSubview(hiLabel)
         NSLayoutConstraint.activate(
-            [hiLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 20),
-             hiLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 80),
-             hiLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -50),
-             hiLabel.heightAnchor.constraint(equalToConstant: 25)
+            [hiLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor,
+                                              constant: Constants.hiLabelLeadingAncor
+                                             ),
+             hiLabel.topAnchor.constraint(equalTo: headerView.topAnchor,
+                                          constant: Constants.hiLabelTopAncor
+                                         ),
+             hiLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor,
+                                               constant: Constants.hiLabelTrailingAncor
+                                              ),
+             hiLabel.heightAnchor.constraint(equalToConstant: Constants.hiLabelHeightAnchor)
             ]
         )
         
         headerView.addSubview(phraseLabel)
         NSLayoutConstraint.activate(
-            [phraseLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 20),
-             phraseLabel.topAnchor.constraint(equalTo: hiLabel.bottomAnchor, constant: 5),
-             phraseLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -50),
-             phraseLabel.heightAnchor.constraint(equalToConstant: 15)
+            [phraseLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor,
+                                                  constant: Constants.phraseLabelLeadingAncor
+                                                 ),
+             phraseLabel.topAnchor.constraint(equalTo: hiLabel.bottomAnchor,
+                                              constant: Constants.phraseLabelTopAncor
+                                             ),
+             phraseLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor,
+                                                   constant: Constants.phraseLabelTrailingAncor),
+             phraseLabel.heightAnchor.constraint(equalToConstant: Constants.phraseLabelHeightAnchor)
             ]
         )
         
         headerView.addSubview(authButton)
         NSLayoutConstraint.activate(
-            [authButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -20),
-             authButton.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 70),
-             authButton.widthAnchor.constraint(equalToConstant: 50),
-             authButton.heightAnchor.constraint(equalToConstant: 50)
+            [authButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor,
+                                                  constant: Constants.authButtonTrailingAncor
+                                                 ),
+             authButton.topAnchor.constraint(equalTo: headerView.topAnchor,
+                                             constant: Constants.authButtonTopAncor
+                                            ),
+             authButton.widthAnchor.constraint(equalToConstant: Constants.authButtonWidthAncor),
+             authButton.heightAnchor.constraint(equalToConstant: Constants.authButtonHeightAnchor)
             ]
         )
     }
 }
+
+// MARK: - Constants
+
+private struct Constants {
+    
+    static let textForHiLabel = "Hi, User"
+    
+    static let imageForAuthButton = UIImage(systemName: "person")
+    
+    
+    static let headerViewHeight: CGFloat = 150
+    
+    static let footerViewHeight: CGFloat = 100
+    static let footerViewBottom: CGFloat = -10
+    
+    static let hiLabelLeadingAncor: CGFloat = 20
+    static let hiLabelTopAncor: CGFloat = 80
+    static let hiLabelTrailingAncor: CGFloat = -50
+    static let hiLabelHeightAnchor: CGFloat = 25
+    
+    static let phraseLabelLeadingAncor: CGFloat = 20
+    static let phraseLabelTopAncor: CGFloat = 5
+    static let phraseLabelTrailingAncor: CGFloat = -50
+    static let phraseLabelHeightAnchor: CGFloat = 15
+    
+    static let authButtonWidthAncor: CGFloat = 50
+    static let authButtonTopAncor: CGFloat = 70
+    static let authButtonTrailingAncor: CGFloat = -20
+    static let authButtonHeightAnchor: CGFloat = 50
+    
+    
+}
+

@@ -28,20 +28,20 @@ extension PomodoroViewController {
     func startAnimation() {
         resetAnimation()
         foreProgressLayer.strokeEnd = 0.0
-        animation.keyPath = "strokeEnd"
+        animation.keyPath = Constants.keyPath
         animation.fromValue = 0
         animation.toValue = 1
         switch pomodoroView.focusRestSegmented.selectedSegmentIndex {
-        case 0 : animation.duration = 1500
-        case 1 : animation.duration = 300
-        case 2 : animation.duration = 900
+        case 0 : animation.duration = CFTimeInterval(Constants.focusTime)
+        case 1 : animation.duration = CFTimeInterval(Constants.restTime)
+        case 2 : animation.duration = CFTimeInterval(Constants.longRestTime)
         default: animation.duration = 0
         }
         animation.delegate = self
         animation.isRemovedOnCompletion = false
         animation.isAdditive = true
         animation.fillMode = CAMediaTimingFillMode.forwards
-        foreProgressLayer.add(animation, forKey: "strokeEnd")
+        foreProgressLayer.add(animation, forKey: Constants.keyPath)
         isAnimationStarted = true
     }
     
@@ -79,4 +79,16 @@ extension PomodoroViewController {
     internal func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         stopAnimation()
     }
+}
+
+
+// MARK: - Constants
+
+private struct Constants {
+    
+    static let focusTime: Int = 1500
+    static let restTime: Int = 300
+    static let longRestTime: Int = 900
+   
+    static let keyPath = "strokeEnd"
 }

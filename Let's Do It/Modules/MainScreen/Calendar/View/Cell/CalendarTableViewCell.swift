@@ -10,33 +10,22 @@ import UIKit
 
 // MARK: - CalendarTableViewCell
 
-class CalendarTableViewCell: UITableViewCell {
-    
-    // MARK: Subtypes
-    
-    private enum DividerType: String {
-        case HabitVerticalDivider
-        case NotesVerticalDivider
-        case RemindersVerticalDivider
-    }
-    
+class CalendarTableViewCell: BaseAllViewCell {
+        
     //MARK: Properties
     
-    static var identifier = "CalendarTableViewCell"
+    static var identifier = Constants.identifier
     
-    let title = UILabel(text: "Event", font: .appleSDGothicNeoDemiBold14(), alignment: .left)
-    let body = UILabel(text: "Notes will be here", font: .appleSDGothicNeo14(), alignment: .left)
-    let time = UILabel(text: "00:00 - 00:00", font: .appleSDGothicNeo20(), alignment: .left)
-    let date = UILabel(text: "7.01.1991", font: .appleSDGothicNeoDemiBold20(), alignment: .left)
-    var index: IndexPath?
+    let calendarTitle = UILabel(text: "Event", font: .appleSDGothicNeoDemiBold14(), alignment: .left)
+    let calendarBody = UILabel(text: "Notes will be here", font: .appleSDGothicNeo14(), alignment: .left)
+    let calendarTime = UILabel(text: "00:00 - 00:00", font: .appleSDGothicNeo20(), alignment: .left)
+    let calendarDate = UILabel(text: "7.01.1991", font: .appleSDGothicNeoDemiBold20(), alignment: .left)
+    var calendarIndex: IndexPath?
+
     
-    
-    // Views
-    
-    var verticalDividerImage: UIImageView = {
+    var calendarVerticalDividerImage: UIImageView = {
         let verticalDividerImage = UIImageView()
-        verticalDividerImage.image = UIImage(named: DividerType.HabitVerticalDivider.rawValue)
-        verticalDividerImage.tintColor = .white
+        verticalDividerImage.image = DividerImage.habitVerticalDivider
         verticalDividerImage.translatesAutoresizingMaskIntoConstraints = false
         return verticalDividerImage
     }()
@@ -45,53 +34,64 @@ class CalendarTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        self.selectionStyle = .none
-        backgroundColor = .clear
-        body.numberOfLines = 2
-        
+        calendarBody.numberOfLines = 2
         setConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder: ) has not been implemented")
     }
-    
-    // MARK: Metods
+}
+// MARK: - Private Methods
+
+extension CalendarTableViewCell {
     
     private func setConstraints() {
-        let timeStackView = UIStackView(
-            arrangedSubviews: [body, date, time],
-            axis: .vertical,
-            spacing: 2,
-            distribution: .fillProportionally
-        )
         
-        self.addSubview(verticalDividerImage)
-        NSLayoutConstraint.activate(
-            [verticalDividerImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
-             verticalDividerImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-             verticalDividerImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
-             verticalDividerImage.widthAnchor.constraint(equalToConstant: 3.5)
-            ]
-        )
+        let timeStackView = setTimeStackViewConstraints(dateLabel: calendarDate, timeLabel: calendarTime)
         
-        self.addSubview(title)
-        NSLayoutConstraint.activate(
-            [title.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-             title.leadingAnchor.constraint(equalTo: verticalDividerImage.trailingAnchor, constant: 5),
-             title.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-             title.heightAnchor.constraint(equalToConstant: 20)
-            ]
-        )
+        let verticalDividerImageConstraintsArray = setVerticalDividerImageConstraintsArray(dividerView: calendarVerticalDividerImage)
+        let titleConstraintsArray = setTitleConstraintsArray(dividerView: calendarVerticalDividerImage,
+                                                             titleLabel: calendarTitle)
+        let bodyConstraintsArray = setBodyConstraintsArray(dividerView: calendarVerticalDividerImage,
+                                                           bodyLabel: calendarBody,
+                                                           titleLabel: calendarTitle)
+        let timeStackViewConstraintsArray = setTimeStackViewConstraintsArray(timeStackView: timeStackView,
+                                                                             dividerView: calendarVerticalDividerImage,
+                                                                             bodyLabel: calendarBody, mainView: self)
+        
+        self.addSubview(calendarVerticalDividerImage)
+        NSLayoutConstraint.activate(verticalDividerImageConstraintsArray)
+        
+        self.addSubview(calendarTitle)
+        NSLayoutConstraint.activate(titleConstraintsArray)
+        
+        self.addSubview(calendarBody)
+        NSLayoutConstraint.activate(bodyConstraintsArray)
         
         self.addSubview(timeStackView)
-        NSLayoutConstraint.activate(
-            [timeStackView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 2),
-             timeStackView.leadingAnchor.constraint(equalTo: verticalDividerImage.trailingAnchor, constant: 5),
-             timeStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -2),
-             timeStackView.widthAnchor.constraint(equalToConstant: self.frame.size.width)
-            ]
-        )
+        NSLayoutConstraint.activate(timeStackViewConstraintsArray)
     }
 }
+
+// MARK: - Constants
+
+private struct Constants {
+    
+    static let identifier = "CalendarTableViewCell"
+    
+    static let verticalDividerImageTopAnchor: CGFloat = 5
+    static let verticalDividerImageLeadingAnchor: CGFloat = 10
+    static let verticalDividerImageBottomAnchor: CGFloat = -5
+    static let verticalDividerImageWidthAnchor: CGFloat = 3.5
+    
+    static let titleTopAnchor: CGFloat = 10
+    static let titleLeadingAnchor: CGFloat = 5
+    static let titleTrailingAnchor: CGFloat = -10
+    static let titleHeightAnchor: CGFloat = 20
+    
+    static let timeStackViewTopAnchor: CGFloat = 2
+    static let timeStackViewLeadingAnchor: CGFloat = 5
+    static let timeStackViewBottomAnchor: CGFloat = -2
+}
+

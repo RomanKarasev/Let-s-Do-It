@@ -81,14 +81,7 @@ class RemindersMainView: UIView {
             ]
         )
         
-        self.addSubview(floatingButton)
-        NSLayoutConstraint.activate(
-            [floatingButton.widthAnchor.constraint(equalToConstant: 60),
-             floatingButton.heightAnchor.constraint(equalToConstant: 60),
-             floatingButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25),
-             floatingButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -110)
-            ]
-        )
+        UIButton.setFloatingButtonConstraints(view: self, floatingButton: floatingButton)
     }
 }
 

@@ -130,17 +130,17 @@ class NewNoteViewController: UIViewController {
         cell.textLabel?.textColor = .label
         switch indexPath {
         case [0,0]:
-            cell.tf.isHidden = false
-            cell.tf.text = "Title"
+            cell.textField.isHidden = false
+            cell.textField.text = "Title"
             
         case [0,1]:
-            cell.tf.isHidden = false
-            cell.tf.text = "Body"
+            cell.textField.isHidden = false
+            cell.textField.text = "Body"
         default:
             break
         }
         
-        cell.tf.delegate = self
+        cell.textField.delegate = self
         
         if indexPath == [2,0] {
             cell.backgroundViewCell.backgroundColor = .secondarySystemFill
@@ -151,9 +151,9 @@ class NewNoteViewController: UIViewController {
 
         switch indexPath {
         case [0,0]:
-            cell.tf.text = note.title
+            cell.textField.text = note.title
         case [0,1]:
-            cell.tf.text = note.body
+            cell.textField.text = note.body
         case [1,0]:
             cell.textLabel?.text = note.date
         case [1,1]:
@@ -232,12 +232,12 @@ extension NewNoteViewController: UIColorPickerViewControllerDelegate {
 }
 
 // MARK: - saveButtonTapped
-extension NewNoteViewController: NewNoteViewDelegate {
+extension NewNoteViewController: NewViewDelegate {
     
     func saveButtonTapped() {
         guard let cells = newNoteView.tableView.visibleCells as? [NewNoteViewCell],
-              let noteTitle = cells.first?.tf.text,
-              let noteBody = cells[1].tf.text,
+              let noteTitle = cells.first?.textField.text,
+              let noteBody = cells[1].textField.text,
               let noteDate = cells[2].textLabel?.text,
               let noteTime = cells[3].textLabel?.text,
               let context = UIApplication.shared.managedContext
@@ -255,7 +255,7 @@ extension NewNoteViewController: NewNoteViewDelegate {
         
         notesStore.create(note: note) { note, error in
             if note != nil {
-                self.dismiss(animated: true)
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }

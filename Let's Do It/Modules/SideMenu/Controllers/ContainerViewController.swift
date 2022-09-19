@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK: - ContainerViewController
 
 class ContainerViewController: UIViewController {
     
@@ -35,8 +36,27 @@ class ContainerViewController: UIViewController {
         super.viewDidLoad()
         configureView()
     }
+}
+
+// MARK: - @objs extentions
+
+@objc extension ContainerViewController {
     
-    // MARK: Methods
+    private func swipedLeft() {
+        sideMenuViewController.hide()
+    }
+    
+
+    private func swipedRight() {
+        sideMenuViewController.show()
+    }
+}
+
+// MARK: - Private Methods
+
+extension ContainerViewController {
+    
+    
     
     private func configureView() {
         addChildViewControllers()
@@ -61,18 +81,6 @@ class ContainerViewController: UIViewController {
         view.addGestureRecognizer(rightSwipeGesture)
     }
     
-    @objc private func swipedLeft() {
-        sideMenuViewController.hide()
-    }
-    
-    @objc private func swipedRight() {
-        sideMenuViewController.show()
-    }
-    
-    func updateRootViewController(_ viewController: ContentViewController) {
-        rootViewController = viewController
-    }
-    
     private func addChildViewControllers() {
         addChild(nav)
         view.addSubview(nav.view)
@@ -81,6 +89,10 @@ class ContainerViewController: UIViewController {
         addChild(sideMenuViewController)
         view.addSubview(sideMenuViewController.view)
         sideMenuViewController.didMove(toParent: self)
+    }
+    
+    private func updateRootViewController(_ viewController: ContentViewController) {
+        rootViewController = viewController
     }
 }
 

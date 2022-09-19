@@ -28,7 +28,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     let habitDayCountLabel = UILabel(text: "Count", font: .appleSDGothicNeo20(), alignment: .left)
     let habitDayCount = UILabel(text: "1", font: .appleSDGothicNeo20(), alignment: .right)
     
-    let habitImageView: UIImageView = {
+    var habitImageView: UIImageView = {
         var imageView = UIImageView()
         imageView.image = UIImage(systemName: "bed.double")
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -144,7 +144,7 @@ extension HabitCollectionViewCell {
 
 private struct Constants {
     
-    static let fallbackImageName = "star.fill"
+    static let fallbackImageName = Arrays().getImage()
     static let borderColor = UIColor.blue.cgColor
     static let borderWidth: CGFloat = 1
 }

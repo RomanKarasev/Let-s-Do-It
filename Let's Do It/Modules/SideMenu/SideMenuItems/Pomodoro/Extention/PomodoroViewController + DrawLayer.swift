@@ -18,15 +18,15 @@ extension PomodoroViewController {
                 x: UIScreen.main.bounds.midX,
                 y: UIScreen.main.bounds.midY
             ),
-            radius: 150,
+            radius: .radiusForPomodoroTimer,
             startAngle: -90.degreesToRadians,
             endAngle: 270.degreesToRadians,
             clockwise: true
         ).cgPath
         
-        backProgressLayer.strokeColor = UIColor.systemBlue.cgColor
-        backProgressLayer.fillColor = UIColor.clear.cgColor
-        backProgressLayer.lineWidth = 15
+        backProgressLayer.strokeColor = UIColor.mainColor.cgColor
+        backProgressLayer.fillColor = UIColor.clearColor.cgColor
+        backProgressLayer.lineWidth = .widthForCirclePomodoroTimer
         pomodoroView.downBackground.layer.addSublayer(backProgressLayer)
     }
     
@@ -36,15 +36,15 @@ extension PomodoroViewController {
                 x: UIScreen.main.bounds.midX,
                 y: UIScreen.main.bounds.midY
             ),
-            radius: 150,
+            radius: .radiusForPomodoroTimer,
             startAngle: -90.degreesToRadians,
             endAngle: 270.degreesToRadians,
             clockwise: true
         ).cgPath
         
-        foreProgressLayer.strokeColor = UIColor.systemOrange.cgColor
-        foreProgressLayer.fillColor = UIColor.clear.cgColor
-        foreProgressLayer.lineWidth = 13
+        foreProgressLayer.strokeColor = UIColor.accentColor.cgColor
+        foreProgressLayer.fillColor = UIColor.clearColor.cgColor
+        foreProgressLayer.lineWidth = .widthForTimeLineCirclePomodoroTimer
         pomodoroView.downBackground.layer.addSublayer(foreProgressLayer)
     }
 }
@@ -56,3 +56,16 @@ extension Int {
         return CGFloat(self) * .pi / 180
     }
 }
+
+// MARK: - Constants
+
+private struct Constants {
+    
+    static let focusTime: Int = 1500
+    static let restTime: Int = 300
+    static let longRestTime: Int = 900
+   
+    
+    static let keyPath = "strokeEnd"
+}
+

@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - NewReminderTableViewCell
 
-class NewReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
+class NewReminderTableViewCell: BaseNewViewCell {
     
     // MARK: Properties
     static let identifier = "NewReminderTableViewCell"
@@ -21,9 +21,17 @@ class NewReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
                          ["Date", "Time"],
                          ["Set Color"]]
     
-    let tf: UITextField = {
+    let textView: UITextView = {
+        let tf = UITextView()
+        tf.backgroundColor = .clear
+        tf.textColor = .label
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        return tf
+    }()
+    
+    let textField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "???"
+        tf.backgroundColor = .clear
         tf.textColor = .label
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
@@ -42,10 +50,10 @@ class NewReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = .clear
-        self.selectionStyle = .none
+        
         setConstraints()
-        tf.isHidden = true
+        textView.isHidden = true
+        textField.isHidden = true
     }
     
     required init?(coder: NSCoder) {
@@ -56,23 +64,15 @@ class NewReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     private func setConstraints() {
         
-        contentView.addSubview(backgroundViewCell)
-        NSLayoutConstraint.activate(
-            [backgroundViewCell.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-             backgroundViewCell.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-             backgroundViewCell.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-             backgroundViewCell.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -1)
-            ]
-        )
+        addViews(backgroundViewCell: backgroundViewCell, textView: textView, textField: textField)
         
-        backgroundViewCell.addSubview(tf)
-        NSLayoutConstraint.activate(
-            [tf.topAnchor.constraint(equalTo: backgroundViewCell.topAnchor),
-             tf.leadingAnchor.constraint(equalTo: backgroundViewCell.leadingAnchor, constant: 10),
-             tf.trailingAnchor.constraint(equalTo: backgroundViewCell.trailingAnchor),
-             tf.bottomAnchor.constraint(equalTo: backgroundViewCell.bottomAnchor)
-            ]
-        )
+        let backgroundViewCellConstraintsArray: [NSLayoutConstraint] = setBackgroundViewCellConstraintsArray(backgroundViewCell: backgroundViewCell)
+        let textViewConstraintsArray: [NSLayoutConstraint] = setTextViewConstraintsArray(textView: textView, backgroundViewCell: backgroundViewCell)
+        let textFieldConstraintsArray: [NSLayoutConstraint] = setTextFieldConstraintsArray(textField: textField, backgroundViewCell: backgroundViewCell)
+        
+        NSLayoutConstraint.activate(backgroundViewCellConstraintsArray)
+        NSLayoutConstraint.activate(textViewConstraintsArray)
+        NSLayoutConstraint.activate(textFieldConstraintsArray)
     }
 }
 

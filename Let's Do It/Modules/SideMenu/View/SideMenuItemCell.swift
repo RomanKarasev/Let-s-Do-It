@@ -13,7 +13,7 @@ final class SideMenuItemCell: UITableViewCell {
     
     // MARK: Properties
     
-    static var identifier = "SideMenuItemCell"
+    static var identifier = Constants.identifier
     
     private var itemIcon: UIImageView = {
         let imageView = UIImageView()
@@ -31,7 +31,7 @@ final class SideMenuItemCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .clear
+        contentView.backgroundColor = UIColor.clearColor
         configureConstraints()
     }
     
@@ -41,29 +41,48 @@ final class SideMenuItemCell: UITableViewCell {
     
     // MARK: Methods
     
+    func configureCell(icon: UIImage?, text: String) {
+        itemIcon.image = icon
+        itemLabel.text = text
+    }
+}
+
+// MARK: - Private Methods
+
+extension SideMenuItemCell {
+    
     private func configureConstraints() {
         
         contentView.addSubview(itemIcon)
         NSLayoutConstraint.activate(
             [itemIcon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-             itemIcon.widthAnchor.constraint(equalToConstant: 35),
-             itemIcon.heightAnchor.constraint(equalToConstant: 30),
-             itemIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20)
+             itemIcon.widthAnchor.constraint(equalToConstant: Constants.widthForItemIcon),
+             itemIcon.heightAnchor.constraint(equalToConstant: Constants.heightAnchor),
+             itemIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                               constant: Constants.leadingAnchor
+                                              )
             ]
         )
         
         contentView.addSubview(itemLabel)
         NSLayoutConstraint.activate(
             [itemLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-             itemLabel.heightAnchor.constraint(equalToConstant: 40),
-             itemLabel.leadingAnchor.constraint(equalTo: itemIcon.trailingAnchor, constant: 20),
+             itemLabel.heightAnchor.constraint(equalToConstant: Constants.heightAnchor),
+             itemLabel.leadingAnchor.constraint(equalTo: itemIcon.trailingAnchor,
+                                                constant: Constants.leadingAnchor
+                                               ),
              itemLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
             ]
         )
     }
+}
+
+// MARK: - Constants
+
+private struct Constants {
     
-    func configureCell(icon: UIImage?, text: String) {
-        itemIcon.image = icon
-        itemLabel.text = text
-    }
+    static let leadingAnchor: CGFloat = 20
+    static let heightAnchor: CGFloat = 40
+    static let identifier = "SideMenuItemCell"
+    static let widthForItemIcon: CGFloat = 40
 }

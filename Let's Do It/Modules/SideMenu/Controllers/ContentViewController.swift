@@ -23,18 +23,42 @@ class ContentViewController: UIViewController {
     
     weak var delegate: SideMenuDelegate?
     
+    
+    // MARK: View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal"),
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(menuTapped))
+        setNavigationItems()
     }
+}
+
+// MARK: - @objs extentions
+
+@objc extension ContentViewController {
     
-    // MARK: Methods
-        
-    @objc private func menuTapped() {
+    private func menuTapped() {
         delegate?.menuButtonTapped()
     }
+    
+}
+    
+// MARK: - Private Methods
+
+extension ContentViewController {
+    
+    
+    private func setNavigationItems() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: Constants.leftBarButtonImage,
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(menuTapped)
+        )
+    }
+}
+
+// MARK: - Constants
+
+private struct Constants {
+    
+    static let leftBarButtonImage = UIImage(systemName: "line.3.horizontal")
 }

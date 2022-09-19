@@ -9,13 +9,16 @@ import UIKit
 
 class Arrays {
     
+    // MARK: Properties
     
-    let phraseArray = ["Let's make your day productive",
+    
+    // 
+    static let phraseArray = ["Let's make your day productive",
                        "Become the best version of yourself",
                        "The pain of discipline or the pain of regret"
     ]
     
-    let nameOfImage = ["cross.case",
+    static let nameOfImage = ["cross.case",
                        "lungs",
                        "pills",
                        "cross",
@@ -31,11 +34,19 @@ class Arrays {
                        "bandage.fill",
                        ""
     ]
-
     
+    
+    
+    
+    // MARK: Methods
     
     func getPhrase() -> String {
-        let textPhrase = phraseArray.randomElement()!
+        let textPhrase = Arrays.phraseArray.randomElement()!
+        return textPhrase
+    }
+    
+    func getImage() -> String {
+        let textPhrase = Arrays.nameOfImage.randomElement()!
         return textPhrase
     }
 }

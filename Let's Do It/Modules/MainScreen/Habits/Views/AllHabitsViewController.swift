@@ -20,7 +20,7 @@ class AllHabitsViewController: UIViewController {
     
     let sectionTitles: [String] = ["All Habits"]
     
-    let nameOfImage = Arrays().nameOfImage
+    let nameOfImage = Arrays.nameOfImage
     
     let habitCollectionViewCell = HabitCollectionViewCell()
     var habits = [Habit]()
