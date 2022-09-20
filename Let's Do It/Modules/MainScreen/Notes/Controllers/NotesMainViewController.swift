@@ -39,13 +39,13 @@ class NotesMainViewController: UIViewController {
     
     private func addTargetToButtons() {
         notesView.floatingButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-        notesView.allNotesButton.addTarget(self, action: #selector(allNotesButtonTapped), for: .touchUpInside)
-        notesView.repeatedNotesButton.addTarget(self, action: #selector(repeatedNotesButtonTapped), for: .touchUpInside)
+        notesView.leftButton.addTarget(self, action: #selector(allNotesButtonTapped), for: .touchUpInside)
+        notesView.rightButton.addTarget(self, action: #selector(repeatedNotesButtonTapped), for: .touchUpInside)
     }
     
     
     @objc private func addButtonTapped() {
-        remindersAlert()
+//        remindersAlert()
     }
     
     @objc private func allNotesButtonTapped() {
@@ -65,7 +65,7 @@ class NotesMainViewController: UIViewController {
     
     func configureCell(cell: UITableViewCell, indexPath: IndexPath) {
         cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = notesView.notesListsArray[indexPath.row]
+        cell.textLabel?.text = notesView.listsArray[indexPath.row]
         cell.backgroundColor = .clear
         cell.textLabel?.font = .appleSDGothicNeo20()
     }
@@ -75,7 +75,7 @@ class NotesMainViewController: UIViewController {
 
 extension NotesMainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notesView.notesListsArray.count
+        return notesView.listsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -111,51 +111,51 @@ extension NotesMainViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - remindersAlert
 
-extension NotesMainViewController {
-    
-    func remindersAlert() {
-      
-        let alert = UIAlertController(title: "New Event", message: nil, preferredStyle: .alert)
-
-        let newListAlert = UIAlertAction(title: "New List", style: .default) { (action) in
-
-            let tfAlert = alert.textFields?.first
-            
-
-            guard let text = tfAlert?.text else { return }
-            self.notesView.nameListStr.text = text
-            self.notesView.nameListStr.font = .appleSDGothicNeo20()
-
-            self.notesView.notesListsArray.insert(self.notesView.nameListStr.text ?? "New", at: 0)
-            self.notesView.tableView.reloadData()
-        }
-
-        alert.addTextField { (tfAlert) in
-            tfAlert.placeholder = "New Event"
-            tfAlert.translatesAutoresizingMaskIntoConstraints = false
-
-            tfAlert.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        }
-        let newNoteAlert = UIAlertAction(title: "New Note", style: .default) { (action) in
-
-            let tfAlert = alert.textFields?.first
-
-            guard let text = tfAlert?.text else { return }
-            self.notesView.newNotes.text = text
-            self.notesView.newNotes.font = .appleSDGothicNeo20()
-
-            // open NewNote
-
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        
-        
-        [newListAlert, newNoteAlert, cancel].forEach { alert.addAction($0) }
-
-        alert.view.heightAnchor.constraint(equalToConstant: 250).isActive = true
-        
-        present(alert, animated: true, completion: nil)
-    }
-}
-
+//extension NotesMainViewController {
+//
+//    func remindersAlert() {
+//
+//        let alert = UIAlertController(title: "New Event", message: nil, preferredStyle: .alert)
+//
+//        let newListAlert = UIAlertAction(title: "New List", style: .default) { (action) in
+//
+//            let tfAlert = alert.textFields?.first
+//
+//
+//            guard let text = tfAlert?.text else { return }
+//            self.notesView.nameListStr.text = text
+//            self.notesView.nameListStr.font = .appleSDGothicNeo20()
+//
+//            self.notesView.notesListsArray.insert(self.notesView.nameListStr.text ?? "New", at: 0)
+//            self.notesView.tableView.reloadData()
+//        }
+//
+//        alert.addTextField { (tfAlert) in
+//            tfAlert.placeholder = "New Event"
+//            tfAlert.translatesAutoresizingMaskIntoConstraints = false
+//
+//            tfAlert.heightAnchor.constraint(equalToConstant: 20).isActive = true
+//        }
+//        let newNoteAlert = UIAlertAction(title: "New Note", style: .default) { (action) in
+//
+//            let tfAlert = alert.textFields?.first
+//
+//            guard let text = tfAlert?.text else { return }
+//            self.notesView.newNotes.text = text
+//            self.notesView.newNotes.font = .appleSDGothicNeo20()
+//
+//            // open NewNote
+//
+//        }
+//
+//        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+//
+//
+//        [newListAlert, newNoteAlert, cancel].forEach { alert.addAction($0) }
+//
+//        alert.view.heightAnchor.constraint(equalToConstant: 250).isActive = true
+//
+//        present(alert, animated: true, completion: nil)
+//    }
+//}
+//

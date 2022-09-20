@@ -14,7 +14,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     // MARK: Properties
     
-    static let identifier = "HabitCollectionViewCell"
+    static let identifier = Constants.identifier
     
     override var isSelected: Bool {
         didSet {
@@ -61,12 +61,12 @@ class HabitCollectionViewCell: UICollectionViewCell {
 extension HabitCollectionViewCell {
     
     private func setUI() {
-        backgroundColor = #colorLiteral(red: 0.8201447112, green: 0.9895743728, blue: 0.7835234208, alpha: 1)
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.5
-        layer.shadowRadius = 1
-        layer.shadowOffset = .init(width: 2, height: 2)
-        layer.cornerRadius = 2
+        backgroundColor = .systemBlue
+        layer.shadowColor = UIColor.shadowColor.cgColor
+        layer.shadowOpacity = Constants.shadowOpacity
+        layer.shadowRadius = Constants.shadowRadius
+        layer.shadowOffset = Constants.shadowOffset
+        layer.cornerRadius = Constants.cornerRadius
     }
     
     private func setConstraints() {
@@ -74,47 +74,58 @@ extension HabitCollectionViewCell {
         NSLayoutConstraint.activate(
             [habitImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
              habitImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-             habitImageView.heightAnchor.constraint(equalToConstant: 70),
-             habitImageView.widthAnchor.constraint(equalToConstant: 70)
+             habitImageView.heightAnchor.constraint(equalToConstant: Constants.habitImageViewHeightAnchor),
+             habitImageView.widthAnchor.constraint(equalToConstant: Constants.habitImageViewWidthAnchor)
             ]
         )
         self.addSubview(habitTitle)
         NSLayoutConstraint.activate(
-            [habitTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 2),
-             habitTitle.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-             habitTitle.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
-             habitTitle.heightAnchor.constraint(equalToConstant: 15)
+            [habitTitle.topAnchor.constraint(equalTo: self.topAnchor,
+                                             constant: Constants.habitTitleTopAnchor),
+             habitTitle.leadingAnchor.constraint(equalTo: self.leadingAnchor,
+                                                 constant: Constants.habitTitleLeadingAnchor),
+             habitTitle.trailingAnchor.constraint(equalTo: self.trailingAnchor,
+                                                  constant: Constants.habitTitleTrailingAnchor),
+             habitTitle.heightAnchor.constraint(equalToConstant: Constants.habitTitleHeightAnchor)
             ]
         )
         self.addSubview(habitBody)
         NSLayoutConstraint.activate(
             [habitBody.topAnchor.constraint(equalTo: habitTitle.bottomAnchor),
-             habitBody.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-             habitBody.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
-             habitBody.heightAnchor.constraint(equalToConstant: 20)
+             habitBody.leadingAnchor.constraint(equalTo: self.leadingAnchor,
+                                                constant:Constants.habitBodyLeadingAnchor),
+             habitBody.trailingAnchor.constraint(equalTo: self.trailingAnchor,
+                                                 constant: Constants.habitBodyTrailingAnchor),
+             habitBody.heightAnchor.constraint(equalToConstant: Constants.habitBodyHeightAnchor)
             ]
         )
         self.addSubview(habitDayCount)
         NSLayoutConstraint.activate(
-            [habitDayCount.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -2),
-             habitDayCount.leadingAnchor.constraint(equalTo: self.centerXAnchor, constant: 2),
-             habitDayCount.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
-             habitDayCount.heightAnchor.constraint(equalToConstant: 20)
+            [habitDayCount.bottomAnchor.constraint(equalTo: self.bottomAnchor,
+                                                   constant: Constants.habitDayCountBottomAnchor),
+             habitDayCount.leadingAnchor.constraint(equalTo: self.centerXAnchor,
+                                                    constant:Constants.habitDayCountLeadingAnchor),
+             habitDayCount.trailingAnchor.constraint(equalTo: self.trailingAnchor,
+                                                     constant: Constants.habitDayCountTrailingAnchor),
+             habitDayCount.heightAnchor.constraint(equalToConstant: Constants.habitDayCountHeightAnchor)
             ]
         )
         self.addSubview(habitDayCountLabel)
         NSLayoutConstraint.activate(
-            [habitDayCountLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -2),
-             habitDayCountLabel.trailingAnchor.constraint(equalTo: self.centerXAnchor, constant: -2),
-             habitDayCountLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-             habitDayCountLabel.heightAnchor.constraint(equalToConstant: 20)
+            [habitDayCountLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor,
+                                                        constant: Constants.habitDayCountLabelBottomAnchor),
+             habitDayCountLabel.trailingAnchor.constraint(equalTo: self.centerXAnchor,
+                                                          constant: Constants.habitDayCountLabelTrailingAnchor),
+             habitDayCountLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor,
+                                                         constant:Constants.habitDayCountLabelLeadingAnchor),
+             habitDayCountLabel.heightAnchor.constraint(equalToConstant: Constants.habitDayCountLabelHeightAnchor)
             ]
         )
     }
     
     private func toggleSelectionMode() {
         layer.borderColor = isSelected ? Constants.borderColor : nil
-        layer.borderWidth = isSelected ? 1 : .zero
+        layer.borderWidth = isSelected ? Constants.borderWidth : .zero
     }
 }
 
@@ -144,7 +155,33 @@ extension HabitCollectionViewCell {
 
 private struct Constants {
     
+    static let identifier = "HabitCollectionViewCell"
+    
     static let fallbackImageName = Arrays().getImage()
     static let borderColor = UIColor.blue.cgColor
     static let borderWidth: CGFloat = 1
+    
+    static let shadowOpacity: Float = 0.5
+    static let shadowRadius: CGFloat = 1
+    static let shadowOffset: CGSize = .init(width: 2, height: 2)
+    static let cornerRadius: CGFloat = 2
+    
+    static let habitImageViewHeightAnchor: CGFloat = 70
+    static let habitImageViewWidthAnchor: CGFloat = 70
+    static let habitTitleTopAnchor: CGFloat = 2
+    static let habitTitleLeadingAnchor: CGFloat = 5
+    static let habitTitleTrailingAnchor: CGFloat = -5
+    static let habitTitleHeightAnchor: CGFloat = 15
+    static let habitBodyLeadingAnchor: CGFloat = 5
+    static let habitBodyTrailingAnchor: CGFloat = -5
+    static let habitBodyHeightAnchor: CGFloat = 20
+    static let habitDayCountBottomAnchor: CGFloat = -2
+    static let habitDayCountLeadingAnchor: CGFloat = 2
+    static let habitDayCountTrailingAnchor: CGFloat = -5
+    static let habitDayCountHeightAnchor: CGFloat = 20
+    static let habitDayCountLabelBottomAnchor: CGFloat = -2
+    static let habitDayCountLabelTrailingAnchor: CGFloat = -2
+    static let habitDayCountLabelLeadingAnchor: CGFloat = 5
+    static let habitDayCountLabelHeightAnchor: CGFloat = 20
+    
 }

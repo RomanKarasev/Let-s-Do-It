@@ -17,23 +17,23 @@ class AllHabitsViewController: UIViewController {
     private var habitsStore: HabitsStoreInput
     private var alertFactory: AlertFactory
     private var selectionToggled: Bool = false
+    let allHabitsView = AllHabitsView()
+//    let sectionTitles: [String] = ["All Habits"]
     
-    let sectionTitles: [String] = ["All Habits"]
-    
-    let nameOfImage = Arrays.nameOfImage
+//    let nameOfImage = Arrays.nameOfImage
     
     let habitCollectionViewCell = HabitCollectionViewCell()
     var habits = [Habit]()
     
-    private let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumInteritemSpacing = 2
-        layout.scrollDirection = .vertical
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(HabitCollectionViewCell.self, forCellWithReuseIdentifier: HabitCollectionViewCell.identifier)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        return collectionView
-    }()
+//    private let collectionView: UICollectionView = {
+//        let layout = UICollectionViewFlowLayout()
+//        layout.minimumInteritemSpacing = 2
+//        layout.scrollDirection = .vertical
+//        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+//        collectionView.register(HabitCollectionViewCell.self, forCellWithReuseIdentifier: HabitCollectionViewCell.identifier)
+//        collectionView.translatesAutoresizingMaskIntoConstraints = false
+//        return collectionView
+//    }()
     
     // MARK: Initialization
     
@@ -62,7 +62,12 @@ class AllHabitsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        collectionView.reloadData()
+        allHabitsView.collectionView.reloadData()
+    }
+    
+    override func loadView() {
+        super.loadView()
+        view = allHabitsView
     }
    
     // MARK: Methods
@@ -97,20 +102,19 @@ extension AllHabitsViewController {
     }
     
     private func configureView() {
-        view.backgroundColor = .systemBackground
-        setConstraints()
+        view.backgroundColor = .appBackgroundColor
         configureTableView()
     }
     
     private func configureTableView() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        allHabitsView.collectionView.delegate = self
+        allHabitsView.collectionView.dataSource = self
         
         fetchHabits { habits in
             if let habits = habits {
                 self.habits = habits
             }
-            self.collectionView.reloadData()
+            self.allHabitsView.collectionView.reloadData()
         }
     }
     
@@ -129,7 +133,7 @@ extension AllHabitsViewController {
         }
 
         self.habits = habits
-        collectionView.reloadData()
+        allHabitsView.collectionView.reloadData()
     }
     
     private func openHabitDetails(with habit: Habit) {
@@ -139,17 +143,6 @@ extension AllHabitsViewController {
         )
         vc.currentHabit = habit
         navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    private func setConstraints() {
-        view.addSubview(collectionView)
-        NSLayoutConstraint.activate(
-            [collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-                                     collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                                     collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                                     collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-                                    ]
-        )
     }
 }
 

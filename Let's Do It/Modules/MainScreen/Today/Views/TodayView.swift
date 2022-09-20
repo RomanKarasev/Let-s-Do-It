@@ -13,16 +13,17 @@ class TodayView: UIView {
     
     // MARK: Properties
     
-    var headerView = TableHeaderView(frame: CGRect(x: 0, y: 90, width: UIScreen.main.bounds.size.width, height: 150))
-    
-    var heightOfHeader: CGFloat = 150
+    var headerView = TableHeaderView(frame: CGRect(x: Constants.xFloat,
+                                                   y: Constants.yFloat,
+                                                   width: UIScreen.main.bounds.size.width,
+                                                   height: Constants.heightOfHeader))
     
     lazy var floatingButton = UIButton.setupFloatingButton()
     
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.bounces = false
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = .clearColor
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -44,24 +45,38 @@ class TodayView: UIView {
         
         self.addSubview(headerView)
         NSLayoutConstraint.activate(
-            [headerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 90),
-             headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-             headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-             headerView.heightAnchor.constraint(equalToConstant: 150)
+            [headerView.topAnchor.constraint(equalTo: self.topAnchor,
+                                             constant: Constants.headerViewTopAnchor),
+             headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+             headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+             headerView.heightAnchor.constraint(equalToConstant: Constants.heightOfHeader)
             ]
         )
         
         self.addSubview(tableView)
         NSLayoutConstraint.activate(
-            [tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 5),
-             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+            [tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor,
+                                            constant: Constants.tableViewTopAnchor),
+             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
             ]
         )
         
         UIButton.setFloatingButtonConstraints(view: self, floatingButton: floatingButton)
     }
+}
+
+// MARK: - Constants
+
+private struct Constants {
+    
+    static let xFloat: CGFloat = 0
+    static let yFloat: CGFloat = 90
+    static let heightOfHeader: CGFloat = 150
+    static let headerViewTopAnchor: CGFloat = 90
+    static let tableViewTopAnchor: CGFloat = 5
+    
 }
 
 

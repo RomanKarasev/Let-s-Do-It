@@ -24,13 +24,11 @@
 		7443CA65289AF27F0011D92F /* ContainerViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA64289AF27F0011D92F /* ContainerViewComposer.swift */; };
 		7443CA6B289AF3380011D92F /* RemindersMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA6A289AF3380011D92F /* RemindersMainView.swift */; };
 		7443CA6D289AF3680011D92F /* RemindersMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA6C289AF3680011D92F /* RemindersMainViewController.swift */; };
-		7443CA6F289AF39B0011D92F /* RemindersMainViewController + MainButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA6E289AF39B0011D92F /* RemindersMainViewController + MainButtons.swift */; };
 		7443CA74289AF3FF0011D92F /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA73289AF3FF0011D92F /* TableHeaderView.swift */; };
 		7443CA76289AF40A0011D92F /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA75289AF40A0011D92F /* TodayView.swift */; };
 		7443CA78289AF44E0011D92F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA77289AF44E0011D92F /* TodayViewController.swift */; };
 		7443CA88289AFB7D0011D92F /* NotesMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA87289AFB7D0011D92F /* NotesMainView.swift */; };
 		7443CA8A289AFB8D0011D92F /* NotesMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA89289AFB8D0011D92F /* NotesMainViewController.swift */; };
-		7443CA8C289AFBA20011D92F /* NotesMainViewController + MainButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA8B289AFBA20011D92F /* NotesMainViewController + MainButtons.swift */; };
 		7443CA8F289AFC270011D92F /* UiKIt +UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA8E289AFC270011D92F /* UiKIt +UIFont.swift */; };
 		7443CA91289AFC3B0011D92F /* UiKIt + UiButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA90289AFC3B0011D92F /* UiKIt + UiButtons.swift */; };
 		7443CA93289AFC510011D92F /* UiKit + UiLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA92289AFC510011D92F /* UiKit + UiLabel.swift */; };
@@ -63,6 +61,9 @@
 		7443CAE6289F9F130011D92F /* PomodoroViewController + FocusTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAE5289F9F130011D92F /* PomodoroViewController + FocusTimer.swift */; };
 		7443CAE8289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAE7289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift */; };
 		7443CAEA289F9F310011D92F /* PomodoroViewController + RestTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAE9289F9F310011D92F /* PomodoroViewController + RestTimer.swift */; };
+		74797C0B28D9B3B30030D93A /* BaseMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74797C0A28D9B3B30030D93A /* BaseMainView.swift */; };
+		74797C0E28D9B55D0030D93A /* BaseButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74797C0D28D9B55D0030D93A /* BaseButtons.swift */; };
+		74797C1228D9CBBE0030D93A /* AllHabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74797C1128D9CBBE0030D93A /* AllHabitsView.swift */; };
 		747CDDEC28D31AE30010C31E /* UiKIt +UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747CDDEB28D31AE30010C31E /* UiKIt +UIColor.swift */; };
 		747CDDEE28D328810010C31E /* UiKit + CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747CDDED28D328810010C31E /* UiKit + CGFloat.swift */; };
 		7481938328D480E1006CC722 /* DividerStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7481938228D480E1006CC722 /* DividerStruct.swift */; };
@@ -132,13 +133,11 @@
 		7443CA64289AF27F0011D92F /* ContainerViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewComposer.swift; sourceTree = "<group>"; };
 		7443CA6A289AF3380011D92F /* RemindersMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersMainView.swift; sourceTree = "<group>"; };
 		7443CA6C289AF3680011D92F /* RemindersMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersMainViewController.swift; sourceTree = "<group>"; };
-		7443CA6E289AF39B0011D92F /* RemindersMainViewController + MainButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RemindersMainViewController + MainButtons.swift"; sourceTree = "<group>"; };
 		7443CA73289AF3FF0011D92F /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
 		7443CA75289AF40A0011D92F /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		7443CA77289AF44E0011D92F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		7443CA87289AFB7D0011D92F /* NotesMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesMainView.swift; sourceTree = "<group>"; };
 		7443CA89289AFB8D0011D92F /* NotesMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesMainViewController.swift; sourceTree = "<group>"; };
-		7443CA8B289AFBA20011D92F /* NotesMainViewController + MainButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotesMainViewController + MainButtons.swift"; sourceTree = "<group>"; };
 		7443CA8E289AFC270011D92F /* UiKIt +UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiKIt +UIFont.swift"; sourceTree = "<group>"; };
 		7443CA90289AFC3B0011D92F /* UiKIt + UiButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiKIt + UiButtons.swift"; sourceTree = "<group>"; };
 		7443CA92289AFC510011D92F /* UiKit + UiLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiKit + UiLabel.swift"; sourceTree = "<group>"; };
@@ -171,6 +170,9 @@
 		7443CAE5289F9F130011D92F /* PomodoroViewController + FocusTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroViewController + FocusTimer.swift"; sourceTree = "<group>"; };
 		7443CAE7289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroViewController + LongRestTimer.swift"; sourceTree = "<group>"; };
 		7443CAE9289F9F310011D92F /* PomodoroViewController + RestTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroViewController + RestTimer.swift"; sourceTree = "<group>"; };
+		74797C0A28D9B3B30030D93A /* BaseMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMainView.swift; sourceTree = "<group>"; };
+		74797C0D28D9B55D0030D93A /* BaseButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtons.swift; sourceTree = "<group>"; };
+		74797C1128D9CBBE0030D93A /* AllHabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllHabitsView.swift; sourceTree = "<group>"; };
 		747CDDEB28D31AE30010C31E /* UiKIt +UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiKIt +UIColor.swift"; sourceTree = "<group>"; };
 		747CDDED28D328810010C31E /* UiKit + CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiKit + CGFloat.swift"; sourceTree = "<group>"; };
 		7481938228D480E1006CC722 /* DividerStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerStruct.swift; sourceTree = "<group>"; };
@@ -361,7 +363,6 @@
 		7443CA69289AF2FE0011D92F /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				7443CA6E289AF39B0011D92F /* RemindersMainViewController + MainButtons.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -407,6 +408,7 @@
 			children = (
 				748382C428A3E0540035CEF2 /* Cells */,
 				748382CB28A3E1300035CEF2 /* NewHabitView.swift */,
+				74797C1128D9CBBE0030D93A /* AllHabitsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -440,7 +442,6 @@
 		7443CA84289AFB440011D92F /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				7443CA8B289AFBA20011D92F /* NotesMainViewController + MainButtons.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -634,6 +635,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		74797C0C28D9B5470030D93A /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				74797C0D28D9B55D0030D93A /* BaseButtons.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
 		7481938128D480BA006CC722 /* Structs */ = {
 			isa = PBXGroup;
 			children = (
@@ -645,6 +654,7 @@
 		7481938428D486D1006CC722 /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
+				74797C0C28D9B5470030D93A /* Extentions */,
 				7481938C28D4888A006CC722 /* Controllers */,
 				7481938A28D48879006CC722 /* Views */,
 			);
@@ -665,6 +675,7 @@
 				7481938B28D48881006CC722 /* Cells */,
 				7481938F28D4D907006CC722 /* BaseAllView.swift */,
 				7413BDD628D85D5B00CF1A56 /* BaseNewView.swift */,
+				74797C0A28D9B3B30030D93A /* BaseMainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -998,10 +1009,10 @@
 				7443CAEA289F9F310011D92F /* PomodoroViewController + RestTimer.swift in Sources */,
 				7443CAD5289C546B0011D92F /* WeatherManager.swift in Sources */,
 				7443CAB7289AFFBF0011D92F /* UiVC + AlertDate.swift in Sources */,
+				74797C0B28D9B3B30030D93A /* BaseMainView.swift in Sources */,
 				7443CA95289AFC6F0011D92F /* UiKit + UiStackView.swift in Sources */,
 				7443CA4C289AF0370011D92F /* SideMenuItemCell.swift in Sources */,
 				7443CA4E289AF04B0011D92F /* SideMenuView.swift in Sources */,
-				7443CA6F289AF39B0011D92F /* RemindersMainViewController + MainButtons.swift in Sources */,
 				7443CA65289AF27F0011D92F /* ContainerViewComposer.swift in Sources */,
 				748382CC28A3E1300035CEF2 /* NewHabitView.swift in Sources */,
 				748382C828A3E0D10035CEF2 /* HabitCollectionViewCell.swift in Sources */,
@@ -1009,9 +1020,9 @@
 				748382DF28A3E51C0035CEF2 /* AllRemindersViewCell.swift in Sources */,
 				7443CAA7289AFE790011D92F /* Note + CoreDataClass.swift in Sources */,
 				7443CA58289AF14C0011D92F /* SideMenuViewController.swift in Sources */,
-				7443CA8C289AFBA20011D92F /* NotesMainViewController + MainButtons.swift in Sources */,
 				7443CAAE289AFEE50011D92F /* HabitsStore.swift in Sources */,
 				7443CABB289AFFEB0011D92F /* UiVC + AlertTime.swift in Sources */,
+				74797C0E28D9B55D0030D93A /* BaseButtons.swift in Sources */,
 				748382D428A3E40F0035CEF2 /* NewNoteViewCell.swift in Sources */,
 				7443CAA1289AFE000011D92F /* Habit + CoreDataProperties.swift in Sources */,
 				7443CA88289AFB7D0011D92F /* NotesMainView.swift in Sources */,
@@ -1052,6 +1063,7 @@
 				7443CA97289AFCAB0011D92F /* UiKit + UiString + Capitalized.swift in Sources */,
 				7413BDD928D8652700CF1A56 /* FloatingButton.swift in Sources */,
 				7443CA76289AF40A0011D92F /* TodayView.swift in Sources */,
+				74797C1228D9CBBE0030D93A /* AllHabitsView.swift in Sources */,
 				7443CA93289AFC510011D92F /* UiKit + UiLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

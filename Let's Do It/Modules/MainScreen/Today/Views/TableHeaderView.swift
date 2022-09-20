@@ -58,79 +58,15 @@ class TableHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Methods
-    
-    private func setConstraints() {
-        self.addSubview(weatherImageView)
-        NSLayoutConstraint.activate(
-            [weatherImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-             weatherImageView.leadingAnchor.constraint(equalTo: self
-                .leadingAnchor, constant: 40),
-             weatherImageView.heightAnchor.constraint(equalToConstant: 80),
-             weatherImageView.widthAnchor.constraint(equalToConstant: 80)
-            ]
-        )
-        
-        self.addSubview(weatherRealTemperatureLabel)
-        NSLayoutConstraint.activate(
-            [weatherRealTemperatureLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-             weatherRealTemperatureLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
-             weatherRealTemperatureLabel.widthAnchor.constraint(equalToConstant: 100)
-            ]
-        )
-        
-        self.addSubview(feelTemperatureLabel)
-        NSLayoutConstraint.activate(
-            [feelTemperatureLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-             feelTemperatureLabel.bottomAnchor.constraint(equalTo: weatherRealTemperatureLabel.topAnchor, constant: 0),
-             feelTemperatureLabel.widthAnchor.constraint(equalToConstant: 100)
-            ]
-        )
-        
-        
-        self.addSubview(weatherTemperatureLabel)
-        NSLayoutConstraint.activate(
-            [weatherTemperatureLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-             weatherTemperatureLabel.bottomAnchor.constraint(equalTo: feelTemperatureLabel.topAnchor, constant: 0),
-             weatherTemperatureLabel.widthAnchor.constraint(equalToConstant: 100)
-            ]
-        )
-        
-        self.addSubview(temperatureLabel)
-        NSLayoutConstraint.activate(
-            [temperatureLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-             temperatureLabel.bottomAnchor.constraint(equalTo: weatherTemperatureLabel.topAnchor, constant: 0),
-             temperatureLabel.widthAnchor.constraint(equalToConstant: 100)
-            ]
-        )
-        
-        self.addSubview(showHourlyWeatherVCButton)
-        NSLayoutConstraint.activate(
-            [showHourlyWeatherVCButton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-             showHourlyWeatherVCButton.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-             showHourlyWeatherVCButton.heightAnchor.constraint(equalToConstant: 40),
-             showHourlyWeatherVCButton.widthAnchor.constraint(equalToConstant: 40)
-            ]
-        )
-        
-        self.addSubview(viewForButton)
-        NSLayoutConstraint.activate(
-            [viewForButton.bottomAnchor.constraint(equalTo: showHourlyWeatherVCButton.topAnchor, constant: 2),
-             viewForButton.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: 10),
-             viewForButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
-             viewForButton.topAnchor.constraint(equalTo: self.topAnchor)
-            ]
-        )
-        
-    }
+    // MARK: setWeatherData
     
     func setWeatherData(from model: CurrentWeatherData) {
         DispatchQueue.main.async {
             let firstDayModelData = model.data[0]
             guard let temp = firstDayModelData.temp,
-                    let realTemp = firstDayModelData.appearenceTemp,
-                    let rain = firstDayModelData.clouds,
-                    let imageName = firstDayModelData.weather?.description
+                  let realTemp = firstDayModelData.appearenceTemp,
+                  let rain = firstDayModelData.clouds,
+                  let imageName = firstDayModelData.weather?.description
             else { return }
             
             self.weatherTemperatureLabel.text = "\(temp) C"
@@ -139,5 +75,93 @@ class TableHeaderView: UIView {
             self.dailyRainData.text = "\(rain)"
         }
     }
+    
 }
+// MARK: - setConstraints
+
+extension TableHeaderView {
+    
+    private func setConstraints() {
+        self.addSubview(weatherImageView)
+        NSLayoutConstraint.activate(
+            [weatherImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+             weatherImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor,
+                                                       constant: Constants.weatherImageViewLeadingAnchor),
+             weatherImageView.heightAnchor.constraint(equalToConstant: Constants.weatherImageViewHeightAnchor),
+             weatherImageView.widthAnchor.constraint(equalToConstant: Constants.weatherImageViewWidthAnchor)
+            ]
+        )
+        
+        self.addSubview(weatherRealTemperatureLabel)
+        NSLayoutConstraint.activate(
+            [weatherRealTemperatureLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+             weatherRealTemperatureLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+             weatherRealTemperatureLabel.widthAnchor.constraint(equalToConstant: Constants.labelWidthAncor)
+            ]
+        )
+        
+        self.addSubview(feelTemperatureLabel)
+        NSLayoutConstraint.activate(
+            [feelTemperatureLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+             feelTemperatureLabel.bottomAnchor.constraint(equalTo: weatherRealTemperatureLabel.topAnchor),
+             feelTemperatureLabel.widthAnchor.constraint(equalToConstant: Constants.labelWidthAncor)
+            ]
+        )
+        
+        
+        self.addSubview(weatherTemperatureLabel)
+        NSLayoutConstraint.activate(
+            [weatherTemperatureLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+             weatherTemperatureLabel.bottomAnchor.constraint(equalTo: feelTemperatureLabel.topAnchor),
+             weatherTemperatureLabel.widthAnchor.constraint(equalToConstant: Constants.labelWidthAncor)
+            ]
+        )
+        
+        self.addSubview(temperatureLabel)
+        NSLayoutConstraint.activate(
+            [temperatureLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+             temperatureLabel.bottomAnchor.constraint(equalTo: weatherTemperatureLabel.topAnchor),
+             temperatureLabel.widthAnchor.constraint(equalToConstant: Constants.labelWidthAncor)
+            ]
+        )
+        
+        self.addSubview(showHourlyWeatherVCButton)
+        NSLayoutConstraint.activate(
+            [showHourlyWeatherVCButton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+             showHourlyWeatherVCButton.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+             showHourlyWeatherVCButton.heightAnchor.constraint(equalToConstant: Constants.showHourlyWeatherVCButtonHeightAnchor),
+             showHourlyWeatherVCButton.widthAnchor.constraint(equalToConstant: Constants.showHourlyWeatherVCButtonWidthAnchor)
+            ]
+        )
+        
+        self.addSubview(viewForButton)
+        NSLayoutConstraint.activate(
+            [viewForButton.bottomAnchor.constraint(equalTo: showHourlyWeatherVCButton.topAnchor,
+                                                   constant: Constants.viewForButtonBottomAnchor),
+             viewForButton.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor,
+                                                    constant: Constants.viewForButtonLeadingAnchor),
+             viewForButton.trailingAnchor.constraint(equalTo: self.trailingAnchor,
+                                                     constant: Constants.viewForButtonTrailingAnchor),
+             viewForButton.topAnchor.constraint(equalTo: self.topAnchor)
+            ]
+        )
+    }
+}
+
+// MARK: - Constants
+
+private struct Constants {
+    
+    static let weatherImageViewLeadingAnchor: CGFloat = 40
+    static let weatherImageViewHeightAnchor: CGFloat = 80
+    static let weatherImageViewWidthAnchor: CGFloat = 80
+    static let labelWidthAncor: CGFloat = 100
+    static let showHourlyWeatherVCButtonHeightAnchor: CGFloat = 40
+    static let showHourlyWeatherVCButtonWidthAnchor: CGFloat = 40
+    static let viewForButtonBottomAnchor: CGFloat = 2
+    static let viewForButtonLeadingAnchor: CGFloat = 10
+    static let viewForButtonTrailingAnchor: CGFloat = -5
+    
+}
+
 
