@@ -56,8 +56,5 @@ final class WeatherManager {
         }
             task.resume()
     }
-
-    // TODO: - сделать общую функцию для отправки GET запросов
-    // TODO: - сделать общую функцию для парсинга JSON
 }
 
