@@ -44,7 +44,7 @@ class AllRemindersViewController: UIViewController {
         super.viewDidLoad()
 
         title = "All Reminders"
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
 
         configureTableView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -59,7 +59,7 @@ class AllRemindersViewController: UIViewController {
     override func loadView() {
         super.loadView()
         view = allRemindersView
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .appBackgroundColor
     }
 
 

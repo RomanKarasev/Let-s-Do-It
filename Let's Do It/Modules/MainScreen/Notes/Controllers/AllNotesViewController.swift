@@ -45,7 +45,7 @@ class AllNotesViewController: UIViewController {
         
         title = "All Notes"
         
-        
+        navigationItem.largeTitleDisplayMode = .never
         configureTableView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: .add,

@@ -18,23 +18,10 @@ class AllHabitsViewController: UIViewController {
     private var alertFactory: AlertFactory
     private var selectionToggled: Bool = false
     let allHabitsView = AllHabitsView()
-//    let sectionTitles: [String] = ["All Habits"]
-    
-//    let nameOfImage = Arrays.nameOfImage
-    
     let habitCollectionViewCell = HabitCollectionViewCell()
     var habits = [Habit]()
     
-//    private let collectionView: UICollectionView = {
-//        let layout = UICollectionViewFlowLayout()
-//        layout.minimumInteritemSpacing = 2
-//        layout.scrollDirection = .vertical
-//        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-//        collectionView.register(HabitCollectionViewCell.self, forCellWithReuseIdentifier: HabitCollectionViewCell.identifier)
-//        collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        return collectionView
-//    }()
-    
+
     // MARK: Initialization
     
     init(
@@ -55,6 +42,8 @@ class AllHabitsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.largeTitleDisplayMode = .never
         title = "All Habits"
         configureView()
         setNavigationController()

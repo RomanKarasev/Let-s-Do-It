@@ -25,7 +25,9 @@ class RemindersMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Reminders"
-
+        
+        navigationItem.largeTitleDisplayMode = .never
+        
         configureTableView()
         addTargetToButtons()
     }

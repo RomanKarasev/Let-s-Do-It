@@ -45,6 +45,8 @@ class NewReminderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
         
         newReminderView.delegate = self
@@ -58,11 +60,14 @@ class NewReminderViewController: UIViewController {
         setColorTagCellReference()
     }
     
+   
     override func loadView() {
         super.loadView()
         view = newReminderView
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .appBackgroundColor
     }
+    
+    
     
     // MARK: Methods
     

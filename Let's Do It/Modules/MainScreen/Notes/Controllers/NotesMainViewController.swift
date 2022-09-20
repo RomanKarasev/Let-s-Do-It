@@ -19,6 +19,9 @@ class NotesMainViewController: UIViewController {
         super.viewDidLoad()
         title = "Notes"
         
+        navigationItem.largeTitleDisplayMode = .never
+
+        
         configureTableView()
         addTargetToButtons()
     }
