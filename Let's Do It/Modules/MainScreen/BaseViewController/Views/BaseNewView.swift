@@ -26,8 +26,9 @@ class BaseNewView: UIView {
     
     let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
         tableView.bounces = false
-        tableView.backgroundColor = .clearColor
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView

@@ -19,7 +19,7 @@ class NewReminderView: BaseNewView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        tableView.register(NewReminderTableViewCell.self, forCellReuseIdentifier: NewReminderTableViewCell.identifier)
+        
     }
     
     required init?(coder: NSCoder) {

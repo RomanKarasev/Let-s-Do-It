@@ -19,7 +19,7 @@ class NewNoteView: BaseNewView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        tableView.register(NewNoteViewCell.self, forCellReuseIdentifier: NewNoteViewCell.identifier)
+//        tableView.register(NewNoteViewCell.self, forCellReuseIdentifier: NewNoteViewCell.identifier)
     }
     
     required init?(coder: NSCoder) {

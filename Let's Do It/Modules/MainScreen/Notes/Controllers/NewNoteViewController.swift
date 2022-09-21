@@ -10,12 +10,13 @@ import UIKit
 
 // MARK: - NewNoteViewController
 
-class NewNoteViewController: UIViewController {
+class NewNoteViewController: BaseNewViewController {
     
     // MARK: Properties
+//    static let shared = NewNoteViewController
     
     let headerArray = ["Title", "Date & Time", "Option"]
-    private var notesStore: NotesStoreInput
+    var notesStore: NotesStoreInput
     private var alertFactory: AlertFactory
     
     var currentNote: Note?
@@ -45,14 +46,10 @@ class NewNoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.largeTitleDisplayMode = .always
-        navigationController?.navigationBar.prefersLargeTitles = true
         
         newNoteView.delegate = self
         configureTableView()
         setTitle()
-        swipeForKeyboard()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,21 +60,10 @@ class NewNoteViewController: UIViewController {
     override func loadView() {
         super.loadView()
         view = newNoteView
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .appBackgroundColor
     }
     
     // MARK: Methods
-    
-    @objc func hideKeyboardOnSwipeDown() {
-        view.endEditing(true)
-    }
-    
-    private func swipeForKeyboard() {
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(hideKeyboardOnSwipeDown))
-        swipeDown.delegate = self
-        swipeDown.direction =  UISwipeGestureRecognizer.Direction.down
-        self.view.addGestureRecognizer(swipeDown)
-    }
     
     func setColorTagCellReference() {
         let colorTagCellIndexPath = IndexPath(row: 0, section: 2)
@@ -86,7 +72,7 @@ class NewNoteViewController: UIViewController {
     
     func setTitle() {
         if currentNote?.title == nil {
-            title = "New Habit"
+            title = "New Note"
         } else {
             title = currentNote?.title
         }
@@ -95,9 +81,7 @@ class NewNoteViewController: UIViewController {
     func configureTableView() {
         newNoteView.tableView.delegate = self
         newNoteView.tableView.dataSource = self
-        newNoteView.tableView.backgroundColor = .clear
-        newNoteView.tableView.separatorStyle = .none
-        newNoteView.tableView.bounces = false
+        newNoteView.tableView.register(NewNoteViewCell.self, forCellReuseIdentifier: NewNoteViewCell.identifier)
     }
     
     func configureSelectRow(cell: UITableViewCell, indexPath: IndexPath) {
@@ -118,54 +102,6 @@ class NewNoteViewController: UIViewController {
             
         default: print("Tap OptionReminderTableView")
         }
-        
-    }
-    
-    func showModal() {
-        //        let modalViewController = TagViewController()
-        //        modalViewController.modalPresentationStyle = .formSheet
-        //        present(modalViewController, animated: true, completion: nil)
-    }
-    
-    func configureCell(cell: NewNoteViewCell, indexPath: IndexPath) {
-        cell.textLabel?.text = cell.cellNameArray[indexPath.section][indexPath.row]
-        cell.textLabel?.textColor = .label
-        switch indexPath {
-        case [0,0]:
-            cell.textField.isHidden = false
-            cell.textField.text = "Title"
-            
-        case [0,1]:
-            cell.textField.isHidden = false
-            cell.textField.text = "Body"
-        default:
-            break
-        }
-        
-        cell.textField.delegate = self
-        
-        if indexPath == [2,0] {
-            cell.backgroundViewCell.backgroundColor = .secondarySystemFill
-        }
-
-        guard let note = currentNote
-        else { return }
-
-        switch indexPath {
-        case [0,0]:
-            cell.textField.text = note.title
-        case [0,1]:
-            cell.textField.text = note.body
-        case [1,0]:
-            cell.textLabel?.text = note.date
-        case [1,1]:
-            cell.textLabel?.text = note.time
-        case [2,0]:
-            break
-//            backgroundViewCell.backgroundColor = UIColor(named: reminder.color ?? "")
-        default:
-            break
-        }
     }
 }
 
@@ -178,35 +114,34 @@ extension NewNoteViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0: return 2
-        case 1: return 2
-        case 2: return 1
-        default: return 1
-        }
+        setSection(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewNoteViewCell.identifier, for: indexPath) as! NewNoteViewCell
-        configureCell(cell: cell, indexPath: indexPath)
+        configureCell(cell: cell,
+                      indexPath: indexPath,
+                      array: cell.cellNameArray,
+                      textField: cell.textField,
+                      textView: cell.textView,
+                      backgroundViewCell: cell.backgroundViewCell,
+                      currentEvent: currentNote)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return 44
+        return setHeightForRow(indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return headerArray[section]
+    }
     
-            return headerArray[section]
-        }
-
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
     
-// MARK: - Table View Delegate
+    // MARK: - Table View Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! NewNoteViewCell
@@ -235,11 +170,11 @@ extension NewNoteViewController: UIColorPickerViewControllerDelegate {
 
 // MARK: - saveButtonTapped
 extension NewNoteViewController: NewViewDelegate {
-    
+
     func saveButtonTapped() {
         guard let cells = newNoteView.tableView.visibleCells as? [NewNoteViewCell],
               let noteTitle = cells.first?.textField.text,
-              let noteBody = cells[1].textField.text,
+              let noteBody = cells[1].textView.text,
               let noteDate = cells[2].textLabel?.text,
               let noteTime = cells[3].textLabel?.text,
               let context = UIApplication.shared.managedContext
@@ -261,18 +196,4 @@ extension NewNoteViewController: NewViewDelegate {
             }
         }
     }
-}
-
-
-
-extension NewNoteViewController: UITextFieldDelegate {
-    
-}
-
-
-extension NewNoteViewController: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-            return true
-        }
 }

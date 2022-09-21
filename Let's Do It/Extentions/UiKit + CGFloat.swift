@@ -14,9 +14,11 @@ extension CGFloat {
     static let floatingButtonTrailingAnchor: CGFloat = -25
     static let floatingButtonBottomAnchor: CGFloat = -UIScreen.main.bounds.maxY / 8
     
+    
     static let radiusForPomodoroTimer: CGFloat = UIScreen.main.bounds.width / 3
     static let widthForCirclePomodoroTimer: CGFloat = 15
     static let widthForTimeLineCirclePomodoroTimer: CGFloat = 15
     
     static let heightForRowAtMainTableViews: CGFloat = 115
+    static let heightForRowsAndHeader: CGFloat = 40
 }

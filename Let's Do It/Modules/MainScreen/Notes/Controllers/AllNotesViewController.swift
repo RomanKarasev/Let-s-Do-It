@@ -10,20 +10,19 @@ import UIKit
 // MARK: - AllNotesViewController
 
 
-class AllNotesViewController: UIViewController {
+class AllNotesViewController: BaseAllViewController {
     
     // MARK: Properties
-
+    
     let allNotesView = BaseAllView()
-
+    
     private var notesStore: NotesStoreInput
     private var alertFactory: AlertFactory
     
-    let idNotesCell = "idNotesCell"
     var notes = [Note]()
-
+    
     // MARK: - Initialization
-
+    
     init(
         store: NotesStoreInput,
         alertFactory: AlertFactory
@@ -45,25 +44,18 @@ class AllNotesViewController: UIViewController {
         
         title = "All Notes"
         
-        navigationItem.largeTitleDisplayMode = .never
         configureTableView()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: .add,
-            style: .plain,
-            target: self,
-            action: #selector(openNewNote)
-        )
     }
     
     override func loadView() {
         super.loadView()
         view = allNotesView
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .appBackgroundColor
     }
     
     // MARK: Methods
     
-    @objc func openNewNote() {
+    @objc override func openNewController() {
         let vc = NewNoteViewController(with: NotesStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -71,8 +63,8 @@ class AllNotesViewController: UIViewController {
     private func configureTableView() {
         allNotesView.tableView.delegate = self
         allNotesView.tableView.dataSource = self
-        allNotesView.tableView.register(AllNotesViewCell.self, forCellReuseIdentifier: idNotesCell)
-
+        allNotesView.tableView.register(AllNotesViewCell.self, forCellReuseIdentifier: AllNotesViewCell.identifier)
+        
         fetchNotes { notes in
             if let notes = notes {
                 self.notes = notes
@@ -80,7 +72,7 @@ class AllNotesViewController: UIViewController {
             self.allNotesView.tableView.reloadData()
         }
     }
-
+    
     private func fetchNotes(_ completion: @escaping ([Note]?) -> Void) {
         notesStore.getNotes { notes, error in
             if let notes = notes {
@@ -88,28 +80,34 @@ class AllNotesViewController: UIViewController {
             }
         }
     }
+   
     
-    @objc func addButtonTapped() {
-        let newNote = NewNoteViewController(
-            with: NotesStore(
-                coreDataService: CoreDataService()
-            ),
-            alertFactory: alertFactory
-        )
-        
-        navigationController?.pushViewController(newNote, animated: true)
-    }
-    
-    func configureCell(cell: AllNotesViewCell, indexPath: IndexPath) {
-        
-        cell.notesIndex = indexPath
-        let indexOfArray = notes[indexPath.row]
-        cell.noteTitle.text = indexOfArray.title
-        cell.noteBody.text = indexOfArray.body
-        cell.noteDate.text = indexOfArray.date
-        cell.noteTime.text = indexOfArray.time
+    private func setSwipe(indexPath: IndexPath, tableView: UITableView) -> UISwipeActionsConfiguration {
+        let deleteAction = UIContextualAction(
+            style: .destructive,
+            title: "Delete") { (action, view, completionHandler) in
+                self.notesStore.delete(
+                    note: self.notes[indexPath.row]
+                ) { note, error in
+                    guard let _ = note
+                    else {
+                        if let error = error {
+                            self.present(
+                                self.alertFactory.makeAlert(with: error),
+                                animated: true
+                            )
+                        }
+                        return
+                    }
+                    self.notes.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+                completionHandler(true)
+            }
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 }
+
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
@@ -119,45 +117,32 @@ extension AllNotesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idNotesCell, for: indexPath) as! AllNotesViewCell
-        configureCell(cell: cell, indexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: AllNotesViewCell.identifier, for: indexPath) as! AllNotesViewCell
+        configureCell(cell: cell,
+                      indexPath: indexPath,
+                      array: notes,
+                      index: cell.index ?? indexPath,
+                      title: cell.noteTitle,
+                      body: cell.noteBody,
+                      date: cell.noteDate,
+                      time: cell.noteTime)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return .heightForRowAtMainTableViews
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let currentNote = notes[indexPath.row]
         let viewController = NewNoteViewController(with: notesStore, alertFactory: alertFactory)
         viewController.currentNote = currentNote
         navigationController?.pushViewController(viewController, animated: true)
     }
-
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-            let deleteAction = UIContextualAction(
-                style: .destructive,
-                title: "Delete") { (action, view, completionHandler) in
-                    self.notesStore.delete(
-                        note: self.notes[indexPath.row]
-                    ) { note, error in
-                        guard let _ = note
-                        else {
-                            if let error = error {
-                                self.present(
-                                    self.alertFactory.makeAlert(with: error),
-                                    animated: true
-                                )
-                            }
-                            return
-                        }
-                        self.notes.remove(at: indexPath.row)
-                        tableView.deleteRows(at: [indexPath], with: .fade)
-                    }
-                    completionHandler(true)
-            }
-            return UISwipeActionsConfiguration(actions: [deleteAction])
-        }
+        setSwipe(indexPath: indexPath, tableView: tableView)
+    }
 }
 

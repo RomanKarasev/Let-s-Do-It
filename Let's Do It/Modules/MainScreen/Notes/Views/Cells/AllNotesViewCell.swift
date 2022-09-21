@@ -12,6 +12,7 @@ import UIKit
 class AllNotesViewCell: BaseAllViewCell {
     
     //MARK: Properties
+    static let identifier = "AllNotesViewCell"
     
     let noteTitle = UILabel(
         text: "",

@@ -95,6 +95,10 @@
 		74A22F2F289AE33D007B60AE /* Let_s_Do_ItUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22F2E289AE33D007B60AE /* Let_s_Do_ItUITestsLaunchTests.swift */; };
 		74A22F3E289AE7BB007B60AE /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 74A22F3D289AE7BB007B60AE /* FSCalendar */; };
 		74A22F45289AED8D007B60AE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22F44289AED8D007B60AE /* MainTabBarController.swift */; };
+		74ACC7FC28DB031C00162E20 /* BaseMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ACC7FB28DB031C00162E20 /* BaseMainViewController.swift */; };
+		74ACC7FE28DB09F000162E20 /* AlertForFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ACC7FD28DB09F000162E20 /* AlertForFloatingButton.swift */; };
+		74ACC80028DB0E1600162E20 /* BaseAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ACC7FF28DB0E1600162E20 /* BaseAllViewController.swift */; };
+		74ACC80228DB1E4C00162E20 /* BaseNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ACC80128DB1E4C00162E20 /* BaseNewViewController.swift */; };
 		74FA1DD428AD608D00E074F5 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FA1DD328AD608D00E074F5 /* CalendarTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -207,6 +211,10 @@
 		74A22F2C289AE33D007B60AE /* Let_s_Do_ItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Let_s_Do_ItUITests.swift; sourceTree = "<group>"; };
 		74A22F2E289AE33D007B60AE /* Let_s_Do_ItUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Let_s_Do_ItUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		74A22F44289AED8D007B60AE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		74ACC7FB28DB031C00162E20 /* BaseMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMainViewController.swift; sourceTree = "<group>"; };
+		74ACC7FD28DB09F000162E20 /* AlertForFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertForFloatingButton.swift; sourceTree = "<group>"; };
+		74ACC7FF28DB0E1600162E20 /* BaseAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAllViewController.swift; sourceTree = "<group>"; };
+		74ACC80128DB1E4C00162E20 /* BaseNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNewViewController.swift; sourceTree = "<group>"; };
 		74FA1DD328AD608D00E074F5 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -536,6 +544,7 @@
 				7443CAB6289AFFBF0011D92F /* UiVC + AlertDate.swift */,
 				7443CAB8289AFFD90011D92F /* UiVC + AlertNewEvent.swift */,
 				7443CABA289AFFEB0011D92F /* UiVC + AlertTime.swift */,
+				74ACC7FD28DB09F000162E20 /* AlertForFloatingButton.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -692,6 +701,9 @@
 		7481938C28D4888A006CC722 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				74ACC7FB28DB031C00162E20 /* BaseMainViewController.swift */,
+				74ACC7FF28DB0E1600162E20 /* BaseAllViewController.swift */,
+				74ACC80128DB1E4C00162E20 /* BaseNewViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -986,6 +998,7 @@
 				7443CA6D289AF3680011D92F /* RemindersMainViewController.swift in Sources */,
 				748382CE28A3E15D0035CEF2 /* AllHabitsViewController.swift in Sources */,
 				748382DA28A3E4AD0035CEF2 /* AllNotesViewController.swift in Sources */,
+				74ACC80228DB1E4C00162E20 /* BaseNewViewController.swift in Sources */,
 				748382D828A3E4650035CEF2 /* NewNoteView.swift in Sources */,
 				7443CA9D289AFDC10011D92F /* Arrays.swift in Sources */,
 				748382E728A3E5D80035CEF2 /* AllRemindersViewController.swift in Sources */,
@@ -1028,6 +1041,7 @@
 				7443CA88289AFB7D0011D92F /* NotesMainView.swift in Sources */,
 				74A22F13289AE33A007B60AE /* Let_s_Do_It.xcdatamodeld in Sources */,
 				74A22F45289AED8D007B60AE /* MainTabBarController.swift in Sources */,
+				74ACC7FE28DB09F000162E20 /* AlertForFloatingButton.swift in Sources */,
 				7443CA78289AF44E0011D92F /* TodayViewController.swift in Sources */,
 				7443CAB2289AFF050011D92F /* AlertFactory.swift in Sources */,
 				7443CA74289AF3FF0011D92F /* TableHeaderView.swift in Sources */,
@@ -1036,6 +1050,7 @@
 				7443CA5D289AF1EB0011D92F /* AuthViewController.swift in Sources */,
 				7443CAD3289C46A80011D92F /* ApiModel.swift in Sources */,
 				7443CA5F289AF2050011D92F /* SettingsViewController.swift in Sources */,
+				74ACC80028DB0E1600162E20 /* BaseAllViewController.swift in Sources */,
 				74FA1DD428AD608D00E074F5 /* CalendarTableViewCell.swift in Sources */,
 				7443CAAC289AFED70011D92F /* NotesStore.swift in Sources */,
 				74A22F09289AE33A007B60AE /* AppDelegate.swift in Sources */,
@@ -1052,6 +1067,7 @@
 				7443CAB4289AFF1D0011D92F /* CoreDataSevices.swift in Sources */,
 				747CDDEC28D31AE30010C31E /* UiKIt +UIColor.swift in Sources */,
 				7443CAA3289AFE340011D92F /* Reminder + CoreDataClass.swift in Sources */,
+				74ACC7FC28DB031C00162E20 /* BaseMainViewController.swift in Sources */,
 				7443CA61289AF2180011D92F /* PomodoroViewController.swift in Sources */,
 				748382D028A3E16B0035CEF2 /* NewHabitViewController.swift in Sources */,
 				7443CA52289AF10D0011D92F /* ContainerViewController.swift in Sources */,

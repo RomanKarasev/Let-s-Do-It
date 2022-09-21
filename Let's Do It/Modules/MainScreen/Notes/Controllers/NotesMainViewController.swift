@@ -7,7 +7,9 @@
 
 import UIKit
 
-class NotesMainViewController: UIViewController {
+//MARK: - NotesMainViewController
+
+class NotesMainViewController: BaseMainViewController {
     
     
     // MARK: Properties
@@ -19,16 +21,17 @@ class NotesMainViewController: UIViewController {
         super.viewDidLoad()
         title = "Notes"
         
-        navigationItem.largeTitleDisplayMode = .never
-
-        
         configureTableView()
-        addTargetToButtons()
+        addTargetToButtons(floatingButton: notesView.floatingButton,
+                           leftButton: notesView.leftButton,
+                           rightButton: notesView.rightButton)
+        
+        
     }
     override func loadView() {
         super.loadView()
         view = notesView
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .appBackgroundColor
     }
     
     // MARK: Methods
@@ -36,22 +39,9 @@ class NotesMainViewController: UIViewController {
     private func configureTableView() {
         notesView.tableView.delegate = self
         notesView.tableView.dataSource = self
-        notesView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        notesView.tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "Header")
     }
-    
-    private func addTargetToButtons() {
-        notesView.floatingButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-        notesView.leftButton.addTarget(self, action: #selector(allNotesButtonTapped), for: .touchUpInside)
-        notesView.rightButton.addTarget(self, action: #selector(repeatedNotesButtonTapped), for: .touchUpInside)
-    }
-    
-    
-    @objc private func addButtonTapped() {
-//        remindersAlert()
-    }
-    
-    @objc private func allNotesButtonTapped() {
+
+    @objc override func leftButtonTapped() {
         let vc = AllNotesViewController(
             store: NotesStore(
                 coreDataService: CoreDataService()
@@ -61,16 +51,9 @@ class NotesMainViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc private func repeatedNotesButtonTapped() {
+    @objc override func rightButtonTabed() {
 //        let vc = MissingRemindersViewController()
 //        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func configureCell(cell: UITableViewCell, indexPath: IndexPath) {
-        cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = notesView.listsArray[indexPath.row]
-        cell.backgroundColor = .clear
-        cell.textLabel?.font = .appleSDGothicNeo20()
     }
 }
 
@@ -80,85 +63,31 @@ extension NotesMainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notesView.listsArray.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.selectionStyle = .none
-        configureCell(cell: cell, indexPath: indexPath)
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell",
+                                                 for: indexPath)
+        return configureCell(cell: cell, indexPath: indexPath, array: notesView.listsArray
+        )
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return .heightForRowsAndHeader
     }
-    
-    
+
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Header")!
+        return configureHeader(header: header)
+    }
 
-        header.textLabel?.text = "Lists:"
-        header.textLabel?.textColor = .label
-        header.textLabel?.font = .appleSDGothicNeoDemiBold30()
-        return header
-    }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return .heightForRowsAndHeader
     }
-    
+
     //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     //        guard let cell = tableView.cellForRow(at: indexPath) as? RemindersTableViewCell else {return}
     //
     //    }
 }
 
-// MARK: - remindersAlert
-
-//extension NotesMainViewController {
-//
-//    func remindersAlert() {
-//
-//        let alert = UIAlertController(title: "New Event", message: nil, preferredStyle: .alert)
-//
-//        let newListAlert = UIAlertAction(title: "New List", style: .default) { (action) in
-//
-//            let tfAlert = alert.textFields?.first
-//
-//
-//            guard let text = tfAlert?.text else { return }
-//            self.notesView.nameListStr.text = text
-//            self.notesView.nameListStr.font = .appleSDGothicNeo20()
-//
-//            self.notesView.notesListsArray.insert(self.notesView.nameListStr.text ?? "New", at: 0)
-//            self.notesView.tableView.reloadData()
-//        }
-//
-//        alert.addTextField { (tfAlert) in
-//            tfAlert.placeholder = "New Event"
-//            tfAlert.translatesAutoresizingMaskIntoConstraints = false
-//
-//            tfAlert.heightAnchor.constraint(equalToConstant: 20).isActive = true
-//        }
-//        let newNoteAlert = UIAlertAction(title: "New Note", style: .default) { (action) in
-//
-//            let tfAlert = alert.textFields?.first
-//
-//            guard let text = tfAlert?.text else { return }
-//            self.notesView.newNotes.text = text
-//            self.notesView.newNotes.font = .appleSDGothicNeo20()
-//
-//            // open NewNote
-//
-//        }
-//
-//        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-//
-//
-//        [newListAlert, newNoteAlert, cancel].forEach { alert.addAction($0) }
-//
-//        alert.view.heightAnchor.constraint(equalToConstant: 250).isActive = true
-//
-//        present(alert, animated: true, completion: nil)
-//    }
-//}
-//

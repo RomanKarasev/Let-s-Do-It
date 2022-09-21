@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - NewReminderViewController
 
-class NewReminderViewController: UIViewController {
+class NewReminderViewController: BaseNewViewController {
     
     // MARK: Properties
     
@@ -18,11 +18,11 @@ class NewReminderViewController: UIViewController {
     private var remindersStore: RemindersStoreInput
     private var alertFactory: AlertFactory
     
-    var reminder: Reminder?
+    var currentReminder: Reminder?
     var colorTagCell: NewReminderTableViewCell?
     
     let newReminderCell = NewReminderTableViewCell()
-    let newReminderView = NewReminderView()
+    let newReminderView = BaseNewView()
     
     // MARK: Initialization
     
@@ -46,13 +46,9 @@ class NewReminderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.largeTitleDisplayMode = .always
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
         newReminderView.delegate = self
         configureTableView()
         setTitle()
-        swipeForKeyboard()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,36 +67,24 @@ class NewReminderViewController: UIViewController {
     
     // MARK: Methods
     
-    @objc private func hideKeyboardOnSwipeDown() {
-        view.endEditing(true)
-    }
     
-    private func swipeForKeyboard() {
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(hideKeyboardOnSwipeDown))
-        swipeDown.delegate = self
-        swipeDown.direction =  UISwipeGestureRecognizer.Direction.down
-        self.view.addGestureRecognizer(swipeDown)
-    }
-    
-    private func setColorTagCellReference() {
+    func setColorTagCellReference() {
         let colorTagCellIndexPath = IndexPath(row: 0, section: 2)
         colorTagCell = newReminderView.tableView.cellForRow(at: colorTagCellIndexPath) as? NewReminderTableViewCell
     }
     
     private func setTitle() {
-        if reminder?.title == nil {
+        if currentReminder?.title == nil {
             title = "New Reminder"
         } else {
-            title = reminder?.title
+            title = currentReminder?.title
         }
     }
     
     private func configureTableView() {
         newReminderView.tableView.delegate = self
         newReminderView.tableView.dataSource = self
-        newReminderView.tableView.backgroundColor = .clear
-        newReminderView.tableView.separatorStyle = .none
-        newReminderView.tableView.bounces = false
+        newReminderView.tableView.register(NewReminderTableViewCell.self, forCellReuseIdentifier: NewReminderTableViewCell.identifier)
     }
     
     func configureSelectRow(cell: UITableViewCell, indexPath: IndexPath) {
@@ -124,56 +108,50 @@ class NewReminderViewController: UIViewController {
         }
         
     }
-    
-    func showModal() {
-        //        let modalViewController = TagViewController()
-        //        modalViewController.modalPresentationStyle = .formSheet
-        //        present(modalViewController, animated: true, completion: nil)
-    }
-    
-    func configureCell(cell: NewReminderTableViewCell, indexPath: IndexPath) {
-        cell.textLabel?.text = cell.cellNameArray[indexPath.section][indexPath.row]
-        cell.textLabel?.textColor = .label
-        switch indexPath {
-        case [0,0]:
-            cell.textField.isHidden = false
-            cell.textField.text = "Title"
-            cell.textView.sizeToFit()
-            
-        case [0,1]:
-            cell.textView.isHidden = false
-            cell.textView.text = "Body"
-            cell.textView.font = .systemFont(ofSize: 18)
-            cell.textView.sizeToFit()
-        default:
-            break
-        }
-        
-        cell.textView.delegate = self
-        
-        if indexPath == [2,0] {
-            cell.backgroundViewCell.backgroundColor = .secondarySystemFill
-        }
-
-        guard let reminder = reminder
-        else { return }
-
-        switch indexPath {
-        case [0,0]:
-            cell.textField.text = reminder.title
-        case [0,1]:
-            cell.textView.text = reminder.body
-        case [1,0]:
-            cell.textLabel?.text = reminder.date
-        case [1,1]:
-            cell.textLabel?.text = reminder.time
-        case [2,0]:
-            break
-//            backgroundViewCell.backgroundColor = UIColor(named: reminder.color ?? "")
-        default:
-            break
-        }
-    }
+   
+//    func configureCell(cell: NewReminderTableViewCell, indexPath: IndexPath) {
+//        cell.textLabel?.text = cell.cellNameArray[indexPath.section][indexPath.row]
+//        cell.textLabel?.textColor = .label
+//        switch indexPath {
+//        case [0,0]:
+//            cell.textField.isHidden = false
+//            cell.textField.text = "Title"
+//            cell.textView.sizeToFit()
+//
+//        case [0,1]:
+//            cell.textView.isHidden = false
+//            cell.textView.text = "Body"
+//            cell.textView.font = .systemFont(ofSize: 18)
+//            cell.textView.sizeToFit()
+//        default:
+//            break
+//        }
+//
+//        cell.textView.delegate = self
+//
+//        if indexPath == [2,0] {
+//            cell.backgroundViewCell.backgroundColor = .secondarySystemFill
+//        }
+//
+//        guard let reminder = reminder
+//        else { return }
+//
+//        switch indexPath {
+//        case [0,0]:
+//            cell.textField.text = reminder.title
+//        case [0,1]:
+//            cell.textView.text = reminder.body
+//        case [1,0]:
+//            cell.textLabel?.text = reminder.date
+//        case [1,1]:
+//            cell.textLabel?.text = reminder.time
+//        case [2,0]:
+//            break
+////            backgroundViewCell.backgroundColor = UIColor(named: reminder.color ?? "")
+//        default:
+//            break
+//        }
+//    }
 }
 
 // MARK: - Table View DataSource
@@ -185,28 +163,24 @@ extension NewReminderViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0: return 2
-        case 1: return 2
-        case 2: return 1
-        default: return 1
-        }
+        setSection(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewReminderTableViewCell.identifier, for: indexPath) as! NewReminderTableViewCell
-        configureCell(cell: cell, indexPath: indexPath)
+        configureCell(cell: cell,
+                      indexPath: indexPath,
+                      array: cell.cellNameArray,
+                      textField: cell.textField,
+                      textView: cell.textView,
+                      backgroundViewCell: cell.backgroundViewCell,
+                      currentEvent: currentReminder)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.section == 0,
-           indexPath.row == 1 {
-            return 88
-        } else {
-            return 44
-        }
+        return setHeightForRow(indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -278,16 +252,4 @@ extension NewReminderViewController: NewViewDelegate {
             }
         }
     }
-}
-
-
-extension NewReminderViewController: UITextViewDelegate {
-    
-}
-
-extension NewReminderViewController: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-            return true
-        }
 }

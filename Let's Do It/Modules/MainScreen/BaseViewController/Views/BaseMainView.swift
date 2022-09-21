@@ -97,6 +97,8 @@ class BaseMainView: UIView {
         let tableView = UITableView()
         tableView.bounces = false
         tableView.backgroundColor = .clearColor
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "Header")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
