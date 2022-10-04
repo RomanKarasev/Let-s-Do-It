@@ -20,4 +20,7 @@ extension Habit {
     @NSManaged public var date: String?
     @NSManaged public var dayCount: String?
     @NSManaged public var image: String?
+    
+
 }
+

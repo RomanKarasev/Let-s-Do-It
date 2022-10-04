@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import FSCalendar
 
 // MARK: - BaseAllViewController
 
 
 class BaseAllViewController: UIViewController {
     
+    let baseAllView = BaseAllView()
    
     // MARK: View Life Cycle
     
@@ -19,6 +21,8 @@ class BaseAllViewController: UIViewController {
         super.viewDidLoad()
         
         title = "All Notes"
+        
+//        baseAllView.floatingButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -43,6 +47,28 @@ class BaseAllViewController: UIViewController {
         date.text = indexOfArray.date
         time.text = indexOfArray.time
     }
+    
+    func configureCalendar(calendar: FSCalendar) {
+        
+        calendar.scope = .week
+        calendar.firstWeekday = 2
+        calendar.appearance.headerTitleColor = .systemRed
+        calendar.appearance.weekdayTextColor = .blue
+        calendar.appearance.titleWeekendColor = .red
+        calendar.appearance.todayColor = .accentColor
+        calendar.appearance.selectionColor =  .mainColor
+        calendar.appearance.titleDefaultColor = .label
+    }
+}
+
+// MARK: - Constants
+
+private struct Constants {
+
+    static let idCalendarCell = "idCalendarCell"
+    static let idCalendarHeaderCell = "idCalendarHeaderCell"
+    static let monthView = "Month View"
+    static let weekView = "Week View"
 }
 
 

@@ -25,15 +25,16 @@ class MainTabBarController: UITabBarController {
     private func setupTabBar() {
         let notesViewController = createNoteVC()
         let remindersViewController = createReminderVC()
-        let calendarViewController =  createCalendarVC()
-        let todayViewController = createTodayVC()
+        //        let calendarViewController =  createCalendarVC()
+        let pomodoroViewController = createPomodoroVC()
+        //        let todayViewController = createTodayVC()
         let habitViewController = createHabitVC()
         
-        viewControllers = [calendarViewController,
-                           remindersViewController,
-                           todayViewController,
-                           habitViewController,
-                           notesViewController
+        viewControllers = [
+            remindersViewController,
+            pomodoroViewController,
+            habitViewController,
+            notesViewController
         ]
         
         tabBar.tintColor = UIColor.accentColor
@@ -58,40 +59,51 @@ extension MainTabBarController {
     }
     
     // MARK: createCalendarVC
-    private func createCalendarVC() -> ContainerViewController {
-        let calendarViewController =  ContainerViewComposer.makeContainer()
-        calendarViewController.tabBarItem.title = Constants.calendar
-        calendarViewController.tabBarItem.image = UIImage(systemName: Constants.calendarImage)
-        return calendarViewController
-    }
+    //    private func createCalendarVC() -> ContainerViewController {
+    //        let calendarViewController =  ContainerViewComposer.makeContainer()
+    //        calendarViewController.tabBarItem.title = Constants.calendar
+    //        calendarViewController.tabBarItem.image = UIImage(systemName: Constants.calendarImage)
+    //        return calendarViewController
+    //    }
     
     // MARK: createReminderVC
     private func createReminderVC() -> UINavigationController {
-        let remindersViewController = createNavController(vc: RemindersMainViewController(), itemName: Constants.reminders)
-        remindersViewController.tabBarItem.image = UIImage(systemName: Constants.remindersImage)
+        let remindersViewController = createNavController(vc: AllRemindersViewController(store: RemindersStore(coreDataService: CoreDataService()), alertFactory: AlertFactory()), itemName: Constants.reminders)
+        remindersViewController.tabBarItem.image = Constants.remindersImage
+        return remindersViewController
+    }
+    
+    // MARK: createPomodoroVC
+    
+    private func createPomodoroVC() -> UINavigationController {
+        let remindersViewController = createNavController(vc: PomodoroViewController(), itemName: Constants.pomodoro)
+        remindersViewController.tabBarItem.image = Constants.pomodoroImage
         return remindersViewController
     }
     
     // MARK: createTodayVC
-    private func createTodayVC() -> UINavigationController {
-        let todayViewController = createNavController(vc: TodayViewController(), itemName: Constants.today)
-        todayViewController.tabBarItem.image = UIImage(systemName: Constants.todayImage)
-        return todayViewController
-    }
+    //    private func createTodayVC() -> UINavigationController {
+    //        let todayViewController = createNavController(vc: TodayViewController(), itemName: Constants.today)
+    //        todayViewController.tabBarItem.image = Constants.todayImage
+    //        return todayViewController
+    //    }
     
     // MARK: createHabitVC
     private func createHabitVC() -> UINavigationController {
-        let vc = AllHabitsViewController(store: HabitsStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
+        let vc = AllHabitsViewController(store: HabitsStore(coreDataService: CoreDataService()),
+                                         alertFactory: AlertFactory())
         let habitViewController = createNavController(vc: vc,
                                                       itemName: Constants.habits)
-        habitViewController.tabBarItem.image = UIImage(systemName: Constants.habitsImage)
+        habitViewController.tabBarItem.image = Constants.habitsImage
         return habitViewController
     }
     
     // MARK: createNoteVC
     private func createNoteVC() -> UINavigationController {
-        let notesViewController = createNavController(vc: NotesMainViewController(), itemName: Constants.notes)
-        notesViewController.tabBarItem.image = UIImage(systemName: Constants.notesImage)
+        let notesViewController = createNavController(vc: AllNotesViewController(store: NotesStore(coreDataService: CoreDataService()),
+                                                                                 alertFactory: AlertFactory()),
+                                                      itemName: Constants.notes)
+        notesViewController.tabBarItem.image = Constants.notesImage
         return notesViewController
     }
 }
@@ -106,12 +118,14 @@ private struct Constants {
     static let habits = "Habits"
     static let today = "Today"
     static let notes = "Notes"
+    static let pomodoro = "Pomodoro"
     
     
-    static let calendarImage = "calendar"
-    static let remindersImage = "calendar.badge.exclamationmark"
-    static let habitsImage = "note.text.badge.plus"
-    static let todayImage = "calendar.badge.clock"
-    static let notesImage = "note.text"
+    static let calendarImage = UIImage(systemName: "calendar")
+    static let remindersImage = UIImage(systemName: "calendar.badge.exclamationmark")
+    static let habitsImage = UIImage(systemName: "note.text.badge.plus")
+    static let todayImage = UIImage(systemName: "calendar.badge.clock")
+    static let notesImage = UIImage(systemName: "note.text")
+    static let pomodoroImage = UIImage(systemName: "timer")
     //
 }

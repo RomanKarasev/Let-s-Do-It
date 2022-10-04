@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FSCalendar
 
 // MARK: - AllNotesViewController
 
@@ -44,7 +45,7 @@ class AllNotesViewController: BaseAllViewController {
         
         title = "All Notes"
         
-        configureTableView()
+        setForNotesVC()
     }
     
     override func loadView() {
@@ -54,6 +55,7 @@ class AllNotesViewController: BaseAllViewController {
     }
     
     // MARK: Methods
+    
     
     @objc override func openNewController() {
         let vc = NewNoteViewController(with: NotesStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
@@ -73,6 +75,20 @@ class AllNotesViewController: BaseAllViewController {
         }
     }
     
+    func setForNotesVC() {
+        allNotesView.floatingButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        allNotesView.hideShowButton.addTarget(self, action: #selector(hideShowButtonTapped), for: .touchUpInside)
+        configureTableView()
+        swipeAction()
+        configureNotesCalendar()
+    }
+    
+   func configureNotesCalendar() {
+        allNotesView.calendar.delegate = self
+        allNotesView.calendar.dataSource = self
+        configureCalendar(calendar: allNotesView.calendar)
+    }
+    
     private func fetchNotes(_ completion: @escaping ([Note]?) -> Void) {
         notesStore.getNotes { notes, error in
             if let notes = notes {
@@ -81,6 +97,18 @@ class AllNotesViewController: BaseAllViewController {
         }
     }
    
+    
+    
+    func swipeAction() {
+
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeUp.direction = .up
+        allNotesView.calendar.addGestureRecognizer(swipeUp)
+
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeDown.direction = .down
+        allNotesView.calendar.addGestureRecognizer(swipeDown)
+    }
     
     private func setSwipe(indexPath: IndexPath, tableView: UITableView) -> UISwipeActionsConfiguration {
         let deleteAction = UIContextualAction(
@@ -105,6 +133,35 @@ class AllNotesViewController: BaseAllViewController {
                 completionHandler(true)
             }
         return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+}
+
+@objc extension AllNotesViewController {
+    
+    
+    func hideShowButtonTapped() {
+        if allNotesView.calendar.scope == .week {
+            allNotesView.calendar.setScope(.month, animated: true )
+            allNotesView.hideShowButton.setTitle(Constants.monthView, for: .normal)
+        } else {
+            allNotesView.calendar.setScope(.week, animated: true )
+            allNotesView.hideShowButton.setTitle(Constants.weekView, for: .normal)
+        }
+    }
+    
+    func addButtonTapped() {
+        
+    }
+    
+    func handleSwipe(gesture: UISwipeGestureRecognizer) {
+        switch gesture.direction {
+        case .up:
+            hideShowButtonTapped()
+        case .down:
+            hideShowButtonTapped()
+        default:
+            break
+        }
     }
 }
 
@@ -146,3 +203,27 @@ extension AllNotesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+
+//MARK: - FSCalendarDataSource, FSCalendarDelegate
+
+extension AllNotesViewController: FSCalendarDataSource, FSCalendarDelegate {
+    
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+        allNotesView.calendarHeightConstraint.constant = bounds.height
+        view.layoutIfNeeded()
+    }
+
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        print(date)
+    }
+}
+
+// MARK: - Constants
+
+private struct Constants {
+    
+    static let idCalendarCell = "idCalendarCell"
+    static let idCalendarHeaderCell = "idCalendarHeaderCell"
+    static let monthView = "Month View"
+    static let weekView = "Week View"
+}

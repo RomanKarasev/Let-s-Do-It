@@ -10,25 +10,11 @@
 		7413BDD328D8523100CF1A56 /* BaseNewViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413BDD228D8523100CF1A56 /* BaseNewViewCell.swift */; };
 		7413BDD728D85D5B00CF1A56 /* BaseNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413BDD628D85D5B00CF1A56 /* BaseNewView.swift */; };
 		7413BDD928D8652700CF1A56 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413BDD828D8652600CF1A56 /* FloatingButton.swift */; };
-		7443CA4C289AF0370011D92F /* SideMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA4B289AF0370011D92F /* SideMenuItemCell.swift */; };
-		7443CA4E289AF04B0011D92F /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA4D289AF04B0011D92F /* SideMenuView.swift */; };
-		7443CA50289AF0C90011D92F /* SideMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA4F289AF0C90011D92F /* SideMenuItem.swift */; };
-		7443CA52289AF10D0011D92F /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA51289AF10D0011D92F /* ContainerViewController.swift */; };
-		7443CA54289AF1220011D92F /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA53289AF1220011D92F /* ContentViewController.swift */; };
-		7443CA56289AF13B0011D92F /* ContentViewControllerPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA55289AF13B0011D92F /* ContentViewControllerPresentation.swift */; };
-		7443CA58289AF14C0011D92F /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA57289AF14C0011D92F /* SideMenuViewController.swift */; };
-		7443CA5D289AF1EB0011D92F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA5C289AF1EB0011D92F /* AuthViewController.swift */; };
-		7443CA5F289AF2050011D92F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA5E289AF2050011D92F /* SettingsViewController.swift */; };
+		743980F528E1BF08007CD002 /* CalendarSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743980F428E1BF08007CD002 /* CalendarSettings.swift */; };
 		7443CA61289AF2180011D92F /* PomodoroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA60289AF2180011D92F /* PomodoroViewController.swift */; };
-		7443CA63289AF2610011D92F /* ExtensionSideMenuViewController + show&hide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA62289AF2610011D92F /* ExtensionSideMenuViewController + show&hide.swift */; };
-		7443CA65289AF27F0011D92F /* ContainerViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA64289AF27F0011D92F /* ContainerViewComposer.swift */; };
-		7443CA6B289AF3380011D92F /* RemindersMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA6A289AF3380011D92F /* RemindersMainView.swift */; };
-		7443CA6D289AF3680011D92F /* RemindersMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA6C289AF3680011D92F /* RemindersMainViewController.swift */; };
 		7443CA74289AF3FF0011D92F /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA73289AF3FF0011D92F /* TableHeaderView.swift */; };
 		7443CA76289AF40A0011D92F /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA75289AF40A0011D92F /* TodayView.swift */; };
 		7443CA78289AF44E0011D92F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA77289AF44E0011D92F /* TodayViewController.swift */; };
-		7443CA88289AFB7D0011D92F /* NotesMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA87289AFB7D0011D92F /* NotesMainView.swift */; };
-		7443CA8A289AFB8D0011D92F /* NotesMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA89289AFB8D0011D92F /* NotesMainViewController.swift */; };
 		7443CA8F289AFC270011D92F /* UiKIt +UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA8E289AFC270011D92F /* UiKIt +UIFont.swift */; };
 		7443CA91289AFC3B0011D92F /* UiKIt + UiButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA90289AFC3B0011D92F /* UiKIt + UiButtons.swift */; };
 		7443CA93289AFC510011D92F /* UiKit + UiLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CA92289AFC510011D92F /* UiKit + UiLabel.swift */; };
@@ -49,9 +35,6 @@
 		7443CAB7289AFFBF0011D92F /* UiVC + AlertDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAB6289AFFBF0011D92F /* UiVC + AlertDate.swift */; };
 		7443CAB9289AFFD90011D92F /* UiVC + AlertNewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAB8289AFFD90011D92F /* UiVC + AlertNewEvent.swift */; };
 		7443CABB289AFFEB0011D92F /* UiVC + AlertTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CABA289AFFEB0011D92F /* UiVC + AlertTime.swift */; };
-		7443CAC1289B00940011D92F /* FsCalendar + Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAC0289B00940011D92F /* FsCalendar + Settings.swift */; };
-		7443CAC3289B00B20011D92F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAC2289B00B20011D92F /* CalendarViewController.swift */; };
-		7443CAC5289B00CE0011D92F /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAC4289B00CE0011D92F /* CalendarView.swift */; };
 		7443CACF289B067F0011D92F /* UIApplication+ManagedContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CACE289B067F0011D92F /* UIApplication+ManagedContext.swift */; };
 		7443CAD3289C46A80011D92F /* ApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAD2289C46A80011D92F /* ApiModel.swift */; };
 		7443CAD5289C546B0011D92F /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAD4289C546B0011D92F /* WeatherManager.swift */; };
@@ -61,13 +44,10 @@
 		7443CAE6289F9F130011D92F /* PomodoroViewController + FocusTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAE5289F9F130011D92F /* PomodoroViewController + FocusTimer.swift */; };
 		7443CAE8289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAE7289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift */; };
 		7443CAEA289F9F310011D92F /* PomodoroViewController + RestTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CAE9289F9F310011D92F /* PomodoroViewController + RestTimer.swift */; };
-		74797C0B28D9B3B30030D93A /* BaseMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74797C0A28D9B3B30030D93A /* BaseMainView.swift */; };
-		74797C0E28D9B55D0030D93A /* BaseButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74797C0D28D9B55D0030D93A /* BaseButtons.swift */; };
 		74797C1228D9CBBE0030D93A /* AllHabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74797C1128D9CBBE0030D93A /* AllHabitsView.swift */; };
 		747CDDEC28D31AE30010C31E /* UiKIt +UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747CDDEB28D31AE30010C31E /* UiKIt +UIColor.swift */; };
 		747CDDEE28D328810010C31E /* UiKit + CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747CDDED28D328810010C31E /* UiKit + CGFloat.swift */; };
 		7481938328D480E1006CC722 /* DividerStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7481938228D480E1006CC722 /* DividerStruct.swift */; };
-		7481938928D487FD006CC722 /* BaseEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7481938828D487FD006CC722 /* BaseEnum.swift */; };
 		7481938E28D488C5006CC722 /* BaseAllViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7481938D28D488C5006CC722 /* BaseAllViewCell.swift */; };
 		7481939028D4D907006CC722 /* BaseAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7481938F28D4D907006CC722 /* BaseAllView.swift */; };
 		748382C828A3E0D10035CEF2 /* HabitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748382C728A3E0D10035CEF2 /* HabitCollectionViewCell.swift */; };
@@ -95,11 +75,9 @@
 		74A22F2F289AE33D007B60AE /* Let_s_Do_ItUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22F2E289AE33D007B60AE /* Let_s_Do_ItUITestsLaunchTests.swift */; };
 		74A22F3E289AE7BB007B60AE /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 74A22F3D289AE7BB007B60AE /* FSCalendar */; };
 		74A22F45289AED8D007B60AE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22F44289AED8D007B60AE /* MainTabBarController.swift */; };
-		74ACC7FC28DB031C00162E20 /* BaseMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ACC7FB28DB031C00162E20 /* BaseMainViewController.swift */; };
 		74ACC7FE28DB09F000162E20 /* AlertForFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ACC7FD28DB09F000162E20 /* AlertForFloatingButton.swift */; };
 		74ACC80028DB0E1600162E20 /* BaseAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ACC7FF28DB0E1600162E20 /* BaseAllViewController.swift */; };
 		74ACC80228DB1E4C00162E20 /* BaseNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ACC80128DB1E4C00162E20 /* BaseNewViewController.swift */; };
-		74FA1DD428AD608D00E074F5 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FA1DD328AD608D00E074F5 /* CalendarTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,25 +101,11 @@
 		7413BDD228D8523100CF1A56 /* BaseNewViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNewViewCell.swift; sourceTree = "<group>"; };
 		7413BDD628D85D5B00CF1A56 /* BaseNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNewView.swift; sourceTree = "<group>"; };
 		7413BDD828D8652600CF1A56 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
-		7443CA4B289AF0370011D92F /* SideMenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuItemCell.swift; sourceTree = "<group>"; };
-		7443CA4D289AF04B0011D92F /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
-		7443CA4F289AF0C90011D92F /* SideMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuItem.swift; sourceTree = "<group>"; };
-		7443CA51289AF10D0011D92F /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
-		7443CA53289AF1220011D92F /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
-		7443CA55289AF13B0011D92F /* ContentViewControllerPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewControllerPresentation.swift; sourceTree = "<group>"; };
-		7443CA57289AF14C0011D92F /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
-		7443CA5C289AF1EB0011D92F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		7443CA5E289AF2050011D92F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		743980F428E1BF08007CD002 /* CalendarSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSettings.swift; sourceTree = "<group>"; };
 		7443CA60289AF2180011D92F /* PomodoroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroViewController.swift; sourceTree = "<group>"; };
-		7443CA62289AF2610011D92F /* ExtensionSideMenuViewController + show&hide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtensionSideMenuViewController + show&hide.swift"; sourceTree = "<group>"; };
-		7443CA64289AF27F0011D92F /* ContainerViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewComposer.swift; sourceTree = "<group>"; };
-		7443CA6A289AF3380011D92F /* RemindersMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersMainView.swift; sourceTree = "<group>"; };
-		7443CA6C289AF3680011D92F /* RemindersMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersMainViewController.swift; sourceTree = "<group>"; };
 		7443CA73289AF3FF0011D92F /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
 		7443CA75289AF40A0011D92F /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		7443CA77289AF44E0011D92F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		7443CA87289AFB7D0011D92F /* NotesMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesMainView.swift; sourceTree = "<group>"; };
-		7443CA89289AFB8D0011D92F /* NotesMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesMainViewController.swift; sourceTree = "<group>"; };
 		7443CA8E289AFC270011D92F /* UiKIt +UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiKIt +UIFont.swift"; sourceTree = "<group>"; };
 		7443CA90289AFC3B0011D92F /* UiKIt + UiButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiKIt + UiButtons.swift"; sourceTree = "<group>"; };
 		7443CA92289AFC510011D92F /* UiKit + UiLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiKit + UiLabel.swift"; sourceTree = "<group>"; };
@@ -162,9 +126,6 @@
 		7443CAB6289AFFBF0011D92F /* UiVC + AlertDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiVC + AlertDate.swift"; sourceTree = "<group>"; };
 		7443CAB8289AFFD90011D92F /* UiVC + AlertNewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiVC + AlertNewEvent.swift"; sourceTree = "<group>"; };
 		7443CABA289AFFEB0011D92F /* UiVC + AlertTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiVC + AlertTime.swift"; sourceTree = "<group>"; };
-		7443CAC0289B00940011D92F /* FsCalendar + Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FsCalendar + Settings.swift"; sourceTree = "<group>"; };
-		7443CAC2289B00B20011D92F /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		7443CAC4289B00CE0011D92F /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		7443CACE289B067F0011D92F /* UIApplication+ManagedContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+ManagedContext.swift"; sourceTree = "<group>"; };
 		7443CAD2289C46A80011D92F /* ApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiModel.swift; sourceTree = "<group>"; };
 		7443CAD4289C546B0011D92F /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
@@ -174,13 +135,10 @@
 		7443CAE5289F9F130011D92F /* PomodoroViewController + FocusTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroViewController + FocusTimer.swift"; sourceTree = "<group>"; };
 		7443CAE7289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroViewController + LongRestTimer.swift"; sourceTree = "<group>"; };
 		7443CAE9289F9F310011D92F /* PomodoroViewController + RestTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroViewController + RestTimer.swift"; sourceTree = "<group>"; };
-		74797C0A28D9B3B30030D93A /* BaseMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMainView.swift; sourceTree = "<group>"; };
-		74797C0D28D9B55D0030D93A /* BaseButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtons.swift; sourceTree = "<group>"; };
 		74797C1128D9CBBE0030D93A /* AllHabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllHabitsView.swift; sourceTree = "<group>"; };
 		747CDDEB28D31AE30010C31E /* UiKIt +UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiKIt +UIColor.swift"; sourceTree = "<group>"; };
 		747CDDED28D328810010C31E /* UiKit + CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiKit + CGFloat.swift"; sourceTree = "<group>"; };
 		7481938228D480E1006CC722 /* DividerStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerStruct.swift; sourceTree = "<group>"; };
-		7481938828D487FD006CC722 /* BaseEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEnum.swift; sourceTree = "<group>"; };
 		7481938D28D488C5006CC722 /* BaseAllViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAllViewCell.swift; sourceTree = "<group>"; };
 		7481938F28D4D907006CC722 /* BaseAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAllView.swift; sourceTree = "<group>"; };
 		748382C728A3E0D10035CEF2 /* HabitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -211,11 +169,9 @@
 		74A22F2C289AE33D007B60AE /* Let_s_Do_ItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Let_s_Do_ItUITests.swift; sourceTree = "<group>"; };
 		74A22F2E289AE33D007B60AE /* Let_s_Do_ItUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Let_s_Do_ItUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		74A22F44289AED8D007B60AE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		74ACC7FB28DB031C00162E20 /* BaseMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMainViewController.swift; sourceTree = "<group>"; };
 		74ACC7FD28DB09F000162E20 /* AlertForFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertForFloatingButton.swift; sourceTree = "<group>"; };
 		74ACC7FF28DB0E1600162E20 /* BaseAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAllViewController.swift; sourceTree = "<group>"; };
 		74ACC80128DB1E4C00162E20 /* BaseNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNewViewController.swift; sourceTree = "<group>"; };
-		74FA1DD328AD608D00E074F5 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,71 +200,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7443CA2C289AEEA30011D92F /* SideMenu */ = {
+		743980F328E1BEF1007CD002 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				7443CA4A289AF01C0011D92F /* View */,
-				7443CA49289AF0140011D92F /* Model */,
-				7443CA48289AF00B0011D92F /* Controllers */,
-				7443CA47289AEFFE0011D92F /* SideMenuItems */,
-				7443CA46289AEFF40011D92F /* Extention */,
-				7443CA45289AEFE90011D92F /* Lib */,
+				743980F428E1BF08007CD002 /* CalendarSettings.swift */,
 			);
-			path = SideMenu;
-			sourceTree = "<group>";
-		};
-		7443CA45289AEFE90011D92F /* Lib */ = {
-			isa = PBXGroup;
-			children = (
-				7443CA64289AF27F0011D92F /* ContainerViewComposer.swift */,
-			);
-			path = Lib;
-			sourceTree = "<group>";
-		};
-		7443CA46289AEFF40011D92F /* Extention */ = {
-			isa = PBXGroup;
-			children = (
-				7443CA62289AF2610011D92F /* ExtensionSideMenuViewController + show&hide.swift */,
-			);
-			path = Extention;
-			sourceTree = "<group>";
-		};
-		7443CA47289AEFFE0011D92F /* SideMenuItems */ = {
-			isa = PBXGroup;
-			children = (
-				7443CA5B289AF1B80011D92F /* Auth */,
-				7443CA5A289AF1AD0011D92F /* Settings */,
-				7443CA59289AF1A60011D92F /* Pomodoro */,
-			);
-			path = SideMenuItems;
-			sourceTree = "<group>";
-		};
-		7443CA48289AF00B0011D92F /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				7443CA51289AF10D0011D92F /* ContainerViewController.swift */,
-				7443CA53289AF1220011D92F /* ContentViewController.swift */,
-				7443CA55289AF13B0011D92F /* ContentViewControllerPresentation.swift */,
-				7443CA57289AF14C0011D92F /* SideMenuViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		7443CA49289AF0140011D92F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				7443CA4F289AF0C90011D92F /* SideMenuItem.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		7443CA4A289AF01C0011D92F /* View */ = {
-			isa = PBXGroup;
-			children = (
-				7443CA4B289AF0370011D92F /* SideMenuItemCell.swift */,
-				7443CA4D289AF04B0011D92F /* SideMenuView.swift */,
-			);
-			path = View;
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 		7443CA59289AF1A60011D92F /* Pomodoro */ = {
@@ -320,22 +217,6 @@
 				7443CAD6289F9CE90011D92F /* Extention */,
 			);
 			path = Pomodoro;
-			sourceTree = "<group>";
-		};
-		7443CA5A289AF1AD0011D92F /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				7443CA5E289AF2050011D92F /* SettingsViewController.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
-		7443CA5B289AF1B80011D92F /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				7443CA5C289AF1EB0011D92F /* AuthViewController.swift */,
-			);
-			path = Auth;
 			sourceTree = "<group>";
 		};
 		7443CA66289AF2DA0011D92F /* Reminders */ = {
@@ -352,7 +233,6 @@
 			isa = PBXGroup;
 			children = (
 				748382DD28A3E5050035CEF2 /* Cells */,
-				7443CA6A289AF3380011D92F /* RemindersMainView.swift */,
 				748382E428A3E5B80035CEF2 /* NewReminderView.swift */,
 			);
 			path = Views;
@@ -361,7 +241,6 @@
 		7443CA68289AF2F20011D92F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7443CA6C289AF3680011D92F /* RemindersMainViewController.swift */,
 				748382E628A3E5D80035CEF2 /* AllRemindersViewController.swift */,
 				748382E828A3E6030035CEF2 /* NewReminderViewController.swift */,
 			);
@@ -457,7 +336,6 @@
 		7443CA85289AFB520011D92F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7443CA89289AFB8D0011D92F /* NotesMainViewController.swift */,
 				748382D928A3E4AD0035CEF2 /* AllNotesViewController.swift */,
 				748382DB28A3E4BE0035CEF2 /* NewNoteViewController.swift */,
 			);
@@ -469,7 +347,6 @@
 			children = (
 				748382C328A3E0230035CEF2 /* Cells */,
 				748382D728A3E4650035CEF2 /* NewNoteView.swift */,
-				7443CA87289AFB7D0011D92F /* NotesMainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -549,41 +426,6 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
-		7443CABC289B00510011D92F /* Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				7443CABE289B006E0011D92F /* View */,
-				7443CABF289B00760011D92F /* Controllers */,
-				7443CABD289B005D0011D92F /* Extentions */,
-			);
-			path = Calendar;
-			sourceTree = "<group>";
-		};
-		7443CABD289B005D0011D92F /* Extentions */ = {
-			isa = PBXGroup;
-			children = (
-				7443CAC0289B00940011D92F /* FsCalendar + Settings.swift */,
-			);
-			path = Extentions;
-			sourceTree = "<group>";
-		};
-		7443CABE289B006E0011D92F /* View */ = {
-			isa = PBXGroup;
-			children = (
-				74FA1DD228AD606900E074F5 /* Cell */,
-				7443CAC4289B00CE0011D92F /* CalendarView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		7443CABF289B00760011D92F /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				7443CAC2289B00B20011D92F /* CalendarViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		7443CAC8289B01220011D92F /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,14 +486,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		74797C0C28D9B5470030D93A /* Extentions */ = {
-			isa = PBXGroup;
-			children = (
-				74797C0D28D9B55D0030D93A /* BaseButtons.swift */,
-			);
-			path = Extentions;
-			sourceTree = "<group>";
-		};
 		7481938128D480BA006CC722 /* Structs */ = {
 			isa = PBXGroup;
 			children = (
@@ -663,19 +497,11 @@
 		7481938428D486D1006CC722 /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
-				74797C0C28D9B5470030D93A /* Extentions */,
+				743980F328E1BEF1007CD002 /* Extentions */,
 				7481938C28D4888A006CC722 /* Controllers */,
 				7481938A28D48879006CC722 /* Views */,
 			);
 			path = BaseViewController;
-			sourceTree = "<group>";
-		};
-		7481938728D487D3006CC722 /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				7481938828D487FD006CC722 /* BaseEnum.swift */,
-			);
-			path = Enums;
 			sourceTree = "<group>";
 		};
 		7481938A28D48879006CC722 /* Views */ = {
@@ -684,7 +510,6 @@
 				7481938B28D48881006CC722 /* Cells */,
 				7481938F28D4D907006CC722 /* BaseAllView.swift */,
 				7413BDD628D85D5B00CF1A56 /* BaseNewView.swift */,
-				74797C0A28D9B3B30030D93A /* BaseMainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -701,7 +526,6 @@
 		7481938C28D4888A006CC722 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				74ACC7FB28DB031C00162E20 /* BaseMainViewController.swift */,
 				74ACC7FF28DB0E1600162E20 /* BaseAllViewController.swift */,
 				74ACC80128DB1E4C00162E20 /* BaseNewViewController.swift */,
 			);
@@ -808,7 +632,6 @@
 		74A22F40289AEA70007B60AE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7481938728D487D3006CC722 /* Enums */,
 				7481938128D480BA006CC722 /* Structs */,
 				74A22F11289AE33A007B60AE /* Let_s_Do_It.xcdatamodeld */,
 				7443CA98289AFD600011D92F /* Arrays */,
@@ -822,7 +645,6 @@
 		74A22F41289AED4C007B60AE /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				7443CA2C289AEEA30011D92F /* SideMenu */,
 				74A22F42289AED57007B60AE /* MainScreen */,
 			);
 			path = Modules;
@@ -831,9 +653,9 @@
 		74A22F42289AED57007B60AE /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
-				7481938428D486D1006CC722 /* BaseViewController */,
 				74A22F43289AED66007B60AE /* MainTabBarController */,
-				7443CABC289B00510011D92F /* Calendar */,
+				7481938428D486D1006CC722 /* BaseViewController */,
+				7443CA59289AF1A60011D92F /* Pomodoro */,
 				7443CA83289AFB3B0011D92F /* Notes */,
 				7443CA66289AF2DA0011D92F /* Reminders */,
 				7443CA70289AF3CE0011D92F /* Today */,
@@ -848,14 +670,6 @@
 				74A22F44289AED8D007B60AE /* MainTabBarController.swift */,
 			);
 			path = MainTabBarController;
-			sourceTree = "<group>";
-		};
-		74FA1DD228AD606900E074F5 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				74FA1DD328AD608D00E074F5 /* CalendarTableViewCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -995,50 +809,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				7443CA8F289AFC270011D92F /* UiKIt +UIFont.swift in Sources */,
-				7443CA6D289AF3680011D92F /* RemindersMainViewController.swift in Sources */,
 				748382CE28A3E15D0035CEF2 /* AllHabitsViewController.swift in Sources */,
 				748382DA28A3E4AD0035CEF2 /* AllNotesViewController.swift in Sources */,
 				74ACC80228DB1E4C00162E20 /* BaseNewViewController.swift in Sources */,
 				748382D828A3E4650035CEF2 /* NewNoteView.swift in Sources */,
 				7443CA9D289AFDC10011D92F /* Arrays.swift in Sources */,
 				748382E728A3E5D80035CEF2 /* AllRemindersViewController.swift in Sources */,
-				7443CA56289AF13B0011D92F /* ContentViewControllerPresentation.swift in Sources */,
-				7481938928D487FD006CC722 /* BaseEnum.swift in Sources */,
 				7443CA91289AFC3B0011D92F /* UiKIt + UiButtons.swift in Sources */,
-				7443CAC5289B00CE0011D92F /* CalendarView.swift in Sources */,
 				748382E928A3E6030035CEF2 /* NewReminderViewController.swift in Sources */,
 				7443CAE8289F9F210011D92F /* PomodoroViewController + LongRestTimer.swift in Sources */,
 				748382CA28A3E0DE0035CEF2 /* NewHabitViewCell.swift in Sources */,
-				7443CA6B289AF3380011D92F /* RemindersMainView.swift in Sources */,
 				7481938328D480E1006CC722 /* DividerStruct.swift in Sources */,
 				748382E128A3E5330035CEF2 /* NewReminderViewCell.swift in Sources */,
-				7443CA8A289AFB8D0011D92F /* NotesMainViewController.swift in Sources */,
 				7443CAB0289AFEF80011D92F /* RemindersStore.swift in Sources */,
-				7443CA54289AF1220011D92F /* ContentViewController.swift in Sources */,
 				748382D228A3E3FD0035CEF2 /* AllNotesViewCell.swift in Sources */,
 				7443CAE0289F9ED90011D92F /* PomodoroViewController + Animation.swift in Sources */,
 				7443CACF289B067F0011D92F /* UIApplication+ManagedContext.swift in Sources */,
 				7443CAB9289AFFD90011D92F /* UiVC + AlertNewEvent.swift in Sources */,
+				743980F528E1BF08007CD002 /* CalendarSettings.swift in Sources */,
 				7443CAEA289F9F310011D92F /* PomodoroViewController + RestTimer.swift in Sources */,
 				7443CAD5289C546B0011D92F /* WeatherManager.swift in Sources */,
 				7443CAB7289AFFBF0011D92F /* UiVC + AlertDate.swift in Sources */,
-				74797C0B28D9B3B30030D93A /* BaseMainView.swift in Sources */,
 				7443CA95289AFC6F0011D92F /* UiKit + UiStackView.swift in Sources */,
-				7443CA4C289AF0370011D92F /* SideMenuItemCell.swift in Sources */,
-				7443CA4E289AF04B0011D92F /* SideMenuView.swift in Sources */,
-				7443CA65289AF27F0011D92F /* ContainerViewComposer.swift in Sources */,
 				748382CC28A3E1300035CEF2 /* NewHabitView.swift in Sources */,
 				748382C828A3E0D10035CEF2 /* HabitCollectionViewCell.swift in Sources */,
 				7413BDD728D85D5B00CF1A56 /* BaseNewView.swift in Sources */,
 				748382DF28A3E51C0035CEF2 /* AllRemindersViewCell.swift in Sources */,
 				7443CAA7289AFE790011D92F /* Note + CoreDataClass.swift in Sources */,
-				7443CA58289AF14C0011D92F /* SideMenuViewController.swift in Sources */,
 				7443CAAE289AFEE50011D92F /* HabitsStore.swift in Sources */,
 				7443CABB289AFFEB0011D92F /* UiVC + AlertTime.swift in Sources */,
-				74797C0E28D9B55D0030D93A /* BaseButtons.swift in Sources */,
 				748382D428A3E40F0035CEF2 /* NewNoteViewCell.swift in Sources */,
 				7443CAA1289AFE000011D92F /* Habit + CoreDataProperties.swift in Sources */,
-				7443CA88289AFB7D0011D92F /* NotesMainView.swift in Sources */,
 				74A22F13289AE33A007B60AE /* Let_s_Do_It.xcdatamodeld in Sources */,
 				74A22F45289AED8D007B60AE /* MainTabBarController.swift in Sources */,
 				74ACC7FE28DB09F000162E20 /* AlertForFloatingButton.swift in Sources */,
@@ -1046,33 +847,24 @@
 				7443CAB2289AFF050011D92F /* AlertFactory.swift in Sources */,
 				7443CA74289AF3FF0011D92F /* TableHeaderView.swift in Sources */,
 				7443CAE6289F9F130011D92F /* PomodoroViewController + FocusTimer.swift in Sources */,
-				7443CAC1289B00940011D92F /* FsCalendar + Settings.swift in Sources */,
-				7443CA5D289AF1EB0011D92F /* AuthViewController.swift in Sources */,
 				7443CAD3289C46A80011D92F /* ApiModel.swift in Sources */,
-				7443CA5F289AF2050011D92F /* SettingsViewController.swift in Sources */,
 				74ACC80028DB0E1600162E20 /* BaseAllViewController.swift in Sources */,
-				74FA1DD428AD608D00E074F5 /* CalendarTableViewCell.swift in Sources */,
 				7443CAAC289AFED70011D92F /* NotesStore.swift in Sources */,
 				74A22F09289AE33A007B60AE /* AppDelegate.swift in Sources */,
 				748382DC28A3E4BE0035CEF2 /* NewNoteViewController.swift in Sources */,
-				7443CAC3289B00B20011D92F /* CalendarViewController.swift in Sources */,
 				7443CAE4289F9F030011D92F /* PomodoroViewController + DrawLayer.swift in Sources */,
 				748382E528A3E5B80035CEF2 /* NewReminderView.swift in Sources */,
 				7481939028D4D907006CC722 /* BaseAllView.swift in Sources */,
 				7443CA9F289AFDEB0011D92F /* Habit + CoreDataClass.swift in Sources */,
-				7443CA50289AF0C90011D92F /* SideMenuItem.swift in Sources */,
 				7443CAA5289AFE470011D92F /* Reminder + CoreDataProperties.swift in Sources */,
 				7413BDD328D8523100CF1A56 /* BaseNewViewCell.swift in Sources */,
 				7481938E28D488C5006CC722 /* BaseAllViewCell.swift in Sources */,
 				7443CAB4289AFF1D0011D92F /* CoreDataSevices.swift in Sources */,
 				747CDDEC28D31AE30010C31E /* UiKIt +UIColor.swift in Sources */,
 				7443CAA3289AFE340011D92F /* Reminder + CoreDataClass.swift in Sources */,
-				74ACC7FC28DB031C00162E20 /* BaseMainViewController.swift in Sources */,
 				7443CA61289AF2180011D92F /* PomodoroViewController.swift in Sources */,
 				748382D028A3E16B0035CEF2 /* NewHabitViewController.swift in Sources */,
-				7443CA52289AF10D0011D92F /* ContainerViewController.swift in Sources */,
 				7443CAA9289AFE940011D92F /* Note + CoreDataProperties.swift in Sources */,
-				7443CA63289AF2610011D92F /* ExtensionSideMenuViewController + show&hide.swift in Sources */,
 				7443CADE289F9D770011D92F /* PomodoroView.swift in Sources */,
 				747CDDEE28D328810010C31E /* UiKit + CGFloat.swift in Sources */,
 				74A22F0B289AE33A007B60AE /* SceneDelegate.swift in Sources */,

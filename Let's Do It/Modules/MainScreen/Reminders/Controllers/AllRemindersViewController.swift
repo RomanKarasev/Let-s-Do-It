@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FSCalendar
 
 // MARK: - AllRemindersViewController
 
@@ -16,6 +17,8 @@ class AllRemindersViewController: BaseAllViewController {
     
     let allRemindersView = BaseAllView()
     
+    
+    let headerView = TableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80))
     private var remindersStore: RemindersStoreInput
     private var alertFactory: AlertFactory
     
@@ -44,7 +47,7 @@ class AllRemindersViewController: BaseAllViewController {
         
         title = "All Reminders"
         
-        configureTableView()
+        setForReminderVC()
     }
     
     override func loadView() {
@@ -53,13 +56,76 @@ class AllRemindersViewController: BaseAllViewController {
         view.backgroundColor = .appBackgroundColor
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        WeatherManager.getCurrentWeatherData(for: "Saint-Petersburg") { currentWeatherData in
+            self.headerView.setWeatherData(from: currentWeatherData)
+        }
+    }
+    
     
     // MARK: Methods
+    
+    @objc func hideShowButtonTapped() {
+        if allRemindersView.calendar.scope == .week {
+            allRemindersView.calendar.setScope(.month, animated: true )
+            allRemindersView.hideShowButton.setTitle(Constants.monthView, for: .normal)
+        } else {
+            allRemindersView.calendar.setScope(.week, animated: true )
+            allRemindersView.hideShowButton.setTitle(Constants.weekView, for: .normal)
+        }
+    }
+    
+    @objc func addButtonTapped() {
+        
+    }
+    
+    @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
+        switch gesture.direction {
+        case .up:
+            hideShowButtonTapped()
+        case .down:
+            hideShowButtonTapped()
+        default:
+            break
+        }
+    }
+
     
     @objc override func openNewController() {
         let vc = NewReminderViewController(with: RemindersStore(coreDataService: CoreDataService()), alertFactory: AlertFactory())
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+      
+    func setForReminderVC() {
+        allRemindersView.floatingButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        allRemindersView.hideShowButton.addTarget(self, action: #selector(hideShowButtonTapped), for: .touchUpInside)
+        configureTableView()
+        swipeAction()
+        configureReminderCalendar()
+    }
+    
+   func configureReminderCalendar() {
+        allRemindersView.calendar.delegate = self
+        allRemindersView.calendar.dataSource = self
+        configureCalendar(calendar: allRemindersView.calendar)
+    }
+    
+
+    
+    func swipeAction() {
+
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeUp.direction = .up
+        allRemindersView.calendar.addGestureRecognizer(swipeUp)
+
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeDown.direction = .down
+        allRemindersView.calendar.addGestureRecognizer(swipeDown)
+    }
+    
+    
     
     private func reloadData(from reminders: [Reminder]?) {
         guard let reminders = reminders
@@ -75,7 +141,7 @@ class AllRemindersViewController: BaseAllViewController {
         allRemindersView.tableView.delegate = self
         allRemindersView.tableView.dataSource = self
         allRemindersView.tableView.register(AllRemindersTableViewCell.self, forCellReuseIdentifier: AllRemindersTableViewCell.identifier)
-        
+//        allRemindersView.tableView.register(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: TableHeaderView.identifier)
         fetchReminders { reminders in
             if let reminders = reminders {
                 self.reminders = reminders
@@ -151,6 +217,9 @@ extension AllRemindersViewController: UITableViewDelegate, UITableViewDataSource
         viewController.currentReminder = currentReminder
         navigationController?.pushViewController(viewController, animated: true)
     }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return headerView
+    }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         setSwipe(indexPath: indexPath, tableView: tableView)
@@ -189,6 +258,28 @@ extension AllRemindersViewController: UINavigationControllerDelegate {
 }
 
 
+//MARK: - FSCalendarDataSource, FSCalendarDelegate
+
+extension AllRemindersViewController: FSCalendarDataSource, FSCalendarDelegate {
+    
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+        allRemindersView.calendarHeightConstraint.constant = bounds.height
+        view.layoutIfNeeded()
+    }
+
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        print(date)
+    }
+}
 
 
+// MARK: - Constants
+
+private struct Constants {
+    
+    static let idCalendarCell = "idCalendarCell"
+    static let idCalendarHeaderCell = "idCalendarHeaderCell"
+    static let monthView = "Month View"
+    static let weekView = "Week View"
+}
 

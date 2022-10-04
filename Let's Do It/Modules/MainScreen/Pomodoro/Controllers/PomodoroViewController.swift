@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - PomodoroViewController
 
-class PomodoroViewController: ContentViewController, CAAnimationDelegate {
+class PomodoroViewController: UIViewController/*ContentViewController*/, CAAnimationDelegate {
     
     // MARK: Properties
     
